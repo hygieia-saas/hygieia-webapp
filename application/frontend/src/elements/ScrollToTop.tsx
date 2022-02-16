@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import { History } from 'history';
 
 const ScrollToTop = ({ history }: { history: History }): JSX.Element => {

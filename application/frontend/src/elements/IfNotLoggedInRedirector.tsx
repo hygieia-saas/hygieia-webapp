@@ -1,4 +1,4 @@
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import React from 'react';
 import { useAppSelector } from '../app/hooks';
 import ERoutes from '../app/routes';

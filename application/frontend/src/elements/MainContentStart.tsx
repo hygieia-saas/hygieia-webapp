@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import { Col } from 'react-bootstrap';
 
 const MainContentStart = (props: { children: ReactNode }): JSX.Element => {
     return <Col id='main-content-start' className='d-md-flex justify-content-center'>

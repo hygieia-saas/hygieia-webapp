@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import { Col } from 'react-bootstrap';
 
 const MainContentEnd = (props: { children: ReactNode }): JSX.Element => {
     return <Col id='main-content-end' md='4'>

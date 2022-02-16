@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import ErrorMessage from '../../elements/ErrorMessage';
 import { logIntoAccountCommand } from './sessionSlice';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { useFormWithValidation } from '../../app/hooks/useFormWithValidationHook';
 import { credentialsSyntacticalValidationRules, ICredentials } from 'hygieia-webapp-shared';
 import MainContentStart from '../../elements/MainContentStart';
@@ -33,7 +33,7 @@ const Login = (): JSX.Element => {
     });
 
     if (reduxState.session.isLoggedIn) {
-        return (<Redirect push to={ERoutes['formDefinitions.overview']} />);
+        return (<Redirect push to={ERoutes.home} />);
     }
 
     return <>
