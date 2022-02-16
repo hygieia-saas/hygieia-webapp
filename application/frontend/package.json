@@ -2,22 +2,7 @@
   "name": "hygieia-webapp-frontend",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.7.2",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.20.46",
-    "@types/react": "^16.14.23",
-    "@types/react-dom": "^16.9.14",
-    "@types/react-redux": "^7.1.22",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^7.2.6",
-    "react-scripts": "5.0.0",
-    "typescript": "~4.1.5"
-  },
+  "dependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -40,9 +25,23 @@
     ]
   },
   "devDependencies": {
+    "@reduxjs/toolkit": "^1.7.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.20.46",
+    "@types/react": "^16.14.23",
+    "@types/react-dom": "^16.9.14",
+    "@types/react-redux": "^7.1.22",
     "autoprefixer": "^10.4.2",
     "mercury-webapp-shared": "file:../shared",
     "postcss": "^8.4.6",
-    "tailwindcss": "^3.0.23"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-scripts": "5.0.0",
+    "tailwindcss": "^3.0.23",
+    "typescript": "~4.1.5"
   }
 }
