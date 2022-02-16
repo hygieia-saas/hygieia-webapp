@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "mercury-webapp-shared": "file:../shared",
     "postcss": "^8.4.6",
     "tailwindcss": "^3.0.23"
   }

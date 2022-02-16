@@ -1,0 +1,28 @@
+{
+  "name": "hygieia-webapp-shared",
+  "version": "0.1.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "/usr/bin/env bash bin/generate-validators.sh && tsc",
+    "lint": "npx eslint . --ext .ts,.tsx"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.4.6",
+    "@types/uuid": "^8.3.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "eslint": "^7.31.0",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.4",
+    "typescript": "^4.3.5",
+    "typescript-json-validator": "^2.4.2"
+  },
+  "dependencies": {
+    "ajv": "^6.12.6",
+    "uuid": "^8.3.2"
+  }
+}
