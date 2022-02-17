@@ -14,17 +14,19 @@ const App = (): JSX.Element => {
     return (
         <ScrollToTopWrapper>
             <Routes>
-                <Route path={ERoutes['login']}><Login/></Route>
-                <Route path={ERoutes['register']}><Registration/></Route>
+                <Route path={ERoutes['login']} element={<Login/>} />
+                <Route path={ERoutes['register']} element={<Registration/>} />
 
-                <Route path={ERoutes['home']}>
-                    <Header/>
-                    <MainContent>
-                        <MainContentStart>
-                            <h1>Home</h1>
-                        </MainContentStart>
-                    </MainContent>
-                </Route>
+                <Route path={ERoutes['home']} element={
+                    <>
+                        <Header/>
+                        <MainContent>
+                            <MainContentStart>
+                                <h1>Home</h1>
+                            </MainContentStart>
+                        </MainContent>
+                    </>
+                } />
             </Routes>
 
             <footer>
