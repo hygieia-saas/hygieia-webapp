@@ -58,7 +58,7 @@ export const registerAccountCommand = createAsyncThunk<void, ICredentials, { sta
                 if (error instanceof Error) {
                     return thunkAPI.rejectWithValue(error.message);
                 } else {
-                    return thunkAPI.rejectWithValue(error);
+                    return thunkAPI.rejectWithValue(error as string);
                 }
             });
     }

@@ -2,7 +2,6 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import ErrorMessage from '../../elements/ErrorMessage';
 import { logIntoAccountCommand } from './sessionSlice';
-import { Redirect } from 'react-router';
 import { useFormWithValidation } from '../../app/hooks/useFormWithValidationHook';
 import { credentialsSyntacticalValidationRules, ICredentials } from 'hygieia-webapp-shared';
 import MainContentStart from '../../elements/MainContentStart';
@@ -12,11 +11,13 @@ import ERoutes from '../../app/routes';
 import { ITranslations } from '../../app/translationsSlice';
 import MainContent from '../../elements/MainContent';
 import Header from '../../elements/Header';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (): JSX.Element => {
 
     const reduxState = useAppSelector((state) => state);
     const reduxDispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const {
         handleSubmit,
@@ -33,7 +34,8 @@ const Login = (): JSX.Element => {
     });
 
     if (reduxState.session.isLoggedIn) {
-        return (<Redirect push to={ERoutes.home} />);
+        navigate(ERoutes.home);
+        return <></>;
     }
 
     return <>
@@ -43,7 +45,7 @@ const Login = (): JSX.Element => {
                 {
                     reduxState.session.registrationOperation.justFinishedSuccessfully
                     &&
-                    <div className='alert alert-success' data-testid='login.registrationSuccessfulAlert'>Registration finished successfully. Please log in.</div>
+                    <div data-testid='login.registrationSuccessfulAlert'>Registration finished successfully. Please log in.</div>
                 }
                 <MainHeadline>
                     { reduxState.translations.translations['session.login.headline'] }
@@ -54,58 +56,56 @@ const Login = (): JSX.Element => {
                 <form
                     onSubmit={handleSubmit}
                 >
-                    <Form.Group className='mb-4'>
+                    <div>
                         <DefaultInputGroup>
-                            <Form.Control
+                            <input
+                                type='text'
                                 id='email'
                                 data-testid='login.emailInput'
                                 aria-describedby='email-input-help'
-                                className={errors.email && 'border-danger'}
                                 placeholder={reduxState.translations.translations['session.login.email.placeholder']}
                                 value={credentials.email || ''}
                                 onChange={ handleChange('email') }
                             />
                         </DefaultInputGroup>
-                        {errors.email && <Form.Text className='text-danger' id='email-input-help'>{reduxState.translations.translations[errors.email as keyof ITranslations]}</Form.Text>}
-                    </Form.Group>
+                        {errors.email && <div id='email-input-help'>{reduxState.translations.translations[errors.email as keyof ITranslations]}</div>}
+                    </div>
 
-                    <Form.Group className='mb-4'>
+                    <div>
                         <DefaultInputGroup>
-                            <Form.Control
+                            <input
                                 type='password'
                                 id='password'
                                 aria-describedby='password-input-help'
-                                className={errors.password && 'border-danger'}
                                 data-testid='login.passwordInput'
                                 placeholder={reduxState.translations.translations['session.login.password.placeholder']}
                                 value={credentials.password}
                                 onChange={ handleChange('password') }
                             />
                         </DefaultInputGroup>
-                        {errors.password && <Form.Text className='text-danger' id='password-input-help'>{reduxState.translations.translations[errors.password as keyof ITranslations]}</Form.Text>}
-                    </Form.Group>
+                        {errors.password && <div id='password-input-help'>{reduxState.translations.translations[errors.password as keyof ITranslations]}</div>}
+                    </div>
 
-                    <InputGroup className="mb-4 justify-content-end">
+                    <div>
                         {
                             reduxState.session.loginOperation.isRunning
                             &&
-                            <Button disabled type='submit' variant='primary'>
+                            <button disabled type='submit'>
                                 { reduxState.translations.translations['session.login.ctaProcessing'] }
-                            </Button>
+                            </button>
                         }
                         {
                             reduxState.session.loginOperation.isRunning
                             ||
-                            <Button
+                            <button
                                 type='submit'
-                                variant='primary'
                                 data-testid='login.submitButton'
                                 disabled={credentials.email.length < 1 || credentials.password.length < 1}
                             >
                                 { reduxState.translations.translations['session.login.cta'] }
-                            </Button>
+                            </button>
                         }
-                    </InputGroup>
+                    </div>
                 </form>
             </MainContentStart>
         </MainContent>

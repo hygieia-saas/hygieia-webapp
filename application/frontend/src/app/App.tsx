@@ -1,20 +1,19 @@
 import React from 'react';
 import Registration from '../features/session/Registration';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './app.scss'
-import { NavLink, Route } from 'react-router-dom';
-import { Switch } from 'react-router';
+import './app.css'
+import { Routes, Route, Link } from 'react-router-dom';
 import Login from '../features/session/Login';
 import ERoutes from './routes';
 import Header from '../elements/Header';
 import MainContent from '../elements/MainContent';
 import MainContentStart from '../elements/MainContentStart';
+import ScrollToTopWrapper from '../elements/ScrollToTopWrapper';
 
 const App = (): JSX.Element => {
 
     return (
-        <>
-            <Switch>
+        <ScrollToTopWrapper>
+            <Routes>
                 <Route path={ERoutes['login']}><Login/></Route>
                 <Route path={ERoutes['register']}><Registration/></Route>
 
@@ -26,18 +25,18 @@ const App = (): JSX.Element => {
                         </MainContentStart>
                     </MainContent>
                 </Route>
-            </Switch>
+            </Routes>
 
             <footer>
-                <Navbar bg='dark' variant='dark'>
-                    <Container>
-                        <Nav>
-                            <Nav.Link as={NavLink} to={ERoutes.imprint}>Imprint</Nav.Link>
-                        </Nav>
-                    </Container>
-                </Navbar>
+                <div>
+                    <div>
+                        <div>
+                            <Link to={ERoutes.imprint}>Imprint</Link>
+                        </div>
+                    </div>
+                </div>
             </footer>
-        </>
+        </ScrollToTopWrapper>
     );
 };
 

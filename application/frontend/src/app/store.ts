@@ -1,9 +1,10 @@
 import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
 import Cookies from 'universal-cookie';
 import history from './history';
-import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { createRouterMiddleware, createRouterReducer, ReduxRouterState } from '@lagunovsky/redux-react-router';
 import { translations, EIso639_1LanguageCodes, translationsSlice } from './translationsSlice';
 import { initialState as sessionInitialState, sessionSlice } from '../features/session/sessionSlice';
+import { Reducer } from 'redux';
 
 let preloadIsLoggedIn = sessionInitialState.isLoggedIn;
 let preloadLoggedInEmail = sessionInitialState.loggedInEmail;
@@ -38,12 +39,13 @@ if (languageCookie === undefined) {
   }
 }
 
+const routerMiddleware = createRouterMiddleware(history);
 
 export const store = configureStore({
   reducer: {
     translations: translationsSlice.reducer,
     session: sessionSlice.reducer,
-    router: connectRouter(history)
+    router: createRouterReducer(history) as Reducer<ReduxRouterState>
   },
   preloadedState: {
     session: {
@@ -54,7 +56,7 @@ export const store = configureStore({
     },
     translations: translations[language]
   },
-  enhancers: [applyMiddleware(routerMiddleware(history))],
+  enhancers: [applyMiddleware(routerMiddleware)],
   devTools: true
 });
 

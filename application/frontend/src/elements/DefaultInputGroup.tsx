@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 
 const DefaultInputGroup = (props: { children: ReactNode }): JSX.Element => {
-    return <InputGroup size="lg" className='shadow-sm'>
+    return <div>
         {props.children}
-    </InputGroup>
+    </div>
 };
 
 export default DefaultInputGroup;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ERoutes from '../app/routes';
 import { EIso639_1LanguageCodes, switchToLanguageCommand } from '../app/translationsSlice';
 import { logOutOfAccountCommand } from '../features/session/sessionSlice';
@@ -13,80 +13,50 @@ const Header = (): JSX.Element => {
     const [showLogoutCta, setShowLogoutCta] = useState(false);
 
     return <header>
-        <Navbar collapseOnSelect expand='md' bg='dark' variant='dark'>
-            <Container fluid className='ms-3 me-3'>
-                <Navbar.Brand>
-                    <strong>vid<ChatQuote/>Inquiry</strong>
-                </Navbar.Brand>
+        <div>
+            <div>
+                <div>
+                    <strong>virusaas</strong>
+                </div>
 
-                <Navbar.Toggle
-                    aria-controls='responsive-navbar-nav'
-                    label={ reduxState.translations.translations['nav.toggle.label'] }
-                >
+                <div>
                     { reduxState.translations.translations['nav.toggle.text'] }
                     ☰
-                </Navbar.Toggle>
-                <Navbar.Collapse
+                </div>
+                <div
                     id='responsive-navbar-nav'
                 >
-                    <Nav className='me-auto' variant='pills'>
-
-                        {
-                            reduxState.session.isLoggedIn
-                            &&
-                            <>
-                                <Nav.Link
-                                    as={NavLink}
-                                    to={ERoutes['formDefinitions.overview']}
-                                    data-testid='nav.link.formDefinitions'
-                                >
-                                    { reduxState.translations.translations['nav.link.formDefinitions'] }
-                                </Nav.Link>
-
-                                <Nav.Link as={NavLink} to={ERoutes['inquiries.overview']}>
-                                    { reduxState.translations.translations['nav.link.inquiries'] }
-                                </Nav.Link>
-                            </>
-                        }
+                    <div>
 
                         {
                             reduxState.session.isLoggedIn
                             ||
                             <>
-                                <Nav.Link as={NavLink} to={ERoutes.login}>
+                                <Link to={ERoutes.login}>
                                     { reduxState.translations.translations['nav.link.login'] }
-                                </Nav.Link>
+                                </Link>
 
-                                <Nav.Link as={NavLink} to={ERoutes.register}>
+                                <Link to={ERoutes.register}>
                                     { reduxState.translations.translations['nav.link.registration'] }
-                                </Nav.Link>
+                                </Link>
                             </>
                         }
 
-                    </Nav>
+                    </div>
 
-                    <Nav>
+                    <div>
 
-                        <NavDropdown
-                            title={
-                                <>
-                                    {EIso639_1LanguageCodes.en.toUpperCase()}
-                                    &nbsp;
-                                    {EIso639_1LanguageCodes.de.toUpperCase()}
-                                    &nbsp;
-                                    <Translate id='language-dropdown-icon' />
-                                </>
-                            }
+                        <div
                             id='language-selection-dropdown'
                         >
-                            <NavDropdown.Item
+                            <button
                                 onClick={() => reduxDispatch(switchToLanguageCommand(EIso639_1LanguageCodes.en))}
-                            >English</NavDropdown.Item>
+                            >English</button>
 
-                            <NavDropdown.Item
+                            <button
                                 onClick={() => reduxDispatch(switchToLanguageCommand(EIso639_1LanguageCodes.de))}
-                            >Deutsch</NavDropdown.Item>
-                        </NavDropdown>
+                            >Deutsch</button>
+                        </div>
 
                         {
                             reduxState.session.isLoggedIn
@@ -96,7 +66,7 @@ const Header = (): JSX.Element => {
                                     showLogoutCta
                                     ||
                                     <>
-                                        <Nav.Link
+                                        <button
                                             data-testid='nav.loggedinUserBadge'
                                             onClick={
                                                 () => {
@@ -105,38 +75,34 @@ const Header = (): JSX.Element => {
                                                 }
                                             }
                                         >
-                                                    <span id='logged-in-user-badge-name'>
-                                                        {reduxState.session.loggedInEmail}
-                                                    </span>
-                                            &nbsp;
-                                            <PersonSquare id='loggedin-user-badge-icon'/>
-                                        </Nav.Link>
+                                            <span id='logged-in-user-badge-name'>
+                                                {reduxState.session.loggedInEmail}
+                                            </span>
+                                        </button>
                                     </>
                                 }
                                 {
                                     showLogoutCta
                                     &&
                                     <>
-                                        <Nav.Link
+                                        <button
                                             onClick={() => reduxDispatch(logOutOfAccountCommand())}
                                         >
-                                                    <span id='logged-in-user-badge-logout-text'>
-                                                        { reduxState.translations.translations['nav.loggedinUserBadge.logoutCta'] }
-                                                    </span>
-                                            &nbsp;
-                                            <BoxArrowRight id='loggedin-user-badge-logout-icon'/>
-                                        </Nav.Link>
+                                            <span id='logged-in-user-badge-logout-text'>
+                                                { reduxState.translations.translations['nav.loggedinUserBadge.logoutCta'] }
+                                            </span>
+                                        </button>
                                     </>
                                 }
                             </div>
                         }
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-        <Container fluid id='border-under-nav'>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id='border-under-nav'>
             &nbsp;
-        </Container>
+        </div>
     </header>
 };
 

@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 
 const MainContent = (props: { children: ReactNode }): JSX.Element => {
-    return <Container fluid id='main-content'>
-        <Row>
+    return <div id='main-content'>
+        <div>
             {props.children}
-        </Row>
-    </Container>;
+        </div>
+    </div>;
 };
 
 export default MainContent;
