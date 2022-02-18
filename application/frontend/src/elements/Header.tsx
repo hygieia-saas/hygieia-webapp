@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { BellIcon, MenuIcon, XIcon, UserIcon, TranslateIcon } from '@heroicons/react/outline';
 import ERoutes from '../app/routes';
 import { EIso639_1LanguageCodes, switchToLanguageCommand } from '../app/translationsSlice';
 import { logOutOfAccountCommand } from '../features/session/sessionSlice';
@@ -12,124 +14,185 @@ const Header = (): JSX.Element => {
 
     const [showLogoutCta, setShowLogoutCta] = useState(false);
 
-    const navItems = [
-        { to: ERoutes.login, text: reduxState.translations.translations['nav.link.login'] },
-        { to: ERoutes.register, text: reduxState.translations.translations['nav.link.registration'] }
+    const navigation: { href: string, name: string }[] = [];
+
+    if (!reduxState.session.isLoggedIn) {
+        navigation.push({ href: ERoutes.login, name: reduxState.translations.translations['nav.link.login'] });
+        navigation.push({ href: ERoutes.register, name: reduxState.translations.translations['nav.link.registration'] });
+    }
+
+    const userNavigation = [
+        { name: 'Settings', href: '#' },
+        { name: 'Sign out', href: '#' },
+    ];
+
+    const languages = [
+        { name: 'English', code: EIso639_1LanguageCodes.en },
+        { name: 'Deutsch', code: EIso639_1LanguageCodes.de }
     ];
 
     const classNames = (...classes: string[]) => classes.filter(Boolean).join(' ');
 
-    return <header>
-        <nav className='min-h-full bg-gray-800'>
-            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-                <div className='flex items-center justify-between h-16 flex-shrink-0'>
-                    <strong>virusaas</strong>
-                </div>
+    return <>
+        <div className='min-h-full'>
+            <Disclosure as='nav' className='bg-gray-800'>
+                {({ open }) => (
+                    <>
+                        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+                            <div className='flex items-center justify-between h-16'>
+                                <div className='flex items-center'>
+                                    <div className='flex-shrink-0 text-fuchsia-500'>
+                                        viruSaas
+                                    </div>
+                                    <div className='hidden md:block'>
+                                        <div className='ml-10 flex items-baseline space-x-4'>
+                                            {navigation.map((item) => (
+                                                <Link
+                                                    key={item.name}
+                                                    to={item.href}
+                                                    className={classNames(
+                                                        reduxState.router.location.pathname === item.href
+                                                            ? 'bg-gray-900 text-white'
+                                                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                        'px-3 py-2 rounded-md text-sm font-medium'
+                                                    )}
+                                                    aria-current={reduxState.router.location.pathname === item.href ? 'page' : undefined}
+                                                >
+                                                    {item.name}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='hidden md:block'>
+                                    <div className='ml-4 flex items-center md:ml-6'>
 
-                <div className='ml-0 flex items-baseline space-x-2'>
-                    { navItems.map(item => (
-                        <Link
-                            key={item.to}
-                            to={item.to}
-                            className={
-                                classNames(
-                                reduxState.router.location.pathname === item.to
-                                    ? 'bg-gray-900 text-white'
-                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium'
-                                )
-                            }
-                        >
-                            { item.text }
-                        </Link>
+                                        {/* Language dropdown */}
+                                        <Menu as='div' className='relative'>
+                                            <div>
+                                                <Menu.Button className='max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none'>
+                                                    <span className='sr-only'>Open translation menu</span>
+                                                    <TranslateIcon className='h-6 w-6 text-gray-400'/>
+                                                </Menu.Button>
+                                            </div>
+                                            <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                                                {languages.map((item) => (
+                                                    <Menu.Item key={item.code}>
+                                                        {({ active }) => (
+                                                            <button
+                                                                onClick={() => reduxDispatch(switchToLanguageCommand(item.code))}
+                                                                className={classNames(
+                                                                    active ? 'bg-gray-700' : '',
+                                                                    'block px-4 py-2 text-sm text-gray-300 w-full text-left hover:text-white'
+                                                                )}
+                                                            >
+                                                                {item.name}
+                                                            </button>
+                                                        )}
+                                                    </Menu.Item>
+                                                ))}
+                                            </Menu.Items>
+                                        </Menu>
 
-                    )) }
-                </div>
-
-                <div>
-                    { reduxState.translations.translations['nav.toggle.text'] }
-                    ☰
-                </div>
-                <div
-                    id='responsive-navbar-nav'
-                >
-                    <div>
-
-                        {
-                            reduxState.session.isLoggedIn
-                            ||
-                            <>
-                                <Link to={ERoutes.login}>
-                                    { reduxState.translations.translations['nav.link.login'] }
-                                </Link>
-
-                                <Link to={ERoutes.register}>
-                                    { reduxState.translations.translations['nav.link.registration'] }
-                                </Link>
-                            </>
-                        }
-
-                    </div>
-
-                    <div>
-
-                        <div
-                            id='language-selection-dropdown'
-                        >
-                            <button
-                                onClick={() => reduxDispatch(switchToLanguageCommand(EIso639_1LanguageCodes.en))}
-                            >English</button>
-
-                            <button
-                                onClick={() => reduxDispatch(switchToLanguageCommand(EIso639_1LanguageCodes.de))}
-                            >Deutsch</button>
+                                        {/* Profile dropdown */}
+                                        <Menu as='div' className='ml-3 relative'>
+                                            <div>
+                                                <Menu.Button className='max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none'>
+                                                    <span className='sr-only'>Open user menu</span>
+                                                    <UserIcon className='h-6 w-6 text-gray-400'/>
+                                                </Menu.Button>
+                                            </div>
+                                            <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                                                {userNavigation.map((item) => (
+                                                    <Menu.Item key={item.name}>
+                                                        {({ active }) => (
+                                                            <a
+                                                                href={item.href}
+                                                                className={classNames(
+                                                                    active ? 'bg-gray-700' : '',
+                                                                    'block px-4 py-2 text-sm text-gray-300 hover:text-white'
+                                                                )}
+                                                            >
+                                                                {item.name}
+                                                            </a>
+                                                        )}
+                                                    </Menu.Item>
+                                                ))}
+                                            </Menu.Items>
+                                        </Menu>
+                                    </div>
+                                </div>
+                                <div className='-mr-2 flex md:hidden'>
+                                    {/* Mobile menu button */}
+                                    <Disclosure.Button className='bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'>
+                                        <span className='sr-only'>Open main menu</span>
+                                        {open ? (
+                                            <XIcon className='block h-6 w-6' aria-hidden='true' />
+                                        ) : (
+                                            <MenuIcon className='block h-6 w-6' aria-hidden='true' />
+                                        )}
+                                    </Disclosure.Button>
+                                </div>
+                            </div>
                         </div>
 
-                        {
-                            reduxState.session.isLoggedIn
-                            &&
-                            <div data-testid='nav.loggedinUserBadge'>
-                                {
-                                    showLogoutCta
-                                    ||
-                                    <>
-                                        <button
-                                            data-testid='nav.loggedinUserBadge'
-                                            onClick={
-                                                () => {
-                                                    setShowLogoutCta(true);
-                                                    setTimeout(() => setShowLogoutCta(false), 5000);
-                                                }
-                                            }
-                                        >
-                                            <span id='logged-in-user-badge-name'>
-                                                {reduxState.session.loggedInEmail}
-                                            </span>
-                                        </button>
-                                    </>
-                                }
-                                {
-                                    showLogoutCta
-                                    &&
-                                    <>
-                                        <button
-                                            onClick={() => reduxDispatch(logOutOfAccountCommand())}
-                                        >
-                                            <span id='logged-in-user-badge-logout-text'>
-                                                { reduxState.translations.translations['nav.loggedinUserBadge.logoutCta'] }
-                                            </span>
-                                        </button>
-                                    </>
-                                }
+                        <Disclosure.Panel className='md:hidden'>
+                            <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
+                                {navigation.map((item) => (
+                                    <Disclosure.Button
+                                        key={item.name}
+                                        as={Link}
+                                        to={item.href}
+                                        className={classNames(
+                                            reduxState.router.location.pathname === item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                            'block px-3 py-2 rounded-md text-base font-medium'
+                                        )}
+                                        aria-current={reduxState.router.location.pathname === item.href ? 'page' : undefined}
+                                    >
+                                        {item.name}
+                                    </Disclosure.Button>
+                                ))}
                             </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </nav>
+                            <div className='pt-4 pb-3 border-t border-gray-700'>
+                                <div className='flex items-center px-5'>
+                                    <div className='flex-shrink-0'>
+                                        <img className='h-10 w-10 rounded-full' src='' alt='' />
+                                    </div>
+                                    <div className='ml-3'>
+                                        <div className='text-base font-medium leading-none text-white'>John</div>
+                                        <div className='text-sm font-medium leading-none text-gray-400'>Doe</div>
+                                    </div>
+                                    <button
+                                        type='button'
+                                        className='ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'
+                                    >
+                                        <span className='sr-only'>View notifications</span>
+                                        <BellIcon className='h-6 w-6' aria-hidden='true' />
+                                    </button>
+                                </div>
+                                <div className='mt-3 px-2 space-y-1'>
+                                    {userNavigation.map((item) => (
+                                        <Disclosure.Button
+                                            key={item.name}
+                                            as='a'
+                                            href={item.href}
+                                            className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'
+                                        >
+                                            {item.name}
+                                        </Disclosure.Button>
+                                    ))}
+                                </div>
+                            </div>
+                        </Disclosure.Panel>
+                    </>
+                )}
+            </Disclosure>
+        </div>
+
         <div id='border-under-nav'>
             &nbsp;
         </div>
-    </header>
+    </>
 };
 
 export default Header;
