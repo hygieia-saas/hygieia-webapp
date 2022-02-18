@@ -12,10 +12,14 @@ const Button = (props: InputProps): JSX.Element => {
             max-w-xl
             flex
             justify-center
-            py-2
+            py-4
             px-4
             border
             border-transparent
+            shadow-lg
+            shadow-zinc-400
+            dark:shadow-zinc-900
+            dark:drop-shadow-md
             text-sm
             font-medium
             rounded-md
@@ -26,6 +30,8 @@ const Button = (props: InputProps): JSX.Element => {
             focus:ring-2
             focus:ring-offset-2
             focus:ring-indigo-500
+            disabled:bg-gray-500
+            disabled:text-gray-400
         '
     />;
 };
