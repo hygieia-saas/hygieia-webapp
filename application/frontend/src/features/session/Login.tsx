@@ -12,6 +12,7 @@ import { ITranslations } from '../../app/translationsSlice';
 import MainContent from '../../elements/MainContent';
 import Header from '../../elements/Header';
 import { useNavigate } from 'react-router-dom';
+import TextInput from '../../elements/TextInput';
 
 const Login = (): JSX.Element => {
 
@@ -58,7 +59,7 @@ const Login = (): JSX.Element => {
                 >
                     <div>
                         <DefaultInputGroup>
-                            <input
+                            <TextInput
                                 type='text'
                                 id='email'
                                 data-testid='login.emailInput'
@@ -73,7 +74,7 @@ const Login = (): JSX.Element => {
 
                     <div>
                         <DefaultInputGroup>
-                            <input
+                            <TextInput
                                 type='password'
                                 id='password'
                                 aria-describedby='password-input-help'
