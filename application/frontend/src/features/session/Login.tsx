@@ -14,6 +14,7 @@ import Header from '../../elements/Header';
 import { useNavigate } from 'react-router-dom';
 import TextInput from '../../elements/TextInput';
 import Button from '../../elements/Button';
+import FormElementError from '../../elements/FormElementError';
 
 const Login = (): JSX.Element => {
 
@@ -69,8 +70,10 @@ const Login = (): JSX.Element => {
                                 value={credentials.email || ''}
                                 onChange={ handleChange('email') }
                             />
+                            {errors.email && <FormElementError id='email-input-help'>
+                                {reduxState.translations.translations[errors.email as keyof ITranslations]}
+                            </FormElementError>}
                         </DefaultInputGroup>
-                        {errors.email && <div id='email-input-help'>{reduxState.translations.translations[errors.email as keyof ITranslations]}</div>}
                     </div>
 
                     <div>
@@ -84,8 +87,10 @@ const Login = (): JSX.Element => {
                                 value={credentials.password}
                                 onChange={ handleChange('password') }
                             />
+                            {errors.password && <FormElementError id='password-input-help'>
+                                {reduxState.translations.translations[errors.password as keyof ITranslations]}
+                            </FormElementError>}
                         </DefaultInputGroup>
-                        {errors.password && <div id='password-input-help'>{reduxState.translations.translations[errors.password as keyof ITranslations]}</div>}
                     </div>
 
                     <div>
