@@ -72,8 +72,8 @@ const Header = (): JSX.Element => {
                                             className='h-6 w-6 mr-4 text-gray-400'
                                             onClick={() => reduxDispatch(toggleDarkModeCommand())}
                                         >
-                                            { reduxState.uiSettings.darkMode && <MoonIcon className='text-blue-700'/> }
-                                            { reduxState.uiSettings.darkMode || <SunIcon className='text-amber-500'/> }
+                                            { reduxState.uiSettings.darkMode && <MoonIcon className='text-indigo-700'/> }
+                                            { reduxState.uiSettings.darkMode || <SunIcon className='text-amber-600'/> }
                                         </button>
 
                                         {/* Language dropdown */}

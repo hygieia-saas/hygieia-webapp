@@ -13,6 +13,7 @@ import MainContent from '../../elements/MainContent';
 import Header from '../../elements/Header';
 import { useNavigate } from 'react-router-dom';
 import TextInput from '../../elements/TextInput';
+import Button from '../../elements/Button';
 
 const Login = (): JSX.Element => {
 
@@ -91,20 +92,20 @@ const Login = (): JSX.Element => {
                         {
                             reduxState.session.loginOperation.isRunning
                             &&
-                            <button disabled type='submit'>
+                            <Button disabled type='submit'>
                                 { reduxState.translations.translations['session.login.ctaProcessing'] }
-                            </button>
+                            </Button>
                         }
                         {
                             reduxState.session.loginOperation.isRunning
                             ||
-                            <button
+                            <Button
                                 type='submit'
                                 data-testid='login.submitButton'
                                 disabled={credentials.email.length < 1 || credentials.password.length < 1}
                             >
                                 { reduxState.translations.translations['session.login.cta'] }
-                            </button>
+                            </Button>
                         }
                     </div>
                 </form>
