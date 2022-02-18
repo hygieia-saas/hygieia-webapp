@@ -1,6 +1,6 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Disclosure, Menu } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon, UserIcon, TranslateIcon } from '@heroicons/react/outline';
 import ERoutes from '../app/routes';
 import { EIso639_1LanguageCodes, switchToLanguageCommand } from '../app/translationsSlice';
@@ -129,7 +129,10 @@ const Header = (): JSX.Element => {
                                         {open ? (
                                             <XIcon className='block h-6 w-6' aria-hidden='true' />
                                         ) : (
-                                            <MenuIcon className='block h-6 w-6' aria-hidden='true' />
+                                            <>
+                                                {reduxState.translations.translations['nav.toggle.text']}
+                                                <MenuIcon className='block h-6 w-6' aria-hidden='true' />
+                                            </>
                                         )}
                                     </Disclosure.Button>
                                 </div>
@@ -153,30 +156,27 @@ const Header = (): JSX.Element => {
                                     </Disclosure.Button>
                                 ))}
                             </div>
-                            <div className='pt-4 pb-3 border-t border-gray-700'>
-                                <div className='flex items-center px-5'>
-                                    <div className='flex-shrink-0'>
-                                        <img className='h-10 w-10 rounded-full' src='' alt='' />
-                                    </div>
-                                    <div className='ml-3'>
-                                        <div className='text-base font-medium leading-none text-white'>John</div>
-                                        <div className='text-sm font-medium leading-none text-gray-400'>Doe</div>
-                                    </div>
-                                    <button
-                                        type='button'
-                                        className='ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'
-                                    >
-                                        <span className='sr-only'>View notifications</span>
-                                        <BellIcon className='h-6 w-6' aria-hidden='true' />
-                                    </button>
-                                </div>
-                                <div className='mt-3 px-2 space-y-1'>
+                            <div className='pt-3 pb-3 border-t border-gray-700 px-2 space-y-1 sm:px-3'>
+                                <div className=''>
                                     {userNavigation.map((item) => (
                                         <Disclosure.Button
                                             key={item.name}
-                                            as='a'
-                                            href={item.href}
+                                            as={Link}
+                                            to={item.href}
                                             className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'
+                                        >
+                                            {item.name}
+                                        </Disclosure.Button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className='pt-3 pb-3 border-t border-gray-700 px-2 space-y-1 sm:px-3'>
+                                <div className=''>
+                                    {languages.map((item) => (
+                                        <Disclosure.Button
+                                            key={item.name}
+                                            className='block w-full px-3 py-2 rounded-md text-base text-left font-medium text-gray-400 hover:text-white hover:bg-gray-700'
+                                            onClick={() => reduxDispatch(switchToLanguageCommand(item.code))}
                                         >
                                             {item.name}
                                         </Disclosure.Button>
