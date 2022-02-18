@@ -12,11 +12,37 @@ const Header = (): JSX.Element => {
 
     const [showLogoutCta, setShowLogoutCta] = useState(false);
 
+    const navItems = [
+        { to: ERoutes.login, text: reduxState.translations.translations['nav.link.login'] },
+        { to: ERoutes.register, text: reduxState.translations.translations['nav.link.registration'] }
+    ];
+
+    const classNames = (...classes: string[]) => classes.filter(Boolean).join(' ');
+
     return <header>
-        <div>
-            <div>
-                <div>
+        <nav className='min-h-full bg-gray-800'>
+            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+                <div className='flex items-center justify-between h-16 flex-shrink-0'>
                     <strong>virusaas</strong>
+                </div>
+
+                <div className='ml-0 flex items-baseline space-x-2'>
+                    { navItems.map(item => (
+                        <Link
+                            key={item.to}
+                            to={item.to}
+                            className={
+                                classNames(
+                                reduxState.router.location.pathname === item.to
+                                    ? 'bg-gray-900 text-white'
+                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium'
+                                )
+                            }
+                        >
+                            { item.text }
+                        </Link>
+
+                    )) }
                 </div>
 
                 <div>
@@ -99,7 +125,7 @@ const Header = (): JSX.Element => {
                     </div>
                 </div>
             </div>
-        </div>
+        </nav>
         <div id='border-under-nav'>
             &nbsp;
         </div>
