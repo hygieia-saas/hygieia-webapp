@@ -8,37 +8,42 @@ import Header from '../elements/Header';
 import MainContent from '../elements/MainContent';
 import MainContentStart from '../elements/MainContentStart';
 import ScrollToTopWrapper from '../elements/ScrollToTopWrapper';
+import { useAppSelector } from './hooks';
 
 const App = (): JSX.Element => {
 
+    const reduxState = useAppSelector(state => state);
+
     return (
-        <ScrollToTopWrapper>
-            <Routes>
-                <Route path={ERoutes['login']} element={<Login/>} />
-                <Route path={ERoutes['register']} element={<Registration/>} />
+        <div className={reduxState.uiSettings.darkMode ? 'dark' : ''}>
+            <ScrollToTopWrapper>
+                <Routes>
+                    <Route path={ERoutes['login']} element={<Login/>} />
+                    <Route path={ERoutes['register']} element={<Registration/>} />
 
-                <Route path={ERoutes['home']} element={
-                    <>
-                        <Header/>
-                        <MainContent>
-                            <MainContentStart>
-                                <h1>Home</h1>
-                            </MainContentStart>
-                        </MainContent>
-                    </>
-                } />
-            </Routes>
+                    <Route path={ERoutes['home']} element={
+                        <>
+                            <Header/>
+                            <MainContent>
+                                <MainContentStart>
+                                    <h1>Home</h1>
+                                </MainContentStart>
+                            </MainContent>
+                        </>
+                    } />
+                </Routes>
 
-            <footer>
-                <div>
+                <footer className='bg-gray-800 p-5 text-gray-600 text-right pr-8'>
                     <div>
                         <div>
-                            <Link to={ERoutes.imprint}>Imprint</Link>
+                            <div>
+                                <Link to={ERoutes.imprint}>Imprint</Link>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </footer>
-        </ScrollToTopWrapper>
+                </footer>
+            </ScrollToTopWrapper>
+        </div>
     );
 };
 

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Disclosure, Menu } from '@headlessui/react';
-import { BellIcon, MenuIcon, XIcon, UserIcon, TranslateIcon } from '@heroicons/react/outline';
+import { MenuIcon, XIcon, UserIcon, TranslateIcon, MoonIcon, SunIcon } from '@heroicons/react/outline';
 import ERoutes from '../app/routes';
 import { EIso639_1LanguageCodes, switchToLanguageCommand } from '../app/translationsSlice';
 import { logOutOfAccountCommand } from '../features/session/sessionSlice';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { toggleDarkModeCommand } from '../app/uiSettingsSlice';
 
 const Header = (): JSX.Element => {
 
@@ -41,7 +42,7 @@ const Header = (): JSX.Element => {
                         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
                             <div className='flex items-center justify-between h-16'>
                                 <div className='flex items-center'>
-                                    <div className='flex-shrink-0 text-fuchsia-500'>
+                                    <div className='flex-shrink-0 text-lime-500 font-black'>
                                         viruSaas
                                     </div>
                                     <div className='hidden md:block'>
@@ -67,8 +68,16 @@ const Header = (): JSX.Element => {
                                 <div className='hidden md:block'>
                                     <div className='ml-4 flex items-center md:ml-6'>
 
+                                        <button
+                                            className='h-6 w-6 mr-4 text-gray-400'
+                                            onClick={() => reduxDispatch(toggleDarkModeCommand())}
+                                        >
+                                            { reduxState.uiSettings.darkMode && <MoonIcon/> }
+                                            { reduxState.uiSettings.darkMode || <SunIcon/> }
+                                        </button>
+
                                         {/* Language dropdown */}
-                                        <Menu as='div' className='relative'>
+                                        <Menu as='div' className='mr-4 relative'>
                                             <div>
                                                 <Menu.Button className='max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none'>
                                                     <span className='sr-only'>Open translation menu</span>
@@ -95,7 +104,7 @@ const Header = (): JSX.Element => {
                                         </Menu>
 
                                         {/* Profile dropdown */}
-                                        <Menu as='div' className='ml-3 relative'>
+                                        <Menu as='div' className='relative'>
                                             <div>
                                                 <Menu.Button className='max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none'>
                                                     <span className='sr-only'>Open user menu</span>
@@ -187,10 +196,6 @@ const Header = (): JSX.Element => {
                     </>
                 )}
             </Disclosure>
-        </div>
-
-        <div id='border-under-nav'>
-            &nbsp;
         </div>
     </>
 };

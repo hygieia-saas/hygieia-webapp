@@ -5,6 +5,7 @@ import { createRouterMiddleware, createRouterReducer, ReduxRouterState } from '@
 import { translations, EIso639_1LanguageCodes, translationsSlice } from './translationsSlice';
 import { initialState as sessionInitialState, sessionSlice } from '../features/session/sessionSlice';
 import { Reducer } from 'redux';
+import { initialState as uiSettingsInitialState, uiSettingsSlice } from './uiSettingsSlice';
 
 let preloadIsLoggedIn = sessionInitialState.isLoggedIn;
 let preloadLoggedInEmail = sessionInitialState.loggedInEmail;
@@ -39,11 +40,21 @@ if (languageCookie === undefined) {
   }
 }
 
+let darkMode: boolean;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const darkModeCookie = cookies.get('uiSettings.darkMode') as string;
+if (darkModeCookie === undefined) {
+  darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+} else {
+  darkMode = darkModeCookie === 'true';
+}
+
 const routerMiddleware = createRouterMiddleware(history);
 
 export const store = configureStore({
   reducer: {
     translations: translationsSlice.reducer,
+    uiSettings: uiSettingsSlice.reducer,
     session: sessionSlice.reducer,
     router: createRouterReducer(history) as Reducer<ReduxRouterState>
   },
@@ -54,7 +65,8 @@ export const store = configureStore({
       loggedInEmail: preloadLoggedInEmail,
       defaultRestApiKeyId: preloadDefaultRestApiKeyId
     },
-    translations: translations[language]
+    translations: translations[language],
+    uiSettings: { darkMode }
   },
   enhancers: [applyMiddleware(routerMiddleware)],
   devTools: true
