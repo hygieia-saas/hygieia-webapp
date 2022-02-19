@@ -13,8 +13,8 @@ variable "workspace_to_stage" {
 variable "workspace_to_infra_webapp_aws_account_id" {
   type = map(string)
   default = {
-    default = "325062206315"
-    preprod = "000270780644"
+    default = "199387562978"
+    preprod = "039307614955"
   }
 }
 
