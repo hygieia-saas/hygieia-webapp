@@ -19,7 +19,7 @@ const TextInput = (props: InputProps): JSX.Element => {
             text-gray-900
             rounded-md
             dark:bg-gray-700
-            dark:text-gray-300
+            dark:text-gray-100
         '
     />;
 };

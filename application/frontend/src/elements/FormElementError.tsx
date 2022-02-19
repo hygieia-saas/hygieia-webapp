@@ -15,9 +15,9 @@ const FormElementError = (props: InputProps): JSX.Element => {
             border-red-200
             dark:border-none
             text-red-900
-            dark:text-black
+            dark:text-gray-400
             bg-red-50
-            dark:bg-rose-900
+            dark:bg-red-700
             dark:bg-opacity-50
             rounded-md
         '
