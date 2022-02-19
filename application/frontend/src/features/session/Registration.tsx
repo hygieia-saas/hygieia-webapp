@@ -57,56 +57,51 @@ const Registration = (): JSX.Element => {
                 <form
                     onSubmit={handleSubmit}
                 >
-                    <div>
-                        <DefaultInputGroup>
-                            <TextInput
-                                type='text'
-                                id='email'
-                                data-testid='registration.emailInput'
-                                aria-describedby='email-input-help'
-                                placeholder={reduxState.translations.translations['session.registration.email.placeholder']}
-                                value={credentials.email || ''}
-                                onChange={ handleChange('email') }
-                            />
-                            {errors.email && <FormElementError id='password-input-help'>{reduxState.translations.translations[errors.email as keyof ITranslations]}</FormElementError>}
-                        </DefaultInputGroup>
-                    </div>
+                    <DefaultInputGroup>
+                        <TextInput
+                            type='text'
+                            id='email'
+                            data-testid='registration.emailInput'
+                            aria-describedby='email-input-help'
+                            placeholder={reduxState.translations.translations['session.registration.email.placeholder']}
+                            value={credentials.email || ''}
+                            onChange={ handleChange('email') }
+                        />
+                        {errors.email && <FormElementError id='password-input-help'>{reduxState.translations.translations[errors.email as keyof ITranslations]}</FormElementError>}
+                    </DefaultInputGroup>
 
-                    <div>
-                        <DefaultInputGroup>
-                            <TextInput
-                                type='password'
-                                id='password'
-                                aria-describedby='password-input-help'
-                                data-testid='registration.passwordInput'
-                                placeholder={reduxState.translations.translations['session.registration.password.placeholder']}
-                                value={credentials.password}
-                                onChange={ handleChange('password') }
-                            />
-                            {errors.password && <FormElementError id='password-input-help'>{reduxState.translations.translations[errors.password as keyof ITranslations]}</FormElementError>}
-                        </DefaultInputGroup>
-                    </div>
+                    <DefaultInputGroup>
+                        <TextInput
+                            type='password'
+                            id='password'
+                            aria-describedby='password-input-help'
+                            data-testid='registration.passwordInput'
+                            placeholder={reduxState.translations.translations['session.registration.password.placeholder']}
+                            value={credentials.password}
+                            onChange={ handleChange('password') }
+                        />
+                        {errors.password && <FormElementError id='password-input-help'>{reduxState.translations.translations[errors.password as keyof ITranslations]}</FormElementError>}
+                    </DefaultInputGroup>
 
-                    <div>
-                        {
-                            reduxState.session.registrationOperation.isRunning
-                            &&
-                            <Button disabled type='submit'>
-                                { reduxState.translations.translations['session.registration.ctaProcessing'] }
-                            </Button>
-                        }
-                        {
-                            reduxState.session.registrationOperation.isRunning
-                            ||
-                            <Button
-                                type='submit'
-                                data-testid='registration.submitButton'
-                                disabled={credentials.email.length < 1 || credentials.password.length < 1}
-                            >
-                                { reduxState.translations.translations['session.registration.cta'] }
-                            </Button>
-                        }
-                    </div>
+                    {
+                        reduxState.session.registrationOperation.isRunning
+                        &&
+                        <Button disabled type='submit'>
+                            { reduxState.translations.translations['session.registration.ctaProcessing'] }
+                        </Button>
+                    }
+                    {
+                        reduxState.session.registrationOperation.isRunning
+                        ||
+                        <Button
+                            type='submit'
+                            data-testid='registration.submitButton'
+                            disabled={credentials.email.length < 1 || credentials.password.length < 1}
+                        >
+                            { reduxState.translations.translations['session.registration.cta'] }
+                        </Button>
+                    }
+
                 </form>
             </MainContentStart>
         </MainContent>
