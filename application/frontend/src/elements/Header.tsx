@@ -166,31 +166,36 @@ const Header = (): JSX.Element => {
                                 ))}
                             </div>
                             <div className='pt-3 pb-3 border-t border-gray-700 px-2 space-y-1 sm:px-3'>
-                                <div className=''>
-                                    {userNavigation.map((item) => (
-                                        <Disclosure.Button
-                                            key={item.name}
-                                            as={Link}
-                                            to={item.href}
-                                            className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'
-                                        >
-                                            {item.name}
-                                        </Disclosure.Button>
-                                    ))}
-                                </div>
+                                {userNavigation.map((item) => (
+                                    <Disclosure.Button
+                                        key={item.name}
+                                        as={Link}
+                                        to={item.href}
+                                        className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'
+                                    >
+                                        {item.name}
+                                    </Disclosure.Button>
+                                ))}
                             </div>
                             <div className='pt-3 pb-3 border-t border-gray-700 px-2 space-y-1 sm:px-3'>
-                                <div className=''>
-                                    {languages.map((item) => (
-                                        <Disclosure.Button
-                                            key={item.name}
-                                            className='block w-full px-3 py-2 rounded-md text-base text-left font-medium text-gray-400 hover:text-white hover:bg-gray-700'
-                                            onClick={() => reduxDispatch(switchToLanguageCommand(item.code))}
-                                        >
-                                            {item.name}
-                                        </Disclosure.Button>
-                                    ))}
-                                </div>
+                                {languages.map((item) => (
+                                    <button
+                                        key={item.name}
+                                        className='block w-full px-3 py-2 rounded-md text-base text-left font-medium text-gray-400 hover:text-white hover:bg-gray-700'
+                                        onClick={() => reduxDispatch(switchToLanguageCommand(item.code))}
+                                    >
+                                        {item.name}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className='pt-3 pb-3 border-t border-gray-700 px-2 space-y-1 sm:px-3'>
+                                <button
+                                    className='ml-3 h-6 w-6 text-gray-400'
+                                    onClick={() => reduxDispatch(toggleDarkModeCommand())}
+                                >
+                                    { reduxState.uiSettings.darkMode && <MoonIcon className='text-indigo-700'/> }
+                                    { reduxState.uiSettings.darkMode || <SunIcon className='text-amber-600'/> }
+                                </button>
                             </div>
                         </Disclosure.Panel>
                     </>
