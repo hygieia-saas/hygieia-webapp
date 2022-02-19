@@ -12,6 +12,9 @@ import { ITranslations } from '../../app/translationsSlice';
 import MainContent from '../../elements/MainContent';
 import Header from '../../elements/Header';
 import { useNavigate } from 'react-router-dom';
+import TextInput from '../../elements/TextInput';
+import FormElementError from '../../elements/FormElementError';
+import Button from '../../elements/Button';
 
 const Registration = (): JSX.Element => {
 
@@ -56,7 +59,7 @@ const Registration = (): JSX.Element => {
                 >
                     <div>
                         <DefaultInputGroup>
-                            <input
+                            <TextInput
                                 type='text'
                                 id='email'
                                 data-testid='registration.emailInput'
@@ -65,13 +68,13 @@ const Registration = (): JSX.Element => {
                                 value={credentials.email || ''}
                                 onChange={ handleChange('email') }
                             />
+                            {errors.email && <FormElementError id='password-input-help'>{reduxState.translations.translations[errors.email as keyof ITranslations]}</FormElementError>}
                         </DefaultInputGroup>
-                        {errors.email && <div id='password-input-help'>{reduxState.translations.translations[errors.email as keyof ITranslations]}</div>}
                     </div>
 
                     <div>
                         <DefaultInputGroup>
-                            <input
+                            <TextInput
                                 type='password'
                                 id='password'
                                 aria-describedby='password-input-help'
@@ -80,28 +83,28 @@ const Registration = (): JSX.Element => {
                                 value={credentials.password}
                                 onChange={ handleChange('password') }
                             />
+                            {errors.password && <FormElementError id='password-input-help'>{reduxState.translations.translations[errors.password as keyof ITranslations]}</FormElementError>}
                         </DefaultInputGroup>
-                        {errors.password && <div id='password-input-help'>{reduxState.translations.translations[errors.password as keyof ITranslations]}</div>}
                     </div>
 
                     <div>
                         {
                             reduxState.session.registrationOperation.isRunning
                             &&
-                            <button disabled type='submit'>
+                            <Button disabled type='submit'>
                                 { reduxState.translations.translations['session.registration.ctaProcessing'] }
-                            </button>
+                            </Button>
                         }
                         {
                             reduxState.session.registrationOperation.isRunning
                             ||
-                            <button
+                            <Button
                                 type='submit'
                                 data-testid='registration.submitButton'
                                 disabled={credentials.email.length < 1 || credentials.password.length < 1}
                             >
                                 { reduxState.translations.translations['session.registration.cta'] }
-                            </button>
+                            </Button>
                         }
                     </div>
                 </form>
