@@ -18,8 +18,6 @@ export interface ITranslations {
 
     readonly 'nav.link.login': string
     readonly 'nav.link.registration': string
-    readonly 'nav.link.formDefinitions': string
-    readonly 'nav.link.inquiries': string
 
     readonly 'session.registration.headline': string
     readonly 'session.registration.email.placeholder': string
@@ -61,8 +59,6 @@ const de: ITranslationsState = {
 
         'nav.link.login': 'Einloggen',
         'nav.link.registration': 'Registrieren',
-        'nav.link.formDefinitions': 'Formulare',
-        'nav.link.inquiries': 'Anfragen',
 
         'session.registration.headline': 'Registrierung',
         'session.registration.email.placeholder': 'E-Mail',
@@ -100,8 +96,6 @@ const en: ITranslationsState = {
 
         'nav.link.login': 'Login',
         'nav.link.registration': 'Registration',
-        'nav.link.formDefinitions': 'Forms',
-        'nav.link.inquiries': 'Inquiries',
 
         'session.registration.headline': 'Registration',
         'session.registration.email.placeholder': 'Email',
