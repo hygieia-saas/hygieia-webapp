@@ -13,6 +13,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
     }
 
     if (route === 'POST /webapp-api-keys/') {
+        console.debug('Handling event with createApiKeyAction');
         return createApiKeyAction(event);
     }
 
