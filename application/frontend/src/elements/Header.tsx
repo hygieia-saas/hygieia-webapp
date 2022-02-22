@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import { Disclosure, Menu } from '@headlessui/react';
 import { MenuIcon, XIcon, UserIcon, TranslateIcon, MoonIcon, SunIcon } from '@heroicons/react/outline';
 import ERoutes from '../app/routes';
 import { EIso639_1LanguageCodes, switchToLanguageCommand } from '../app/translationsSlice';
-import { logOutOfAccountCommand } from '../features/session/sessionSlice';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { toggleDarkModeCommand } from '../app/uiSettingsSlice';
 
@@ -12,8 +11,7 @@ const Header = (): JSX.Element => {
 
     const reduxState = useAppSelector(state => state);
     const reduxDispatch = useAppDispatch();
-
-    const [showLogoutCta, setShowLogoutCta] = useState(false);
+    const location = useLocation();
 
     const navigation: { href: string, name: string }[] = [];
 
@@ -52,12 +50,12 @@ const Header = (): JSX.Element => {
                                                     key={item.name}
                                                     to={item.href}
                                                     className={classNames(
-                                                        reduxState.router.location.pathname === item.href
+                                                        location.pathname === item.href
                                                             ? 'bg-gray-900 text-white'
                                                             : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                         'px-3 py-2 rounded-md text-sm font-medium'
                                                     )}
-                                                    aria-current={reduxState.router.location.pathname === item.href ? 'page' : undefined}
+                                                    aria-current={location.pathname === item.href ? 'page' : undefined}
                                                 >
                                                     {item.name}
                                                 </Link>
@@ -156,10 +154,10 @@ const Header = (): JSX.Element => {
                                         as={Link}
                                         to={item.href}
                                         className={classNames(
-                                            reduxState.router.location.pathname === item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                            location.pathname === item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                             'block px-3 py-2 rounded-md text-base font-medium'
                                         )}
-                                        aria-current={reduxState.router.location.pathname === item.href ? 'page' : undefined}
+                                        aria-current={location.pathname === item.href ? 'page' : undefined}
                                     >
                                         {item.name}
                                     </Disclosure.Button>

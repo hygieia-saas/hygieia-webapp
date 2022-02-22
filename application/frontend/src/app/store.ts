@@ -1,10 +1,7 @@
-import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import Cookies from 'universal-cookie';
-import history from './history';
-import { createRouterMiddleware, createRouterReducer, ReduxRouterState } from '@lagunovsky/redux-react-router';
 import { translations, EIso639_1LanguageCodes, translationsSlice } from './translationsSlice';
 import { initialState as sessionInitialState, sessionSlice } from '../features/session/sessionSlice';
-import { Reducer } from 'redux';
 import { uiSettingsSlice } from './uiSettingsSlice';
 
 let preloadIsLoggedIn = sessionInitialState.isLoggedIn;
@@ -49,14 +46,11 @@ if (darkModeCookie === undefined) {
   darkMode = darkModeCookie === 'true';
 }
 
-const routerMiddleware = createRouterMiddleware(history);
-
 export const store = configureStore({
   reducer: {
     translations: translationsSlice.reducer,
     uiSettings: uiSettingsSlice.reducer,
-    session: sessionSlice.reducer,
-    router: createRouterReducer(history) as Reducer<ReduxRouterState>
+    session: sessionSlice.reducer
   },
   preloadedState: {
     session: {
@@ -68,7 +62,6 @@ export const store = configureStore({
     translations: translations[language],
     uiSettings: { darkMode }
   },
-  enhancers: [applyMiddleware(routerMiddleware)],
   devTools: true
 });
 
