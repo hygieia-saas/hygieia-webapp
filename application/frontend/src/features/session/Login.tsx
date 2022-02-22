@@ -38,7 +38,7 @@ const Login = (): JSX.Element => {
 
     if (reduxState.session.isLoggedIn) {
         navigate(ERoutes.home);
-        return <></>;
+        //return <>Ich sollte navigieren...</>;
     }
 
     return <>

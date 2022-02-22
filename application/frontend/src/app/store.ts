@@ -5,7 +5,7 @@ import { createRouterMiddleware, createRouterReducer, ReduxRouterState } from '@
 import { translations, EIso639_1LanguageCodes, translationsSlice } from './translationsSlice';
 import { initialState as sessionInitialState, sessionSlice } from '../features/session/sessionSlice';
 import { Reducer } from 'redux';
-import { initialState as uiSettingsInitialState, uiSettingsSlice } from './uiSettingsSlice';
+import { uiSettingsSlice } from './uiSettingsSlice';
 
 let preloadIsLoggedIn = sessionInitialState.isLoggedIn;
 let preloadLoggedInEmail = sessionInitialState.loggedInEmail;
