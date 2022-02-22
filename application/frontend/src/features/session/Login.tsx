@@ -11,7 +11,7 @@ import ERoutes from '../../app/routes';
 import { ITranslations } from '../../app/translationsSlice';
 import MainContent from '../../elements/MainContent';
 import Header from '../../elements/Header';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import TextInput from '../../elements/TextInput';
 import Button from '../../elements/Button';
 import FormElementError from '../../elements/FormElementError';
@@ -20,7 +20,6 @@ const Login = (): JSX.Element => {
 
     const reduxState = useAppSelector((state) => state);
     const reduxDispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const {
         handleSubmit,
@@ -37,8 +36,7 @@ const Login = (): JSX.Element => {
     });
 
     if (reduxState.session.isLoggedIn) {
-        navigate(ERoutes.home);
-        //return <>Ich sollte navigieren...</>;
+        return <Navigate to={ERoutes.home} />;
     }
 
     return <>
