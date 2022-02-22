@@ -18,7 +18,7 @@ export const toggleDarkModeCommand = createAsyncThunk<boolean, void, { state: Ro
              !thunkApi.getState().uiSettings.darkMode,
              {
                  path: '/',
-                 sameSite: 'lax',
+                 sameSite: 'strict',
                  secure: true,
                  expires: new Date(new Date().getTime() + config.cookieDurationInMilliseconds)
              }

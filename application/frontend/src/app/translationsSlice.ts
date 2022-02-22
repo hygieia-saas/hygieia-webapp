@@ -133,7 +133,7 @@ export const switchToLanguageCommand = createAsyncThunk<keyof typeof EIso639_1La
              arg,
              {
                  path: '/',
-                 sameSite: 'lax',
+                 sameSite: 'strict',
                  secure: true,
                  expires: new Date(new Date().getTime() + config.cookieDurationInMilliseconds)
              }

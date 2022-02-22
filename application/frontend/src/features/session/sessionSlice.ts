@@ -95,7 +95,7 @@ export const logIntoAccountCommand = createAsyncThunk<{ defaultRestApiKeyId: str
                     arg.email,
                     {
                         path: '/',
-                        sameSite: 'lax',
+                        sameSite: 'strict',
                         secure: true,
                         expires: new Date(new Date().getTime() + config.cookieDurationInMilliseconds)
                     }
@@ -105,7 +105,7 @@ export const logIntoAccountCommand = createAsyncThunk<{ defaultRestApiKeyId: str
                     parsedResponseContent,
                     {
                         path: '/',
-                        sameSite: 'lax',
+                        sameSite: 'strict',
                         secure: true,
                         expires: new Date(new Date().getTime() + config.cookieDurationInMilliseconds)
                     }
@@ -131,7 +131,7 @@ export const logOutOfAccountCommand = createAsyncThunk(
             '',
             {
                 path: '/',
-                sameSite: 'lax',
+                sameSite: 'strict',
                 secure: true,
                 expires: new Date(new Date().getTime() - config.cookieDurationInMilliseconds)
             }
@@ -142,7 +142,7 @@ export const logOutOfAccountCommand = createAsyncThunk(
             '',
             {
                 path: '/',
-                sameSite: 'lax',
+                sameSite: 'strict',
                 secure: true,
                 expires: new Date(new Date().getTime() - config.cookieDurationInMilliseconds)
             }
