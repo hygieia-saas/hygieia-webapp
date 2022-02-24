@@ -1,0 +1,24 @@
+diff --git a/node_modules/@uppy/xhr-upload/lib/index.js b/node_modules/@uppy/xhr-upload/lib/index.js
+index 2c7174d..1754a46 100644
+--- a/node_modules/@uppy/xhr-upload/lib/index.js
++++ b/node_modules/@uppy/xhr-upload/lib/index.js
+@@ -6,7 +6,7 @@ const BasePlugin = require('@uppy/core/lib/BasePlugin');
+ 
+ const {
+   nanoid
+-} = require('nanoid/non-secure');
++} = require('nanoid');
+ 
+ const {
+   Provider,
+diff --git a/node_modules/@uppy/xhr-upload/src/index.js b/node_modules/@uppy/xhr-upload/src/index.js
+index 2590509..f3e2c6d 100644
+--- a/node_modules/@uppy/xhr-upload/src/index.js
++++ b/node_modules/@uppy/xhr-upload/src/index.js
+@@ -1,5 +1,5 @@
+ const BasePlugin = require('@uppy/core/lib/BasePlugin')
+-const { nanoid } = require('nanoid/non-secure')
++const { nanoid } = require('nanoid')
+ const { Provider, RequestClient, Socket } = require('@uppy/companion-client')
+ const emitSocketProgress = require('@uppy/utils/lib/emitSocketProgress')
+ const getSocketHost = require('@uppy/utils/lib/getSocketHost')

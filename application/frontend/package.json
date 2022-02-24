@@ -7,7 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint . --ext .ts,.tsx"
+    "lint": "npx eslint . --ext .ts,.tsx",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,6 +50,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "history": "^5.2.0",
     "hygieia-webapp-shared": "file:../shared",
+    "patch-package": "^6.4.7",
     "postcss": "^8.4.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

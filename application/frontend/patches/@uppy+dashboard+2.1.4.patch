@@ -1,0 +1,51 @@
+diff --git a/node_modules/@uppy/dashboard/lib/components/FileCard/index.js b/node_modules/@uppy/dashboard/lib/components/FileCard/index.js
+index f52b8d7..5598f6c 100644
+--- a/node_modules/@uppy/dashboard/lib/components/FileCard/index.js
++++ b/node_modules/@uppy/dashboard/lib/components/FileCard/index.js
+@@ -7,7 +7,7 @@ const classNames = require('classnames');
+ 
+ const {
+   nanoid
+-} = require('nanoid/non-secure');
++} = require('nanoid');
+ 
+ const getFileTypeIcon = require('../../utils/getFileTypeIcon');
+ 
+diff --git a/node_modules/@uppy/dashboard/lib/index.js b/node_modules/@uppy/dashboard/lib/index.js
+index 393b32d..43e6d7d 100644
+--- a/node_modules/@uppy/dashboard/lib/index.js
++++ b/node_modules/@uppy/dashboard/lib/index.js
+@@ -30,7 +30,7 @@ const getTextDirection = require('@uppy/utils/lib/getTextDirection');
+ 
+ const {
+   nanoid
+-} = require('nanoid/non-secure');
++} = require('nanoid');
+ 
+ const trapFocus = require('./utils/trapFocus');
+ 
+diff --git a/node_modules/@uppy/dashboard/src/components/FileCard/index.js b/node_modules/@uppy/dashboard/src/components/FileCard/index.js
+index 5aa025f..c1628c5 100644
+--- a/node_modules/@uppy/dashboard/src/components/FileCard/index.js
++++ b/node_modules/@uppy/dashboard/src/components/FileCard/index.js
+@@ -1,6 +1,6 @@
+ const { h, Component } = require('preact')
+ const classNames = require('classnames')
+-const { nanoid } = require('nanoid/non-secure')
++const { nanoid } = require('nanoid')
+ const getFileTypeIcon = require('../../utils/getFileTypeIcon')
+ const ignoreEvent = require('../../utils/ignoreEvent.js')
+ const FilePreview = require('../FilePreview')
+diff --git a/node_modules/@uppy/dashboard/src/index.js b/node_modules/@uppy/dashboard/src/index.js
+index f775f13..1b7afb5 100644
+--- a/node_modules/@uppy/dashboard/src/index.js
++++ b/node_modules/@uppy/dashboard/src/index.js
+@@ -7,7 +7,7 @@ const findAllDOMElements = require('@uppy/utils/lib/findAllDOMElements')
+ const toArray = require('@uppy/utils/lib/toArray')
+ const getDroppedFiles = require('@uppy/utils/lib/getDroppedFiles')
+ const getTextDirection = require('@uppy/utils/lib/getTextDirection')
+-const { nanoid } = require('nanoid/non-secure')
++const { nanoid } = require('nanoid')
+ const trapFocus = require('./utils/trapFocus')
+ const createSuperFocus = require('./utils/createSuperFocus')
+ const memoize = require('memoize-one').default || require('memoize-one')

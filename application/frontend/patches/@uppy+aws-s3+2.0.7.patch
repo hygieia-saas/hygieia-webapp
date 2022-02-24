@@ -1,0 +1,23 @@
+diff --git a/node_modules/@uppy/aws-s3/lib/MiniXHRUpload.js b/node_modules/@uppy/aws-s3/lib/MiniXHRUpload.js
+index 55469ef..22f3639 100644
+--- a/node_modules/@uppy/aws-s3/lib/MiniXHRUpload.js
++++ b/node_modules/@uppy/aws-s3/lib/MiniXHRUpload.js
+@@ -10,7 +10,7 @@ function _classPrivateFieldLooseKey(name) { return "__private_" + id++ + "_" + n
+ 
+ const {
+   nanoid
+-} = require('nanoid/non-secure');
++} = require('nanoid');
+ 
+ const {
+   Provider,
+diff --git a/node_modules/@uppy/aws-s3/src/MiniXHRUpload.js b/node_modules/@uppy/aws-s3/src/MiniXHRUpload.js
+index fc50ea1..05d2e0a 100644
+--- a/node_modules/@uppy/aws-s3/src/MiniXHRUpload.js
++++ b/node_modules/@uppy/aws-s3/src/MiniXHRUpload.js
+@@ -1,4 +1,4 @@
+-const { nanoid } = require('nanoid/non-secure')
++const { nanoid } = require('nanoid')
+ const { Provider, RequestClient, Socket } = require('@uppy/companion-client')
+ const emitSocketProgress = require('@uppy/utils/lib/emitSocketProgress')
+ const getSocketHost = require('@uppy/utils/lib/getSocketHost')

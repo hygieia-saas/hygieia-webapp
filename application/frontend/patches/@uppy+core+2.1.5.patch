@@ -1,0 +1,39 @@
+diff --git a/node_modules/@uppy/core/lib/Uppy.js b/node_modules/@uppy/core/lib/Uppy.js
+index b23c203..dd0d6dd 100644
+--- a/node_modules/@uppy/core/lib/Uppy.js
++++ b/node_modules/@uppy/core/lib/Uppy.js
+@@ -17,7 +17,7 @@ const ee = require('namespace-emitter');
+ 
+ const {
+   nanoid
+-} = require('nanoid/non-secure');
++} = require('nanoid');
+ 
+ const throttle = require('lodash.throttle');
+ 
+diff --git a/node_modules/@uppy/core/src/Uppy.js b/node_modules/@uppy/core/src/Uppy.js
+index 624e3f8..62382d5 100644
+--- a/node_modules/@uppy/core/src/Uppy.js
++++ b/node_modules/@uppy/core/src/Uppy.js
+@@ -5,7 +5,7 @@
+ 
+ const Translator = require('@uppy/utils/lib/Translator')
+ const ee = require('namespace-emitter')
+-const { nanoid } = require('nanoid/non-secure')
++const { nanoid } = require('nanoid')
+ const throttle = require('lodash.throttle')
+ const prettierBytes = require('@transloadit/prettier-bytes')
+ const match = require('mime-match')
+diff --git a/node_modules/@uppy/core/src/Uppy.test.js b/node_modules/@uppy/core/src/Uppy.test.js
+index a92b435..df8b425 100644
+--- a/node_modules/@uppy/core/src/Uppy.test.js
++++ b/node_modules/@uppy/core/src/Uppy.test.js
+@@ -11,7 +11,7 @@ const InvalidPluginWithoutId = require('./mocks/invalidPluginWithoutId')
+ const InvalidPluginWithoutType = require('./mocks/invalidPluginWithoutType')
+ const DeepFrozenStore = require('../../../../e2e/cypress/fixtures/DeepFrozenStore.js')
+ 
+-jest.mock('nanoid/non-secure', () => {
++jest.mock('nanoid', () => {
+   return { nanoid: () => 'cjd09qwxb000dlql4tp4doz8h' }
+ })
+ jest.mock('@uppy/utils/lib/findDOMElement', () => {
