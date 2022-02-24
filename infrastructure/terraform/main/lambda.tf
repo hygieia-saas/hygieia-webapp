@@ -13,6 +13,14 @@ resource "aws_lambda_function" "rest_apis_default" {
   runtime = "nodejs14.x"
 
   role = aws_iam_role.lambda_rest_apis_default.arn
+
+  environment {
+    variables = {
+      STAGE = lookup(var.workspace_to_stage, terraform.workspace)
+      ANONYMOUSUPLOADS_BUCKET_DOMAIN_NAME = aws_s3_bucket.anonymousuploads.bucket_domain_name
+      ANONYMOUSUPLOADS_BUCKET_REGION = aws_s3_bucket.anonymousuploads.region
+    }
+  }
 }
 
 resource "aws_iam_role" "lambda_rest_apis_default" {
