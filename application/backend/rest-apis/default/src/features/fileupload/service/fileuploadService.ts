@@ -7,14 +7,18 @@ import { formatUrl } from "@aws-sdk/util-format-url";
 export const getPresignedUrlForAnonymousUpload = async (objectName: string): Promise<string> => {
     const s3ObjectUrl = parseUrl(`https://hygieia-webapp-anonymousuploads-preprod.s3.us-east-1.amazonaws.com/${objectName}`);
     const presigner = new S3RequestPresigner({
-        credentials: { accessKeyId: '', secretAccessKey: '' },
+        credentials: {
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
+            sessionToken: process.env.AWS_SESSION_TOKEN as string
+        },
         region: 'us-east-1',
         sha256: Hash.bind(null, 'sha256')
     });
 
     const url = await presigner.presign(new HttpRequest({...s3ObjectUrl, method: 'PUT'}));
 
-    console.log('PRESIGNED URL: ', formatUrl(url));
+    console.debug('PRESIGNED URL: ', formatUrl(url));
 
     return formatUrl(url);
 };
