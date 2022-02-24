@@ -6,10 +6,10 @@ import { createJsonResponse } from '../../../app/util/controllerUtils';
 export const getPresignedUrlForAnonymousUploadAction = async (event: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>): Promise<APIGatewayProxyResult> => {
     const body = getBody(event);
 
-    const presignedUrl = getPresignedUrlForAnonymousUpload('test.png');
+    const presignedUrl = await getPresignedUrlForAnonymousUpload('test.png');
 
     return createJsonResponse({
-        statusCode: 'InternalServerError',
+        statusCode: 'Created',
         body: presignedUrl
     });
 }
