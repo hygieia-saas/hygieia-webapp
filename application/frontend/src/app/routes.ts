@@ -4,6 +4,8 @@ enum ERoutes {
     'login' = '/login',
     'register' = '/register',
 
+    'upload' = '/upload',
+
     'imprint' = '/imprint',
 }
 

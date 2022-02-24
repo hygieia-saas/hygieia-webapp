@@ -38,3 +38,50 @@ resource "aws_s3_bucket_public_access_block" "rest_apis_lambdas" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+
+
+resource "aws_s3_bucket" "anonymousuploads" {
+  bucket = "hygieia-webapp-anonymousuploads-${lookup(var.workspace_to_stage, terraform.workspace)}"
+  force_destroy = "false"
+}
+
+resource "aws_s3_bucket_acl" "anonymousuploads" {
+  bucket = aws_s3_bucket.anonymousuploads.id
+  acl = "private"
+}
+
+resource "aws_s3_bucket_public_access_block" "anonymousuploads" {
+  bucket = aws_s3_bucket.anonymousuploads.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+resource "aws_iam_policy" "anonymousuploads_readwrite" {
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListBucketMultipartUploads",
+                "s3:ListMultipartUploadParts",
+                "s3:AbortMultipartUpload",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "${aws_s3_bucket.anonymousuploads.arn}",
+                "${aws_s3_bucket.anonymousuploads.arn}/*"
+            ]
+        }
+    ]
+}
+EOF
+}

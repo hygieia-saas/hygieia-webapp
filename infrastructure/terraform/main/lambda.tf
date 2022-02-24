@@ -56,3 +56,8 @@ resource "aws_iam_role_policy_attachment" "dynamodb_default_to_lambda_rest_apis_
   policy_arn = aws_iam_policy.dynamodb_default.arn
   role = aws_iam_role.lambda_rest_apis_default.name
 }
+
+resource "aws_iam_role_policy_attachment" "anonymousuploads_readwrite_to_lambda_rest_apis_default" {
+  policy_arn = aws_iam_policy.anonymousuploads_readwrite.arn
+  role = aws_iam_role.lambda_rest_apis_default.name
+}

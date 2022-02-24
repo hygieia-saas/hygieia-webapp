@@ -9,6 +9,7 @@ import MainContent from '../elements/MainContent';
 import MainContentStart from '../elements/MainContentStart';
 import ScrollToTopWrapper from '../elements/ScrollToTopWrapper';
 import { useAppSelector } from './hooks';
+import UploadForm from '../features/anonymousFileupload/UploadForm';
 
 const App = (): JSX.Element => {
 
@@ -20,6 +21,8 @@ const App = (): JSX.Element => {
                 <Routes>
                     <Route path={ERoutes['login']} element={<Login/>} />
                     <Route path={ERoutes['register']} element={<Registration/>} />
+
+                    <Route path={ERoutes['upload']} element={<UploadForm/>} />
 
                     <Route path={ERoutes['home']} element={
                         <>

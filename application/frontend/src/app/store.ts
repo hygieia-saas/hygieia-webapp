@@ -3,6 +3,7 @@ import Cookies from 'universal-cookie';
 import { translations, EIso639_1LanguageCodes, translationsSlice } from './translationsSlice';
 import { initialState as sessionInitialState, sessionSlice } from '../features/session/sessionSlice';
 import { uiSettingsSlice } from './uiSettingsSlice';
+import { anonymousFileuploadSlice } from '../features/anonymousFileupload/anonymousFileuploadSlice';
 
 let preloadIsLoggedIn = sessionInitialState.isLoggedIn;
 let preloadLoggedInEmail = sessionInitialState.loggedInEmail;
@@ -50,7 +51,8 @@ export const store = configureStore({
   reducer: {
     translations: translationsSlice.reducer,
     uiSettings: uiSettingsSlice.reducer,
-    session: sessionSlice.reducer
+    session: sessionSlice.reducer,
+    anonymousFileupload: anonymousFileuploadSlice.reducer
   },
   preloadedState: {
     session: {
