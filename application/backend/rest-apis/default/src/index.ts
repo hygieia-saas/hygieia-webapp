@@ -2,7 +2,7 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import { registerUserAction } from './features/session/controller/usersController';
 import { createJsonResponse } from './app/util/controllerUtils';
 import { createApiKeyAction } from './features/session/controller/apiKeysController';
-import { getPresignedUrlForAnonymousUploadAction } from './features/fileupload/service/fileuploadController';
+import { getPresignedPostForAnonymousUploadAction } from './features/fileupload/service/fileuploadController';
 
 export const handler: APIGatewayProxyHandler = async (event) => {
     console.debug('Received event', event);
@@ -18,8 +18,8 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         return createApiKeyAction(event);
     }
 
-    if (route === 'POST /anonymous-upload-presigned-urls/') {
-        return getPresignedUrlForAnonymousUploadAction(event);
+    if (route === 'POST /anonymous-upload-presigned-posts/') {
+        return getPresignedPostForAnonymousUploadAction(event);
     }
 
     return createJsonResponse({

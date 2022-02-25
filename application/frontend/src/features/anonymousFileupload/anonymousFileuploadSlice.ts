@@ -2,33 +2,38 @@ import { IOperation, RootState } from '../../app/store';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { defaultRestApiFetch } from '../../app/util';
 
+interface IPresignedPost {
+    method: string
+    url: string
+    fields: { [type: string]: string }
+}
 
 export interface IAnonymousFileuploadState {
-    readonly presignedUrl: string|null
-    readonly getPresignedUrlOperation: IOperation
+    readonly presignedPost: IPresignedPost|null
+    readonly getPresignedPostOperation: IOperation
 }
 
 export const initialState: IAnonymousFileuploadState = {
-    presignedUrl: null,
-    getPresignedUrlOperation: {
+    presignedPost: null,
+    getPresignedPostOperation: {
         isRunning: false,
         justFinishedSuccessfully: false,
         errorMessage: null
     }
 };
 
-export const getPresignedUrlCommand = createAsyncThunk<string, void, { state: RootState, rejectValue: string }>(
-    'anonymousFileupload/getPresignedUrl',
+export const getPresignedPostCommand = createAsyncThunk<IPresignedPost, void, { state: RootState, rejectValue: string }>(
+    'anonymousFileupload/getPresignedPost',
     async (arg, thunkAPI) => {
         return await defaultRestApiFetch(
-            '/anonymous-upload-presigned-urls/',
+            '/anonymous-upload-presigned-posts/',
             'POST',
             null
         )
             .then(response => {
                 console.debug(response);
                 if (response.status === 201) {
-                    return response.json() as Promise<string>;
+                    return response.json() as Promise<IPresignedPost>;
                 } else {
                     throw new Error(thunkAPI.getState().translations.translations['apiError.unexpectedResponse'].replace('%code%', response.status.toString()));
                 }
@@ -51,23 +56,23 @@ export const anonymousFileuploadSlice = createSlice({
     reducers: {
     },
     extraReducers: (builder => {
-        builder.addCase(getPresignedUrlCommand.pending, state => {
-            state.getPresignedUrlOperation.justFinishedSuccessfully = false;
-            state.getPresignedUrlOperation.isRunning = true;
-            state.getPresignedUrlOperation.errorMessage = null;
+        builder.addCase(getPresignedPostCommand.pending, state => {
+            state.getPresignedPostOperation.justFinishedSuccessfully = false;
+            state.getPresignedPostOperation.isRunning = true;
+            state.getPresignedPostOperation.errorMessage = null;
         });
 
-        builder.addCase(getPresignedUrlCommand.rejected, (state, action) => {
-            state.getPresignedUrlOperation.justFinishedSuccessfully = false;
-            state.getPresignedUrlOperation.isRunning = false;
-            state.getPresignedUrlOperation.errorMessage = action.payload ?? 'Unknown error';
+        builder.addCase(getPresignedPostCommand.rejected, (state, action) => {
+            state.getPresignedPostOperation.justFinishedSuccessfully = false;
+            state.getPresignedPostOperation.isRunning = false;
+            state.getPresignedPostOperation.errorMessage = action.payload ?? 'Unknown error';
         });
 
-        builder.addCase(getPresignedUrlCommand.fulfilled, (state, action) => {
-            state.getPresignedUrlOperation.justFinishedSuccessfully = true;
-            state.getPresignedUrlOperation.isRunning = false;
-            state.getPresignedUrlOperation.errorMessage = null;
-            state.presignedUrl = action.payload
+        builder.addCase(getPresignedPostCommand.fulfilled, (state, action) => {
+            state.getPresignedPostOperation.justFinishedSuccessfully = true;
+            state.getPresignedPostOperation.isRunning = false;
+            state.getPresignedPostOperation.errorMessage = null;
+            state.presignedPost = action.payload
         });
     })
 });

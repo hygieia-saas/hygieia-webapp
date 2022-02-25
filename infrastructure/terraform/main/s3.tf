@@ -59,6 +59,18 @@ resource "aws_s3_bucket_public_access_block" "anonymousuploads" {
   restrict_public_buckets = true
 }
 
+resource "aws_s3_bucket_cors_configuration" "anonymousuploads" {
+  bucket = aws_s3_bucket.anonymousuploads.bucket
+
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["PUT", "POST"]
+    allowed_origins = ["*"]
+    expose_headers  = []
+    max_age_seconds = 3000
+  }
+}
+
 resource "aws_iam_policy" "anonymousuploads_readwrite" {
   policy = <<EOF
 {

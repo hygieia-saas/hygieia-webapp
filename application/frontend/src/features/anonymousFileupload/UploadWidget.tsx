@@ -20,17 +20,17 @@ const UploadWidget = (): JSX.Element => {
     uppy.use(AwsS3, {
         getUploadParameters: async (uppyFile) => {
                 return new Promise((resolve, reject) => {
-                    const url = reduxState.anonymousFileupload.presignedUrl;
+                    const presignedPost = reduxState.anonymousFileupload.presignedPost;
 
-                    if (url === null) {
-                        reject('presignedUrl is null.');
+                    if (presignedPost === null) {
+                        reject('presignedPost is null.');
                     } else {
                         resolve({
-                            method: 'PUT',
-                            url: url,
-                            fields: {},
+                            method: presignedPost.method,
+                            url: presignedPost.url,
+                            fields: presignedPost.fields,
                             headers: {
-                                'Content-Type': uppyFile.type as string,
+                                'Content-Type': 'multipart/form-data'
                             }
                         });
                     }

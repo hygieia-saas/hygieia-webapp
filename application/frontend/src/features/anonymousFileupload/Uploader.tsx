@@ -3,7 +3,7 @@ import { useAppSelector } from '../../app/hooks';
 import MainContentStart from '../../elements/MainContentStart';
 import MainContent from '../../elements/MainContent';
 import Header from '../../elements/Header';
-import PresignedUrlReceiver from './PresignedUrlRetriever';
+import PresignedPostReceiver from './PresignedPostRetriever';
 import UploadWidget from './UploadWidget';
 
 const Uploader = (): JSX.Element => {
@@ -14,9 +14,9 @@ const Uploader = (): JSX.Element => {
         <Header/>
         <MainContent>
             <MainContentStart>
-                <PresignedUrlReceiver/>
+                <PresignedPostReceiver/>
                 {
-                    reduxState.anonymousFileupload.presignedUrl !== null
+                    reduxState.anonymousFileupload.presignedPost !== null
                     &&
                     <UploadWidget />
                 }
