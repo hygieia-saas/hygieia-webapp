@@ -16,7 +16,6 @@ export const getPresignedPostForAnonymousUpload = async (): Promise<{ method: st
     const Conditions = [
         { 'key': key },
         { 'bucket': process.env.ANONYMOUSUPLOADS_BUCKET_NAME as string },
-        ['starts-with', '$success_action_redirect', ''],
         ['content-length-range', 1, 10485760]
     ];
 

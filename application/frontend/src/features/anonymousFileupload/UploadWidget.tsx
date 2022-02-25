@@ -28,10 +28,7 @@ const UploadWidget = (): JSX.Element => {
                         resolve({
                             method: presignedPost.method,
                             url: presignedPost.url,
-                            fields: presignedPost.fields,
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
-                            }
+                            fields: presignedPost.fields
                         });
                     }
                 });
