@@ -28,7 +28,8 @@ export const getPresignedPostCommand = createAsyncThunk<IPresignedPost, void, { 
         return await defaultRestApiFetch(
             '/anonymous-upload-presigned-posts/',
             'POST',
-            null
+            null,
+            JSON.stringify({ recaptchaResponseKey: thunkAPI.getState().session.recaptchaResponseKey })
         )
             .then(response => {
                 console.debug(response);

@@ -11,16 +11,12 @@ const PresignedPostReceiver = (): JSX.Element => {
         && !reduxState.anonymousFileupload.getPresignedPostOperation.isRunning
         && !reduxState.anonymousFileupload.getPresignedPostOperation.justFinishedSuccessfully
         && reduxState.anonymousFileupload.getPresignedPostOperation.errorMessage === null
+        && reduxState.session.recaptchaResponseKey !== null
     ) {
-        console.log('bejfuir');
         void reduxDispatch(getPresignedPostCommand());
     }
 
-    return <>
-        <pre>
-            {JSON.stringify(reduxState.anonymousFileupload, null, 2)}
-        </pre>
-    </>;
+    return <></>;
 };
 
 export default PresignedPostReceiver;

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Cookies from 'universal-cookie';
 import { defaultRestApiFetch } from '../../app/util';
 import { IOperation, RootState } from '../../app/store';
@@ -10,6 +10,7 @@ export interface ISessionState {
     readonly isLoggedIn: boolean,
     readonly loggedInEmail: null | string,
     readonly defaultRestApiKeyId: null | string,
+    readonly recaptchaResponseKey: null | string,
     readonly registrationOperation: IOperation,
     readonly loginOperation: IOperation
 }
@@ -19,6 +20,7 @@ export const initialState: ISessionState = {
     isLoggedIn: false,
     loggedInEmail: null,
     defaultRestApiKeyId: null,
+    recaptchaResponseKey: null,
     registrationOperation: {
         isRunning: false,
         justFinishedSuccessfully: false,
@@ -157,6 +159,9 @@ export const sessionSlice = createSlice({
     name: 'session',
     initialState,
     reducers: {
+        setRecaptchaValue: (state, action: PayloadAction<ISessionState['recaptchaResponseKey']>) => {
+            state.recaptchaResponseKey = action.payload;
+        },
     },
     extraReducers: (builder => {
         builder.addCase(registerAccountCommand.pending, state => {

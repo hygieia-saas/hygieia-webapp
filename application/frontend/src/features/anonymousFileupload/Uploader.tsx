@@ -5,6 +5,7 @@ import MainContent from '../../elements/MainContent';
 import Header from '../../elements/Header';
 import PresignedPostReceiver from './PresignedPostRetriever';
 import UploadWidget from './UploadWidget';
+import { Recaptcha } from '../session/Recaptcha';
 
 const Uploader = (): JSX.Element => {
 
@@ -14,6 +15,7 @@ const Uploader = (): JSX.Element => {
         <Header/>
         <MainContent>
             <MainContentStart>
+                <Recaptcha />
                 <PresignedPostReceiver/>
                 {
                     reduxState.anonymousFileupload.presignedPost !== null
