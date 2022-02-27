@@ -38,6 +38,10 @@ export interface ITranslations {
     readonly 'syntacticalValidationRule.credentials.password.required': string
     readonly 'syntacticalValidationRule.credentials.password.custom': string
 
+    readonly 'anonymousFileupload.headline': string
+    readonly 'anonymousFileupload.proveYouAreNotARobot': string
+    readonly 'anonymousFileupload.preparingUploadSlot': string
+
     readonly 'apiError.unexpectedResponse': string
 }
 
@@ -79,6 +83,10 @@ const de: ITranslationsState = {
         'syntacticalValidationRule.credentials.password.required': 'Bitte geben Sie ein Paswort an.',
         'syntacticalValidationRule.credentials.password.custom': 'Das Passwort muss mindestens 6 Zeichen lang sein.',
 
+        'anonymousFileupload.headline': 'Eine Datei auf Viren prüfen',
+        'anonymousFileupload.proveYouAreNotARobot': 'An dieser Stelle können Sie eine Datei hochladen und auf Viren prüfen lassen. Zunächst müssen wir sicherstellen, dass Sie kein Roboter sind.',
+        'anonymousFileupload.preparingUploadSlot': 'Wir bereiten einen Upload-Slot vor...',
+
         'apiError.unexpectedResponse': 'Unerwarteter Schnittstellenfehler (Code %code%).',
     }
 };
@@ -115,6 +123,10 @@ const en: ITranslationsState = {
         'syntacticalValidationRule.credentials.email.pattern': 'Please enter a valid e-mail address.',
         'syntacticalValidationRule.credentials.password.required': 'This field is required.',
         'syntacticalValidationRule.credentials.password.custom': 'The password needs to be at least 6 characters long.',
+
+        'anonymousFileupload.headline': 'Check a file for viruses',
+        'anonymousFileupload.proveYouAreNotARobot': 'At this point you can upload a file and have it checked for viruses. We need to begin by making sure that you are not a robot.',
+        'anonymousFileupload.preparingUploadSlot': 'We are preparing an upload slot...',
 
         'apiError.unexpectedResponse': 'Unexpected interface failure (code %code%).',
     }

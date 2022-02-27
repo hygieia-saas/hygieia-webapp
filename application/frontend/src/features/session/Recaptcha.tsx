@@ -12,15 +12,17 @@ export const Recaptcha = (): JSX.Element => {
         {
             reduxState.session.recaptchaResponseKey === null
             &&
-            <ReCAPTCHA
-                sitekey='6LfP3qAeAAAAAGHgjeDI1lF3Wby9HfFrMLKcF4Xe'
-                theme={reduxState.uiSettings.darkMode ? 'dark' : 'light'}
-                hl={reduxState.translations.iso639_1LanguageCode}
-                badge='bottomright'
-                onChange={(value) => {
-                    reduxDispatch(sessionSlice.actions.setRecaptchaValue(value))
-                }}
-            />
+            <>
+                <ReCAPTCHA
+                    sitekey='6LfP3qAeAAAAAGHgjeDI1lF3Wby9HfFrMLKcF4Xe'
+                    theme={reduxState.uiSettings.darkMode ? 'dark' : 'light'}
+                    hl={reduxState.translations.iso639_1LanguageCode}
+                    badge='bottomright'
+                    onChange={(value) => {
+                        reduxDispatch(sessionSlice.actions.setRecaptchaValue(value))
+                    }}
+                />
+            </>
         }
     </>
 };

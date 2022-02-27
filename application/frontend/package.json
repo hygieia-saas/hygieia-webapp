@@ -43,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "@uppy/aws-s3": "^2.0.7",
+    "@uppy/locales": "^2.0.6",
     "@uppy/react": "^2.1.2",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.9.0",

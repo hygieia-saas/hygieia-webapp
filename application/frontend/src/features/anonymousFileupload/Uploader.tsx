@@ -5,7 +5,7 @@ import MainContent from '../../elements/MainContent';
 import Header from '../../elements/Header';
 import PresignedPostReceiver from './PresignedPostRetriever';
 import UploadWidget from './UploadWidget';
-import { Recaptcha } from '../session/Recaptcha';
+import MainHeadline from '../../elements/MainHeadline';
 
 const Uploader = (): JSX.Element => {
 
@@ -15,7 +15,9 @@ const Uploader = (): JSX.Element => {
         <Header/>
         <MainContent>
             <MainContentStart>
-                <Recaptcha />
+                <MainHeadline>
+                    { reduxState.translations.translations['anonymousFileupload.headline'] }
+                </MainHeadline>
                 <PresignedPostReceiver/>
                 {
                     reduxState.anonymousFileupload.presignedPost !== null

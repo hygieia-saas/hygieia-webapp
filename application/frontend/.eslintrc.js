@@ -20,7 +20,9 @@ module.exports = {
         'plugin:react-hooks/recommended'
     ],
     rules: {
-        '@typescript-eslint/no-unnecessary-type-assertion': 'error'
+        '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/ban-ts-ignore': 'off'
     },
     settings: {
         'react': {
