@@ -19,7 +19,8 @@ const UploadWidget = (): JSX.Element => {
         meta: { type: 'avatar' },
         restrictions: { maxNumberOfFiles: 1 },
         autoProceed: true,
-        locale: reduxState.translations.iso639_1LanguageCode === 'en' ? English as Locale : German as Locale
+        locale: reduxState.translations.iso639_1LanguageCode === 'en' ? English as Locale : German as Locale,
+        allowMultipleUploads: false
     });
 
     uppy.use(AwsS3, {
@@ -46,6 +47,10 @@ const UploadWidget = (): JSX.Element => {
         <Dashboard
             uppy={uppy}
             theme={reduxState.uiSettings.darkMode ? 'dark' : 'light'}
+            width={'100%'}
+            hideRetryButton={true}
+            showProgressDetails={true}
+            hidePauseResumeButton={true}
         />
     </>;
 };
