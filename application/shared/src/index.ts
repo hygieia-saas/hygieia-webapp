@@ -1,4 +1,5 @@
 import ICredentials from './types/ICredentials';
+import { IFileCheckSlot, IPresignedPost } from './types/IFileCheckSlot';
 import validateCredentialsStructurally from './types/ICredentials.validator';
 import returnWithExtractedErrorMessage from './util/returnWithExtractedErrorMessage';
 import { TSyntacticalValidationErrorRecord, TSyntacticalValidationRules } from './syntacticalValidation/types';
@@ -7,10 +8,14 @@ import getErrorsForSyntacticalValidation from './syntacticalValidation/getErrors
 
 export {
     ICredentials,
+    validateCredentialsStructurally,
+    credentialsSyntacticalValidationRules,
+
+    IFileCheckSlot,
+    IPresignedPost,
+
     TSyntacticalValidationErrorRecord,
     TSyntacticalValidationRules,
     getErrorsForSyntacticalValidation,
-    validateCredentialsStructurally,
     returnWithExtractedErrorMessage,
-    credentialsSyntacticalValidationRules,
 }

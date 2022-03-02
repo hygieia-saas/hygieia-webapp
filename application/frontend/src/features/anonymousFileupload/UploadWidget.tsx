@@ -23,36 +23,41 @@ const UploadWidget = (): JSX.Element => {
         allowMultipleUploads: false
     });
 
-    uppy.use(AwsS3, {
-        limit: 1,
-        getUploadParameters: async () => {
-                return new Promise((resolve, reject) => {
-                    const presignedPost = reduxState.anonymousFileupload.presignedPost;
-
-                    if (presignedPost === null) {
-                        reject('presignedPost is null.');
-                    } else {
-                        resolve({
-                            method: presignedPost.method,
-                            url: presignedPost.url,
-                            fields: presignedPost.fields
-                        });
-                    }
-                });
+    if (   reduxState.anonymousFileupload.fileCheckSlot !== null
+        && reduxState.anonymousFileupload.fileCheckSlot.presignedPost !== null
+    ) {
+        const presignedPost = reduxState.anonymousFileupload.fileCheckSlot.presignedPost;
+        uppy.use(AwsS3, {
+                limit: 1,
+                getUploadParameters: async () => {
+                    return new Promise((resolve, reject) => {
+                        if (presignedPost === null) {
+                            reject('presignedPost is null.');
+                        } else {
+                            resolve({
+                                method: presignedPost.method,
+                                url: presignedPost.url,
+                                fields: presignedPost.fields
+                            });
+                        }
+                    });
+                }
             }
-        }
-    );
+        );
 
-    return <>
-        <Dashboard
-            uppy={uppy}
-            theme={reduxState.uiSettings.darkMode ? 'dark' : 'light'}
-            width={'100%'}
-            hideRetryButton={true}
-            showProgressDetails={true}
-            hidePauseResumeButton={true}
-        />
-    </>;
+        return <>
+            <Dashboard
+                uppy={uppy}
+                theme={reduxState.uiSettings.darkMode ? 'dark' : 'light'}
+                width={'100%'}
+                hideRetryButton={true}
+                showProgressDetails={true}
+                hidePauseResumeButton={true}
+            />
+        </>;
+    } else {
+        return <></>;
+    }
 };
 
 export default UploadWidget;

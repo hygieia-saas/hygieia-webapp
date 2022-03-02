@@ -20,7 +20,7 @@ const Uploader = (): JSX.Element => {
                 </MainHeadline>
                 <PresignedPostReceiver/>
                 {
-                    reduxState.anonymousFileupload.presignedPost !== null
+                    reduxState.anonymousFileupload.fileCheckSlot !== null
                     &&
                     <UploadWidget />
                 }

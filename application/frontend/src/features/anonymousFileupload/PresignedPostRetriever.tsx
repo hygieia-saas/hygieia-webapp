@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getPresignedPostCommand } from './anonymousFileuploadSlice';
+import { createFileCheckSlot } from './anonymousFileuploadSlice';
 import { Recaptcha } from '../session/Recaptcha';
 import ContentParagraph from '../../elements/ContentParagraph';
 
@@ -25,7 +25,7 @@ const PresignedPostReceiver = (): JSX.Element => {
         && !reduxState.anonymousFileupload.getPresignedPostOperation.justFinishedSuccessfully
         && reduxState.anonymousFileupload.getPresignedPostOperation.errorMessage === null
     ) {
-        void reduxDispatch(getPresignedPostCommand());
+        void reduxDispatch(createFileCheckSlot());
         return <></>
     }
 
