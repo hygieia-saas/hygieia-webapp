@@ -20,7 +20,7 @@ const PresignedPostReceiver = (): JSX.Element => {
         </>
     }
 
-    if (reduxState.anonymousFileupload.presignedPost === null
+    if (reduxState.anonymousFileupload.fileCheckSlot === null
         && !reduxState.anonymousFileupload.getPresignedPostOperation.isRunning
         && !reduxState.anonymousFileupload.getPresignedPostOperation.justFinishedSuccessfully
         && reduxState.anonymousFileupload.getPresignedPostOperation.errorMessage === null

@@ -3,7 +3,7 @@ import { getPresignedPostForAnonymousUpload } from './fileuploadService';
 import { createJsonResponse } from '../../../app/util/controllerUtils';
 import { getBody } from '../../../app/util/apiGatewayProxyEventUtils';
 
-export const getPresignedPostForAnonymousUploadAction = async (event: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>): Promise<APIGatewayProxyResult> => {
+export const createFileCheckSlotForAnonymousUploadAction = async (event: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>): Promise<APIGatewayProxyResult> => {
     const body = getBody(event);
 
     const parsedBody = JSON.parse(body ? body : '') as { recaptchaResponseKey: string };
