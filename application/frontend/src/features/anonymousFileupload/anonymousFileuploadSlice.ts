@@ -21,8 +21,8 @@ export const createFileCheckSlot = createAsyncThunk<IFileCheckSlot, void, { stat
     'anonymousFileupload/getPresignedPost',
     async (arg, thunkAPI) => {
         return await defaultRestApiFetch(
-            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.anonymousUploadCreateFileCheckSlot].path,
-            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.anonymousUploadCreateFileCheckSlot].verb,
+            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].path,
+            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].verb,
             null,
             JSON.stringify({ recaptchaResponseKey: thunkAPI.getState().session.recaptchaResponseKey })
         )

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Cookies from 'universal-cookie';
 import { defaultRestApiFetch } from '../../app/util';
 import { IOperation, RootState } from '../../app/store';
-import { ICredentials } from 'hygieia-webapp-shared';
+import { ERestApiDefaultRoutesKeys, ICredentials, restApiDefaultRoutes } from 'hygieia-webapp-shared';
 import config from '../../app/config';
 
 export interface ISessionState {
@@ -39,8 +39,8 @@ export const registerAccountCommand = createAsyncThunk<void, ICredentials, { sta
     async (arg, thunkAPI) => {
 
         return await defaultRestApiFetch(
-            '/users/',
-            'POST',
+            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.registerUser].path,
+            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.registerUser].verb,
             null,
             JSON.stringify({ email: arg.email, password: arg.password })
         )
@@ -72,8 +72,8 @@ export const logIntoAccountCommand = createAsyncThunk<{ defaultRestApiKeyId: str
     async (arg, thunkAPI) => {
 
         return await defaultRestApiFetch(
-            '/webapp-api-keys/',
-            'POST',
+            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createApiKey].path,
+            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createApiKey].verb,
             null,
             JSON.stringify({ email: arg.email, password: arg.password })
         )
