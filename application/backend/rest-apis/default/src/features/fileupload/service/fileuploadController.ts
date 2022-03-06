@@ -21,7 +21,7 @@ export const createFileCheckSlotForAnonymousUploadAction = async (event: APIGate
     try {
         const fileCheckSlot: IFileCheckSlot = {
             id: '',
-            presignedPost: await getPresignedPostForAnonymousUpload(parsedBody.recaptchaResponseKey)
+            presignedPost: await getPresignedPostForAnonymousUpload()
         };
 
         return createJsonResponse({
