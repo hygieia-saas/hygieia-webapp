@@ -23,10 +23,10 @@ const UploadWidget = (): JSX.Element => {
         allowMultipleUploads: false
     });
 
-    if (   reduxState.anonymousFileupload.fileCheckSlot !== null
-        && reduxState.anonymousFileupload.fileCheckSlot.presignedPost !== null
+    if (   reduxState.anonymousFileupload.fileCheckSlotInfo !== null
+        && reduxState.anonymousFileupload.fileCheckSlotInfo.presignedPost !== null
     ) {
-        const presignedPost = reduxState.anonymousFileupload.fileCheckSlot.presignedPost;
+        const presignedPost = reduxState.anonymousFileupload.fileCheckSlotInfo.presignedPost;
         uppy.use(AwsS3, {
                 limit: 1,
                 getUploadParameters: async () => {

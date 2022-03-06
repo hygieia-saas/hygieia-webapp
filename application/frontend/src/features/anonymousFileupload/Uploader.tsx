@@ -20,7 +20,7 @@ const Uploader = (): JSX.Element => {
                 </MainHeadline>
                 <FileCheckSlotCreator/>
                 {
-                    reduxState.anonymousFileupload.fileCheckSlot !== null
+                    reduxState.anonymousFileupload.fileCheckSlotInfo !== null
                     &&
                     <UploadWidget />
                 }

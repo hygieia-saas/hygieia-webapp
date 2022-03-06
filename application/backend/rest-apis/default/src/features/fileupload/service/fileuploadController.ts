@@ -1,8 +1,7 @@
 import { APIGatewayEventDefaultAuthorizerContext, APIGatewayProxyEventBase, APIGatewayProxyResult } from 'aws-lambda';
-import { getPresignedPostForAnonymousUpload } from './fileuploadService';
+import { createFileCheckSlot } from './fileuploadService';
 import { createJsonResponse, jsonResponseWithExtractedErrorMessage } from '../../../app/util/controllerUtils';
 import { getBody } from '../../../app/util/apiGatewayProxyEventUtils';
-import { IFileCheckSlot } from 'hygieia-webapp-shared';
 import { recaptchaResponseKeyIsValid } from '../../../app/util/recaptchaUtils';
 
 export const createFileCheckSlotForAnonymousUploadAction = async (event: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>): Promise<APIGatewayProxyResult> => {
@@ -19,14 +18,9 @@ export const createFileCheckSlotForAnonymousUploadAction = async (event: APIGate
     }
 
     try {
-        const fileCheckSlot: IFileCheckSlot = {
-            id: '',
-            presignedPost: await getPresignedPostForAnonymousUpload()
-        };
-
         return createJsonResponse({
             statusCode: 'Created',
-            body: fileCheckSlot
+            body: await createFileCheckSlot()
         });
     } catch (e) {
         return jsonResponseWithExtractedErrorMessage(

@@ -7,5 +7,6 @@ export default AWS;
 export enum ETables {
     users = 'users',
     credentials = 'credentials',
-    apiKeys = 'api_keys'
+    apiKeys = 'api_keys',
+    fileCheckSlots = 'fileCheckSlots'
 }

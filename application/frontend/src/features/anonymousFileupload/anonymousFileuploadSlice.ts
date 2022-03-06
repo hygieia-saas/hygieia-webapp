@@ -1,15 +1,15 @@
 import { IOperation, RootState } from '../../app/store';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { defaultRestApiFetch } from '../../app/util';
-import { ERestApiDefaultRoutesKeys, IFileCheckSlot, restApiDefaultRoutes } from 'hygieia-webapp-shared';
+import { ERestApiDefaultRoutesKeys, IFileCheckSlotClientInfo, restApiDefaultRoutes } from 'hygieia-webapp-shared';
 
 export interface IAnonymousFileuploadState {
-    readonly fileCheckSlot: IFileCheckSlot|null
+    readonly fileCheckSlotInfo: IFileCheckSlotClientInfo|null
     readonly getPresignedPostOperation: IOperation
 }
 
 export const initialState: IAnonymousFileuploadState = {
-    fileCheckSlot: null,
+    fileCheckSlotInfo: null,
     getPresignedPostOperation: {
         isRunning: false,
         justFinishedSuccessfully: false,
@@ -17,7 +17,7 @@ export const initialState: IAnonymousFileuploadState = {
     }
 };
 
-export const createFileCheckSlot = createAsyncThunk<IFileCheckSlot, void, { state: RootState, rejectValue: string }>(
+export const createFileCheckSlot = createAsyncThunk<IFileCheckSlotClientInfo, void, { state: RootState, rejectValue: string }>(
     'anonymousFileupload/getPresignedPost',
     async (arg, thunkAPI) => {
         return await defaultRestApiFetch(
@@ -29,7 +29,7 @@ export const createFileCheckSlot = createAsyncThunk<IFileCheckSlot, void, { stat
             .then(response => {
                 console.debug(response);
                 if (response.status === 201) {
-                    return response.json() as Promise<IFileCheckSlot>;
+                    return response.json() as Promise<IFileCheckSlotClientInfo>;
                 } else {
                     throw new Error(thunkAPI.getState().translations.translations['apiError.unexpectedResponse'].replace('%code%', response.status.toString()));
                 }
@@ -68,7 +68,7 @@ export const anonymousFileuploadSlice = createSlice({
             state.getPresignedPostOperation.justFinishedSuccessfully = true;
             state.getPresignedPostOperation.isRunning = false;
             state.getPresignedPostOperation.errorMessage = null;
-            state.fileCheckSlot = action.payload
+            state.fileCheckSlotInfo = action.payload
         });
     })
 });

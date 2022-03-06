@@ -20,7 +20,8 @@ resource "aws_iam_policy" "dynamodb_default" {
             "Resource": [
                 "${aws_dynamodb_table.credentials.arn}",
                 "${aws_dynamodb_table.users.arn}",
-                "${aws_dynamodb_table.api_keys.arn}"
+                "${aws_dynamodb_table.api_keys.arn}",
+                "${aws_dynamodb_table.file_check_slots.arn}"
             ]
         }
     ]

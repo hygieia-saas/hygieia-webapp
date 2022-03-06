@@ -20,7 +20,7 @@ const FileCheckSlotCreator = (): JSX.Element => {
         </>
     }
 
-    if (reduxState.anonymousFileupload.fileCheckSlot === null
+    if (reduxState.anonymousFileupload.fileCheckSlotInfo === null
         && !reduxState.anonymousFileupload.getPresignedPostOperation.isRunning
         && !reduxState.anonymousFileupload.getPresignedPostOperation.justFinishedSuccessfully
         && reduxState.anonymousFileupload.getPresignedPostOperation.errorMessage === null

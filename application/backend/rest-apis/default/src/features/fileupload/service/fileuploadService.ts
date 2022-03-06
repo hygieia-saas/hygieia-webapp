@@ -1,7 +1,8 @@
 import { createPresignedPost } from '@aws-sdk/s3-presigned-post';
 import { S3Client } from '@aws-sdk/client-s3';
 import { v1 as uuidv1 } from 'uuid';
-import { IPresignedPost } from 'hygieia-webapp-shared';
+import { IFileCheckSlotClientInfo, IPresignedPost } from 'hygieia-webapp-shared';
+import AWS, { ETables } from '../../../app/util/awsSdkUtils';
 
 export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPost> => {
 
@@ -42,4 +43,41 @@ export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPo
 
         resolve({ method: 'POST', url, fields });
     });
+};
+
+
+export const createFileCheckSlot = async (): Promise<IFileCheckSlotClientInfo> => {
+
+    const presignedPost = await getPresignedPostForAnonymousUpload();
+
+    const docClient = new AWS.DynamoDB.DocumentClient();
+    const fileCheckSlotId = uuidv1();
+
+    if (await new Promise<boolean>((resolve) => {
+        docClient.put(
+            {
+                TableName: ETables.fileCheckSlots,
+                Item: {
+                    id: fileCheckSlotId,
+                    status: 0,
+                    presigned_post_bucket: presignedPost.fields.bucket,
+                    presigned_post_key: presignedPost.fields.key
+                }
+            },
+            (err) => {
+                if (err) {
+                    console.error(err);
+                    resolve(false);
+                } else {
+                    resolve(true);
+                }
+            });
+    })) {
+        return {
+            id: fileCheckSlotId,
+            presignedPost
+        };
+    } else {
+        throw new Error(`Could not create entry in table ${ETables.fileCheckSlots}`);
+    }
 };
