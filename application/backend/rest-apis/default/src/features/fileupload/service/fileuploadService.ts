@@ -21,7 +21,7 @@ export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPo
             ['content-length-range', 1, 10485760]
         ];
 
-        const client = new S3Client({ region: process.env.ANONYMOUSUPLOADS_BUCKET_REGION as string as string });
+        const client = new S3Client({ region: process.env.ANONYMOUSUPLOADS_BUCKET_REGION as string });
         const Bucket = process.env.ANONYMOUSUPLOADS_BUCKET_NAME as string;
         const Key = key;
         const Fields = {
