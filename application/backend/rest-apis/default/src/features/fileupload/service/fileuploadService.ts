@@ -3,7 +3,7 @@ import { S3Client } from '@aws-sdk/client-s3';
 import { v1 as uuidv1 } from 'uuid';
 import { IPresignedPost } from 'hygieia-webapp-shared';
 
-export const getPresignedPostForAnonymousUpload = async (responseKey: string): Promise<IPresignedPost> => {
+export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPost> => {
 
     // https://medium.com/@aidan.hallett/securing-aws-s3-uploads-using-presigned-urls-aa821c13ae8d
     // https://stackoverflow.com/questions/13390343/s3-direct-upload-restricting-file-size-and-type
@@ -43,4 +43,3 @@ export const getPresignedPostForAnonymousUpload = async (responseKey: string): P
         resolve({ method: 'POST', url, fields });
     });
 };
-
