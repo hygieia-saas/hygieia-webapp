@@ -1,7 +1,6 @@
 import { createPresignedPost } from '@aws-sdk/s3-presigned-post';
 import { S3Client } from '@aws-sdk/client-s3';
 import { v1 as uuidv1 } from 'uuid';
-import { recaptchaResponseKeyIsValid } from '../../../app/util/recaptchaUtils';
 import { IPresignedPost } from 'hygieia-webapp-shared';
 
 export const getPresignedPostForAnonymousUpload = async (responseKey: string): Promise<IPresignedPost> => {
@@ -14,12 +13,7 @@ export const getPresignedPostForAnonymousUpload = async (responseKey: string): P
 
     // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_s3_presigned_post.html
 
-    return new Promise(async (resolve, reject) => {
-        const recaptchaWasSolved = await recaptchaResponseKeyIsValid(responseKey);
-        if (!recaptchaWasSolved) {
-            reject();
-        }
-
+    return new Promise(async (resolve) => {
         const key = uuidv1();
         const Conditions = [
             { 'key': key },
@@ -49,3 +43,4 @@ export const getPresignedPostForAnonymousUpload = async (responseKey: string): P
         resolve({ method: 'POST', url, fields });
     });
 };
+

@@ -3,7 +3,7 @@ import { useAppSelector } from '../../app/hooks';
 import MainContentStart from '../../elements/MainContentStart';
 import MainContent from '../../elements/MainContent';
 import Header from '../../elements/Header';
-import PresignedPostReceiver from './PresignedPostRetriever';
+import FileCheckSlotCreator from './FileCheckSlotCreator';
 import UploadWidget from './UploadWidget';
 import MainHeadline from '../../elements/MainHeadline';
 
@@ -18,7 +18,7 @@ const Uploader = (): JSX.Element => {
                 <MainHeadline>
                     { reduxState.translations.translations['anonymousFileupload.headline'] }
                 </MainHeadline>
-                <PresignedPostReceiver/>
+                <FileCheckSlotCreator/>
                 {
                     reduxState.anonymousFileupload.fileCheckSlot !== null
                     &&
