@@ -32,3 +32,10 @@ export const createFileCheckSlotForAnonymousUploadAction = async (event: APIGate
         );
     }
 }
+
+export const getFileCheckSlotForAnonymousUploadStatusAction = async (event: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>): Promise<APIGatewayProxyResult> => {
+    return createJsonResponse({
+        statusCode: 'NotFound',
+        body: 'Recaptcha was not solved correctly.'
+    });
+};

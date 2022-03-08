@@ -1,10 +1,10 @@
 import { IOperation, RootState } from '../../app/store';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { defaultRestApiFetch } from '../../app/util';
-import { ERestApiDefaultRoutesKeys, IFileCheckSlotClientInfo, restApiDefaultRoutes } from 'hygieia-webapp-shared';
+import { ERestApiDefaultRoutesKeys, IFileCheckSlotInfo, restApiDefaultRoutes } from 'hygieia-webapp-shared';
 
 export interface IAnonymousFileuploadState {
-    readonly fileCheckSlotInfo: IFileCheckSlotClientInfo|null
+    readonly fileCheckSlotInfo: IFileCheckSlotInfo|null
     readonly getPresignedPostOperation: IOperation
 }
 
@@ -17,7 +17,7 @@ export const initialState: IAnonymousFileuploadState = {
     }
 };
 
-export const createFileCheckSlot = createAsyncThunk<IFileCheckSlotClientInfo, void, { state: RootState, rejectValue: string }>(
+export const createFileCheckSlot = createAsyncThunk<IFileCheckSlotInfo, void, { state: RootState, rejectValue: string }>(
     'anonymousFileupload/getPresignedPost',
     async (arg, thunkAPI) => {
         return await defaultRestApiFetch(
@@ -29,7 +29,7 @@ export const createFileCheckSlot = createAsyncThunk<IFileCheckSlotClientInfo, vo
             .then(response => {
                 console.debug(response);
                 if (response.status === 201) {
-                    return response.json() as Promise<IFileCheckSlotClientInfo>;
+                    return response.json() as Promise<IFileCheckSlotInfo>;
                 } else {
                     throw new Error(thunkAPI.getState().translations.translations['apiError.unexpectedResponse'].replace('%code%', response.status.toString()));
                 }

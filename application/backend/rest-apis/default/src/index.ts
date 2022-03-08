@@ -2,7 +2,10 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import { registerUserAction } from './features/session/controller/usersController';
 import { createJsonResponse } from './app/util/controllerUtils';
 import { createApiKeyAction } from './features/session/controller/apiKeysController';
-import { createFileCheckSlotForAnonymousUploadAction } from './features/fileupload/service/fileuploadController';
+import {
+    createFileCheckSlotForAnonymousUploadAction,
+    getFileCheckSlotForAnonymousUploadStatusAction
+} from './features/fileupload/service/fileuploadController';
 import { ERestApiDefaultRoutesKeys, restApiDefaultRoutes } from 'hygieia-webapp-shared';
 
 export const handler: APIGatewayProxyHandler = async (event) => {
@@ -19,6 +22,9 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 
         case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].path}`:
             return createFileCheckSlotForAnonymousUploadAction(event);
+
+        case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].path}`:
+            return getFileCheckSlotForAnonymousUploadStatusAction(event);
     }
 
     return createJsonResponse({

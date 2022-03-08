@@ -1,7 +1,7 @@
 import { createPresignedPost } from '@aws-sdk/s3-presigned-post';
 import { S3Client } from '@aws-sdk/client-s3';
 import { v1 as uuidv1 } from 'uuid';
-import { IFileCheckSlotClientInfo, IPresignedPost } from 'hygieia-webapp-shared';
+import { IFileCheckSlotInfo, IPresignedPost } from 'hygieia-webapp-shared';
 import AWS, { ETables } from '../../../app/util/awsSdkUtils';
 
 export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPost> => {
@@ -46,7 +46,7 @@ export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPo
 };
 
 
-export const createFileCheckSlot = async (): Promise<IFileCheckSlotClientInfo> => {
+export const createFileCheckSlot = async (): Promise<IFileCheckSlotInfo> => {
 
     const presignedPost = await getPresignedPostForAnonymousUpload();
 

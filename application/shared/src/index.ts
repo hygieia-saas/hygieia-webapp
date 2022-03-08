@@ -1,5 +1,5 @@
 import ICredentials from './types/ICredentials';
-import IFileCheckSlotClientInfo from './types/IFileCheckSlotClientInfo';
+import IFileCheckSlotInfo from './types/IFileCheckSlotInfo';
 import IPresignedPost  from './types/IPresignedPost';
 import validateCredentialsStructurally from './types/ICredentials.validator';
 import returnWithExtractedErrorMessage from './util/returnWithExtractedErrorMessage';
@@ -18,7 +18,7 @@ export {
     validateCredentialsStructurally,
     credentialsSyntacticalValidationRules,
 
-    IFileCheckSlotClientInfo,
+    IFileCheckSlotInfo,
     IPresignedPost,
 
     TSyntacticalValidationErrorRecord,
