@@ -1,7 +1,7 @@
 import { IOperation, RootState } from '../../app/store';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { defaultRestApiFetch } from '../../app/util';
-import { ERestApiDefaultRoutesKeys, IFileCheckSlotInfo, restApiDefaultRoutes } from 'hygieia-webapp-shared';
+import { IFileCheckSlotInfo, restApiDefaultRoutes } from 'hygieia-webapp-shared';
 
 export interface IAnonymousFileuploadState {
     readonly fileCheckSlotInfo: IFileCheckSlotInfo|null
@@ -18,11 +18,11 @@ export const initialState: IAnonymousFileuploadState = {
 };
 
 export const createFileCheckSlot = createAsyncThunk<IFileCheckSlotInfo, void, { state: RootState, rejectValue: string }>(
-    'anonymousFileupload/getPresignedPost',
+    'anonymousFileupload/createFileCheckSlot',
     async (arg, thunkAPI) => {
         return await defaultRestApiFetch(
-            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].path,
-            restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].verb,
+            restApiDefaultRoutes.createFileCheckSlotForAnonymousUpload.pathPattern.stringify(),
+            restApiDefaultRoutes.createFileCheckSlotForAnonymousUpload.verb,
             null,
             JSON.stringify({ recaptchaResponseKey: thunkAPI.getState().session.recaptchaResponseKey })
         )

@@ -1,17 +1,28 @@
-import IRoute from '../types/IRoute';
+import UrlPattern from 'url-pattern';
 
-export enum ERestApiDefaultRoutesKeys {
-    'registerUser',
-    'createApiKey',
-    'createFileCheckSlotForAnonymousUpload',
-    'getFileCheckSlotForAnonymousUploadStatus'
+interface IRoute {
+    readonly verb: 'GET' | 'POST' | 'PUT' | 'DELETE',
+    readonly pathPattern: UrlPattern
 }
 
-type TRoutes = { [key in ERestApiDefaultRoutesKeys]: IRoute };
+export const restApiDefaultRoutes: { [key in string]: IRoute } = {
+    registerUser: {
+        verb: 'POST',
+        pathPattern: new UrlPattern('/users/')
+    },
 
-export const restApiDefaultRoutes: TRoutes = {
-    [ERestApiDefaultRoutesKeys.registerUser]: { verb: 'POST', path: '/users/' },
-    [ERestApiDefaultRoutesKeys.createApiKey]: { verb: 'POST', path: '/webapp-api-keys/' },
-    [ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload]: { verb: 'POST', path: '/anonymous-upload-file-check-slots/' },
-    [ERestApiDefaultRoutesKeys.getFileCheckSlotForAnonymousUploadStatus]: { verb: 'GET', path: '/anonymous-upload-file-check-slots/:id/status' }
+    createApiKey: {
+        verb: 'POST',
+        pathPattern: new UrlPattern('/webapp-api-keys/')
+    },
+
+    createFileCheckSlotForAnonymousUpload: {
+        verb: 'POST',
+        pathPattern: new UrlPattern('/anonymous-upload-file-check-slots/')
+    },
+
+    getFileCheckSlotForAnonymousUploadStatus: {
+        verb: 'GET',
+        pathPattern: new UrlPattern('/anonymous-upload-file-check-slots/:id/status')
+    }
 }

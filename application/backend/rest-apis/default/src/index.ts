@@ -6,12 +6,19 @@ import {
     createFileCheckSlotForAnonymousUploadAction,
     getFileCheckSlotForAnonymousUploadStatusAction
 } from './features/fileupload/service/fileuploadController';
-import { ERestApiDefaultRoutesKeys, restApiDefaultRoutes } from 'hygieia-webapp-shared';
+import { restApiDefaultRoutes } from 'hygieia-webapp-shared';
 
 export const handler: APIGatewayProxyHandler = async (event) => {
     console.debug('Received event', event);
 
     const route = `${event.httpMethod} /${event.pathParameters?.proxy as string}`;
+
+    switch (event.httpMethod) {
+        case 'POST':
+            switch (event.pathParameters?.proxy as string) {
+                case ''
+            }
+    }
 
     switch (route) {
         case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.registerUser].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.registerUser].path}`:
@@ -23,7 +30,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].path}`:
             return createFileCheckSlotForAnonymousUploadAction(event);
 
-        case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].path}`:
+        case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.getFileCheckSlotForAnonymousUploadStatus].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.getFileCheckSlotForAnonymousUploadStatus].path}`:
             return getFileCheckSlotForAnonymousUploadStatusAction(event);
     }
 
