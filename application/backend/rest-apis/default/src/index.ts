@@ -6,36 +6,24 @@ import {
     createFileCheckSlotForAnonymousUploadAction,
     getFileCheckSlotForAnonymousUploadStatusAction
 } from './features/fileupload/service/fileuploadController';
-import { restApiDefaultRoutes } from 'hygieia-webapp-shared';
+import { IRoute, getRestApiDefaultRouteName, ERestApiDefaultRouteNames } from 'hygieia-webapp-shared';
 
 export const handler: APIGatewayProxyHandler = async (event) => {
     console.debug('Received event', event);
 
-    const route = `${event.httpMethod} /${event.pathParameters?.proxy as string}`;
-
-    switch (event.httpMethod) {
-        case 'POST':
-            switch (event.pathParameters?.proxy as string) {
-                case ''
-            }
-    }
-
-    switch (route) {
-        case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.registerUser].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.registerUser].path}`:
+    switch (getRestApiDefaultRouteName(event.httpMethod as IRoute['verb'], event.pathParameters?.proxy as string)) {
+        case ERestApiDefaultRouteNames.registerUser:
             return registerUserAction(event);
-
-        case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createApiKey].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createApiKey].path}`:
+        case ERestApiDefaultRouteNames.createApiKey:
             return createApiKeyAction(event);
-
-        case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.createFileCheckSlotForAnonymousUpload].path}`:
+        case ERestApiDefaultRouteNames.createFileCheckSlotForAnonymousUpload:
             return createFileCheckSlotForAnonymousUploadAction(event);
-
-        case `${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.getFileCheckSlotForAnonymousUploadStatus].verb} ${restApiDefaultRoutes[ERestApiDefaultRoutesKeys.getFileCheckSlotForAnonymousUploadStatus].path}`:
+        case ERestApiDefaultRouteNames.getFileCheckSlotForAnonymousUploadStatus:
             return getFileCheckSlotForAnonymousUploadStatusAction(event);
     }
 
     return createJsonResponse({
         statusCode: 'NotImplemented',
-        body: `No controller action for routeKey ${route} found.`
+        body: `No controller action for route ${event.httpMethod} ${event.pathParameters?.proxy as string} found.`
     });
 }

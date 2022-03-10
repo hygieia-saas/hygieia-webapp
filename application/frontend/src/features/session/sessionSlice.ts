@@ -4,6 +4,7 @@ import { defaultRestApiFetch } from '../../app/util';
 import { IOperation, RootState } from '../../app/store';
 import { ICredentials, restApiDefaultRoutes } from 'hygieia-webapp-shared';
 import config from '../../app/config';
+import { ERouteNames } from 'hygieia-webapp-shared/build/values/restApiDefaultRoutes';
 
 export interface ISessionState {
     readonly isAnonymous: boolean,
@@ -39,8 +40,8 @@ export const registerAccountCommand = createAsyncThunk<void, ICredentials, { sta
     async (arg, thunkAPI) => {
 
         return await defaultRestApiFetch(
-            restApiDefaultRoutes.registerUser.pathPattern.stringify(),
-            restApiDefaultRoutes.registerUser.verb,
+            restApiDefaultRoutes[ERouteNames.registerUser].pathPattern.stringify(),
+            restApiDefaultRoutes[ERouteNames.registerUser].verb,
             null,
             JSON.stringify({ email: arg.email, password: arg.password })
         )
@@ -72,8 +73,8 @@ export const logIntoAccountCommand = createAsyncThunk<{ defaultRestApiKeyId: str
     async (arg, thunkAPI) => {
 
         return await defaultRestApiFetch(
-            restApiDefaultRoutes.createApiKey.pathPattern.stringify(),
-            restApiDefaultRoutes.createApiKey.verb,
+            restApiDefaultRoutes[ERouteNames.createApiKey].pathPattern.stringify(),
+            restApiDefaultRoutes[ERouteNames.createApiKey].verb,
             null,
             JSON.stringify({ email: arg.email, password: arg.password })
         )
