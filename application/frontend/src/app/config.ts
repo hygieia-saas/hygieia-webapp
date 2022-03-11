@@ -1,5 +1,5 @@
 const config = {
-    backendApiBaseUri: '/api',
+    backendApiBaseUri: '/api/',
     cookieDurationInMilliseconds: 365 * 86400000 // One year
 };
 

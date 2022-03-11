@@ -1,6 +1,7 @@
 import config from './config';
+import { IRestApiDefaultRoute } from 'hygieia-webapp-shared';
 
-export const defaultRestApiFetch = (path: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' | 'HEAD', defaultRestApiKeyId: null | string = null, body: null | string = null, queryParams: { [key: string]: string } = {}): Promise<Response> => {
+export const defaultRestApiFetch = (path: string, method: IRestApiDefaultRoute['verb'], defaultRestApiKeyId: null | string = null, body: null | string = null, queryParams: { [key: string]: string } = {}): Promise<Response> => {
     const headers: { [key: string]: string } = {
         'Content-Type': 'application/json',
     };

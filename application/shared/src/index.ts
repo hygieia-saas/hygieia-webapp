@@ -6,10 +6,10 @@ import returnWithExtractedErrorMessage from './util/returnWithExtractedErrorMess
 import { TSyntacticalValidationErrorRecord, TSyntacticalValidationRules } from './syntacticalValidation/types';
 import credentialsSyntacticalValidationRules from './syntacticalValidation/credentialsSyntacticalValidationRules';
 import getErrorsForSyntacticalValidation from './syntacticalValidation/getErrorsForSyntacticalValidation';
-import { IRoute, restApiDefaultRoutes, getRestApiDefaultRouteName, ERestApiDefaultRouteNames } from './values/restApiDefaultRoutes';
+import { IRestApiDefaultRoute, restApiDefaultRoutes, getRestApiDefaultRouteName, ERestApiDefaultRouteNames } from './routes/restApiDefaultRoutes';
 
 export {
-    IRoute,
+    IRestApiDefaultRoute,
     restApiDefaultRoutes,
     getRestApiDefaultRouteName,
     ERestApiDefaultRouteNames,
