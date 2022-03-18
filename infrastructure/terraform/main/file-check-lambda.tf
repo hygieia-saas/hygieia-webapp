@@ -19,7 +19,6 @@ resource "aws_s3_bucket_public_access_block" "file_check_lambda_av_definitions" 
   restrict_public_buckets = true
 }
 
-
 resource "aws_iam_role" "file_check_av_definitions_updater" {
   name = "file_check_av_definitions_updater"
 
@@ -114,7 +113,7 @@ resource "aws_lambda_permission" "file_check_av_definitions_update" {
 
 
 
-# File Check
+# Scan
 
 resource "aws_iam_role" "file_check_scanner" {
   name               = "file_check_scanner"
@@ -209,7 +208,6 @@ resource "aws_lambda_permission" "file_check_scan_allow_event_hook_from_anonymou
   principal     = "s3.amazonaws.com"
   source_arn    = aws_s3_bucket.anonymousuploads.arn
 }
-
 
 resource "aws_s3_bucket_notification" "file_check_scan_on_new_object_in_anonymousuploads_bucket" {
   bucket = aws_s3_bucket.anonymousuploads.id
