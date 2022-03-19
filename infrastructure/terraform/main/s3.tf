@@ -40,6 +40,26 @@ resource "aws_s3_bucket_public_access_block" "rest_apis_lambdas" {
 }
 
 
+resource "aws_s3_bucket" "handlers_lambdas" {
+  bucket = "hygieia-webapp-handlers-lambdas-${lookup(var.workspace_to_stage, terraform.workspace)}"
+  force_destroy = "false"
+}
+
+resource "aws_s3_bucket_acl" "handlers_lambdas" {
+  bucket = aws_s3_bucket.handlers_lambdas.id
+  acl = "private"
+}
+
+resource "aws_s3_bucket_public_access_block" "handlers_lambdas" {
+  bucket = aws_s3_bucket.handlers_lambdas.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+
 resource "aws_s3_bucket" "anonymousuploads" {
   bucket = "hygieia-webapp-anonymousuploads-${lookup(var.workspace_to_stage, terraform.workspace)}"
   force_destroy = "false"
