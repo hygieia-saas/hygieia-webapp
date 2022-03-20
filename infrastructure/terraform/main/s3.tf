@@ -117,3 +117,18 @@ resource "aws_iam_policy" "anonymousuploads_readwrite" {
 }
 EOF
 }
+
+
+resource "aws_s3_bucket_notification" "anonymousuploads" {
+  bucket = aws_s3_bucket.anonymousuploads.id
+
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.file_check_scan.arn
+    events              = ["s3:ObjectCreated:*"]
+  }
+
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.handlers_file_check_result.arn
+    events              = ["s3:ObjectTagging:Put"]
+  }
+}

@@ -24,6 +24,7 @@ AWS_ACCOUNT_ID="$3"
 
 echo "$DEPLOYMENT_NUMBER" > "$DIR/../deployment_number.$STAGE"
 
+echo "Copying files into workdir..."
 cp -a "$DIR/../application" "$WORKDIR/"
 
 pushd "$WORKDIR/application/shared" || exit
@@ -52,6 +53,25 @@ pushd "$WORKDIR/application/backend/rest-apis/default" || exit
     zip -r rest_api_default.zip ./
     source "$DIR/../../hygieia-infrastructure-bootstrap/bin/assume-role.sh" "$AWS_ACCOUNT_ID"
     aws s3 cp ./rest_api_default.zip "s3://hygieia-webapp-rest-apis-lambdas-$STAGE/default/$DEPLOYMENT_NUMBER/rest_api_default.zip"
+    source "$DIR/../../hygieia-infrastructure-bootstrap/bin/unassume-role.sh"
+  popd || exit
+popd || exit
+
+pushd "$WORKDIR/application/backend/handlers/file-check-result" || exit
+  rm -rf build
+  rm -rf node_modules
+  nvm install
+  nvm use
+  npm i --no-save
+  npm update hygieia-webapp-shared
+  npm run build
+  rm -rf node_modules
+  npm i --only=prod --target_arch=x64 --target_platform=linux --target_libc=glibc --no-save
+  cp -aL node_modules build/
+  pushd build || exit
+    zip -r handlers_file_check_result.zip ./
+    source "$DIR/../../hygieia-infrastructure-bootstrap/bin/assume-role.sh" "$AWS_ACCOUNT_ID"
+    aws s3 cp ./handlers_file_check_result.zip "s3://hygieia-webapp-handlers-lambdas-$STAGE/file-check-result/$DEPLOYMENT_NUMBER/handlers_file_check_result.zip"
     source "$DIR/../../hygieia-infrastructure-bootstrap/bin/unassume-role.sh"
   popd || exit
 popd || exit

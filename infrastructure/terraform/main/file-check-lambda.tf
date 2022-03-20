@@ -208,12 +208,3 @@ resource "aws_lambda_permission" "file_check_scan_allow_event_hook_from_anonymou
   principal     = "s3.amazonaws.com"
   source_arn    = aws_s3_bucket.anonymousuploads.arn
 }
-
-resource "aws_s3_bucket_notification" "file_check_scan_on_new_object_in_anonymousuploads_bucket" {
-  bucket = aws_s3_bucket.anonymousuploads.id
-
-  lambda_function {
-    lambda_function_arn = aws_lambda_function.file_check_scan.arn
-    events              = ["s3:ObjectCreated:*"]
-  }
-}

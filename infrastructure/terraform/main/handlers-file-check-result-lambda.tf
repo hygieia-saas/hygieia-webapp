@@ -2,7 +2,7 @@ resource "aws_lambda_function" "handlers_file_check_result" {
   function_name = "handlers_file_check_result"
 
   s3_bucket = aws_s3_bucket.handlers_lambdas.bucket
-  s3_key    = "file_check_result/${var.deployment_number}/handlers_file_check_result.zip"
+  s3_key    = "file-check-result/${var.deployment_number}/handlers_file_check_result.zip"
 
   handler = "index.handler"
   runtime = "nodejs14.x"
@@ -48,11 +48,10 @@ resource "aws_iam_role_policy_attachment" "anonymousuploads_readwrite_to_lambda_
 }
 
 
-resource "aws_s3_bucket_notification" "file_check_scan_on_new_object_in_anonymousuploads_bucket" {
-  bucket = aws_s3_bucket.anonymousuploads.id
-
-  lambda_function {
-    lambda_function_arn = aws_lambda_function.handlers_file_check_result.arn
-    events              = ["s3:ObjectTagging:Put"]
-  }
+resource "aws_lambda_permission" "file_check_result_handler_allow_event_hook_from_anonymousuploads_bucket" {
+  statement_id  = "AllowBucketEventHook"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.handlers_file_check_result.arn
+  principal     = "s3.amazonaws.com"
+  source_arn    = aws_s3_bucket.anonymousuploads.arn
 }
