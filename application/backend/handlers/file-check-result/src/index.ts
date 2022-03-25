@@ -34,17 +34,18 @@ export const handler: S3Handler = async (event) => {
         let avStatus = 'unknown'
         tags.TagSet.map(tag => {
             if (tag.Key === 'av-status') {
-                avStatus = tag.Key.toLowerCase();
+                avStatus = tag.Value?.toLowerCase() as string;
             }
         });
 
         if (await new Promise<boolean>((resolve) => {
-            docClient.put(
+            docClient.update(
                 {
                     TableName: ETables.fileCheckSlots,
-                    Item: {
-                        id: getFileCheckSlotId(event.Records[0].s3.bucket.name, event.Records[0].s3.object.key),
-                        avStatus
+                    Key: { id: getFileCheckSlotId(event.Records[0].s3.bucket.name, event.Records[0].s3.object.key) },
+                    UpdateExpression: 'set avStatus = :s',
+                    ExpressionAttributeValues:{
+                        ':s': avStatus
                     }
                 },
                 (err) => {

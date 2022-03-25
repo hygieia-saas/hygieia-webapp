@@ -8,6 +8,7 @@ resource "aws_iam_policy" "dynamodb_default" {
             "Effect": "Allow",
             "Action": [
                 "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
                 "dynamodb:BatchWriteItem",
                 "dynamodb:GetItem",
                 "dynamodb:Query",

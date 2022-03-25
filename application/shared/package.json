@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "ajv": "^6.12.6",
+    "js-sha512": "^0.8.0",
     "url-pattern": "^1.0.3",
     "util": "^0.12.4",
     "uuid": "^8.3.2"
