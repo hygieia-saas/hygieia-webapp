@@ -7,6 +7,8 @@ import { TSyntacticalValidationErrorRecord, TSyntacticalValidationRules } from '
 import credentialsSyntacticalValidationRules from './syntacticalValidation/credentialsSyntacticalValidationRules';
 import getErrorsForSyntacticalValidation from './syntacticalValidation/getErrorsForSyntacticalValidation';
 import { IRestApiDefaultRoute, restApiDefaultRoutes, getRestApiDefaultRouteName, ERestApiDefaultRouteNames } from './routes/restApiDefaultRoutes';
+import { ETables } from './enums/ETables';
+import { getFileCheckSlotId } from './util/getFileCheckSlotId';
 
 export {
     IRestApiDefaultRoute,
@@ -25,4 +27,8 @@ export {
     TSyntacticalValidationRules,
     getErrorsForSyntacticalValidation,
     returnWithExtractedErrorMessage,
+
+    ETables,
+
+    getFileCheckSlotId
 }

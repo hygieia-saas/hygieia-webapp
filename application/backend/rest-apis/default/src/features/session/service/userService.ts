@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { v1 as uuidv1 } from 'uuid';
-import AWS, { ETables } from '../../../app/util/awsSdkUtils';
-import { ICredentials } from 'hygieia-webapp-shared';
+import AWS from '../../../app/util/awsSdkUtils';
+import { ETables, ICredentials } from 'hygieia-webapp-shared';
 import { getApiKeyById } from './apiKeyService';
 
 export const passwordHashSaltOrRounds = 8;

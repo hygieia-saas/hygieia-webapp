@@ -1,8 +1,8 @@
 import { createPresignedPost } from '@aws-sdk/s3-presigned-post';
 import { S3Client } from '@aws-sdk/client-s3';
 import { v1 as uuidv1 } from 'uuid';
-import { IFileCheckSlotInfo, IPresignedPost } from 'hygieia-webapp-shared';
-import AWS, { ETables } from '../../../app/util/awsSdkUtils';
+import { ETables, getFileCheckSlotId, IFileCheckSlotInfo, IPresignedPost } from 'hygieia-webapp-shared';
+import AWS from '../../../app/util/awsSdkUtils';
 
 export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPost> => {
 
@@ -51,7 +51,7 @@ export const createFileCheckSlot = async (): Promise<IFileCheckSlotInfo> => {
     const presignedPost = await getPresignedPostForAnonymousUpload();
 
     const docClient = new AWS.DynamoDB.DocumentClient();
-    const fileCheckSlotId = uuidv1();
+    const fileCheckSlotId = getFileCheckSlotId(presignedPost.fields.bucket, presignedPost.fields.key);
 
     if (await new Promise<boolean>((resolve) => {
         docClient.put(
@@ -59,9 +59,9 @@ export const createFileCheckSlot = async (): Promise<IFileCheckSlotInfo> => {
                 TableName: ETables.fileCheckSlots,
                 Item: {
                     id: fileCheckSlotId,
-                    status: 0,
-                    presigned_post_bucket: presignedPost.fields.bucket,
-                    presigned_post_key: presignedPost.fields.key
+                    avStatus: 'unknown',
+                    bucket: presignedPost.fields.bucket,
+                    key: presignedPost.fields.key
                 }
             },
             (err) => {
