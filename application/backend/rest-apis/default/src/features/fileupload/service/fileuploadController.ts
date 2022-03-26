@@ -3,6 +3,12 @@ import { createFileCheckSlot } from './fileuploadService';
 import { createJsonResponse, jsonResponseWithExtractedErrorMessage } from '../../../app/util/controllerUtils';
 import { getBody } from '../../../app/util/apiGatewayProxyEventUtils';
 import { recaptchaResponseKeyIsValid } from '../../../app/util/recaptchaUtils';
+import {
+    ERestApiDefaultRouteNames,
+    getRestApiDefaultRouteName,
+    IRestApiDefaultRoute,
+    restApiDefaultRoutes
+} from 'hygieia-webapp-shared';
 
 export const createFileCheckSlotForAnonymousUploadAction = async (event: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>): Promise<APIGatewayProxyResult> => {
     const body = getBody(event);
@@ -34,8 +40,11 @@ export const createFileCheckSlotForAnonymousUploadAction = async (event: APIGate
 }
 
 export const getFileCheckSlotForAnonymousUploadStatusAction = async (event: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>): Promise<APIGatewayProxyResult> => {
+
+    const fileCheckSlotId = restApiDefaultRoutes[ERestApiDefaultRouteNames.getFileCheckSlotForAnonymousUploadStatus]
+        .pathPattern.match(event.pathParameters?.proxy as string)['id'];
     return createJsonResponse({
-        statusCode: 'NotFound',
-        body: 'Recaptcha was not solved correctly.'
+        statusCode: 'Ok',
+        body: `id is ${fileCheckSlotId}.`
     });
 };

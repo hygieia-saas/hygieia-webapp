@@ -8,6 +8,7 @@ import credentialsSyntacticalValidationRules from './syntacticalValidation/crede
 import getErrorsForSyntacticalValidation from './syntacticalValidation/getErrorsForSyntacticalValidation';
 import { IRestApiDefaultRoute, restApiDefaultRoutes, getRestApiDefaultRouteName, ERestApiDefaultRouteNames } from './routes/restApiDefaultRoutes';
 import { ETables } from './enums/ETables';
+import { EFileCheckAvStatus } from './enums/EFileCheckAvStatus';
 import { getFileCheckSlotId } from './util/getFileCheckSlotId';
 
 export {
@@ -29,6 +30,7 @@ export {
     returnWithExtractedErrorMessage,
 
     ETables,
+    EFileCheckAvStatus,
 
     getFileCheckSlotId
 }

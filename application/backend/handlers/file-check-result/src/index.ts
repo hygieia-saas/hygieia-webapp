@@ -1,6 +1,6 @@
 import { S3Handler } from 'aws-lambda';
 import { S3Client, GetObjectTaggingCommand } from '@aws-sdk/client-s3';
-import { ETables, getFileCheckSlotId } from 'hygieia-webapp-shared';
+import { EFileCheckAvStatus, ETables, getFileCheckSlotId } from 'hygieia-webapp-shared';
 import AWS from 'aws-sdk';
 
 export const handler: S3Handler = async (event) => {
@@ -31,10 +31,14 @@ export const handler: S3Handler = async (event) => {
 
     if (tags.TagSet !== undefined) {
 
-        let avStatus = 'unknown'
+        let avStatus = 'unknown';
+        let avSignature = '';
         tags.TagSet.map(tag => {
             if (tag.Key === 'av-status') {
-                avStatus = tag.Value?.toLowerCase() as string;
+                avStatus = tag.Value?.toLowerCase() as EFileCheckAvStatus;
+            }
+            if (tag.Key === 'av-signature') {
+                avSignature = tag.Value?.toString() as string;
             }
         });
 
@@ -43,9 +47,10 @@ export const handler: S3Handler = async (event) => {
                 {
                     TableName: ETables.fileCheckSlots,
                     Key: { id: getFileCheckSlotId(event.Records[0].s3.bucket.name, event.Records[0].s3.object.key) },
-                    UpdateExpression: 'set avStatus = :s',
-                    ExpressionAttributeValues:{
-                        ':s': avStatus
+                    UpdateExpression: 'set avStatus = :status, avSignature = :signature',
+                    ExpressionAttributeValues: {
+                        ':status': avStatus,
+                        ':signature': avSignature
                     }
                 },
                 (err) => {
