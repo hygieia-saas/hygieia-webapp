@@ -1,6 +1,6 @@
 import IPresignedPost from './IPresignedPost';
 
-export default interface IFileCheckSlotInfo {
+export default interface IFileCheckSlotPresignedPostInfo {
     readonly id: string
     readonly presignedPost: IPresignedPost
 }

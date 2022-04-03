@@ -1,7 +1,14 @@
 import { createPresignedPost } from '@aws-sdk/s3-presigned-post';
 import { S3Client } from '@aws-sdk/client-s3';
 import { v1 as uuidv1 } from 'uuid';
-import { ETables, getFileCheckSlotId, IFileCheckSlotInfo, IPresignedPost } from 'hygieia-webapp-shared';
+import {
+    EFileCheckAvStatus,
+    ETables,
+    getFileCheckSlotId,
+    IFileCheckSlotPresignedPostInfo,
+    IFileCheckSlotStatusInfo,
+    IPresignedPost
+} from 'hygieia-webapp-shared';
 import AWS from '../../../app/util/awsSdkUtils';
 
 export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPost> => {
@@ -46,7 +53,7 @@ export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPo
 };
 
 
-export const createFileCheckSlot = async (): Promise<IFileCheckSlotInfo> => {
+export const createFileCheckSlot = async (): Promise<IFileCheckSlotPresignedPostInfo> => {
 
     const presignedPost = await getPresignedPostForAnonymousUpload();
 
@@ -59,7 +66,8 @@ export const createFileCheckSlot = async (): Promise<IFileCheckSlotInfo> => {
                 TableName: ETables.fileCheckSlots,
                 Item: {
                     id: fileCheckSlotId,
-                    avStatus: 'unknown',
+                    avStatus: 'unknown' as EFileCheckAvStatus,
+                    avSignature: '',
                     bucket: presignedPost.fields.bucket,
                     key: presignedPost.fields.key
                 }
@@ -80,4 +88,32 @@ export const createFileCheckSlot = async (): Promise<IFileCheckSlotInfo> => {
     } else {
         throw new Error(`Could not create entry in table ${ETables.fileCheckSlots}`);
     }
+};
+
+
+export const getFileCheckSlotStatusInfo = async (id: IFileCheckSlotPresignedPostInfo['id']): Promise<IFileCheckSlotStatusInfo|null> => {
+
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    return await new Promise((resolve) => {
+        docClient.get(
+            {
+                TableName: ETables.fileCheckSlots,
+                Key: {
+                    id: id,
+                }
+            },
+            (err, data) => {
+                if (err) {
+                    console.error(err);
+                    resolve(null);
+                } else {
+                    if (Object.prototype.hasOwnProperty.call(data, 'Item') && data.Item !== undefined) {
+                        resolve(data.Item as IFileCheckSlotStatusInfo);
+                    } else {
+                        resolve(null);
+                    }
+                }
+            });
+    });
 };
