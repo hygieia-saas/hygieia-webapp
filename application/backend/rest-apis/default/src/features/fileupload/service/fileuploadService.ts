@@ -109,7 +109,10 @@ export const getFileCheckSlotStatusInfo = async (id: IFileCheckSlotPresignedPost
                     resolve(null);
                 } else {
                     if (Object.prototype.hasOwnProperty.call(data, 'Item') && data.Item !== undefined) {
-                        resolve(data.Item as IFileCheckSlotStatusInfo);
+                        resolve({
+                            avStatus: data.Item.avStatus,
+                            avSignature: data.Item.avSignature
+                        });
                     } else {
                         resolve(null);
                     }
