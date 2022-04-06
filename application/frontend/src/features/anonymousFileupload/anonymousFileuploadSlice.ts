@@ -4,13 +4,13 @@ import { defaultRestApiFetch } from '../../app/util';
 import { ERestApiDefaultRouteNames, IFileCheckSlotPresignedPostInfo, restApiDefaultRoutes } from 'hygieia-webapp-shared';
 
 export interface IAnonymousFileuploadState {
-    readonly fileCheckSlotInfo: IFileCheckSlotPresignedPostInfo|null
-    readonly getPresignedPostOperation: IOperation
+    readonly fileCheckSlotPresignedPostInfo: IFileCheckSlotPresignedPostInfo|null
+    readonly getFileCheckSlotPresignedPostInfoOperation: IOperation
 }
 
 export const initialState: IAnonymousFileuploadState = {
-    fileCheckSlotInfo: null,
-    getPresignedPostOperation: {
+    fileCheckSlotPresignedPostInfo: null,
+    getFileCheckSlotPresignedPostInfoOperation: {
         isRunning: false,
         justFinishedSuccessfully: false,
         errorMessage: null
@@ -53,22 +53,22 @@ export const anonymousFileuploadSlice = createSlice({
     },
     extraReducers: (builder => {
         builder.addCase(createFileCheckSlot.pending, state => {
-            state.getPresignedPostOperation.justFinishedSuccessfully = false;
-            state.getPresignedPostOperation.isRunning = true;
-            state.getPresignedPostOperation.errorMessage = null;
+            state.getFileCheckSlotPresignedPostInfoOperation.justFinishedSuccessfully = false;
+            state.getFileCheckSlotPresignedPostInfoOperation.isRunning = true;
+            state.getFileCheckSlotPresignedPostInfoOperation.errorMessage = null;
         });
 
         builder.addCase(createFileCheckSlot.rejected, (state, action) => {
-            state.getPresignedPostOperation.justFinishedSuccessfully = false;
-            state.getPresignedPostOperation.isRunning = false;
-            state.getPresignedPostOperation.errorMessage = action.payload ?? 'Unknown error';
+            state.getFileCheckSlotPresignedPostInfoOperation.justFinishedSuccessfully = false;
+            state.getFileCheckSlotPresignedPostInfoOperation.isRunning = false;
+            state.getFileCheckSlotPresignedPostInfoOperation.errorMessage = action.payload ?? 'Unknown error';
         });
 
         builder.addCase(createFileCheckSlot.fulfilled, (state, action) => {
-            state.getPresignedPostOperation.justFinishedSuccessfully = true;
-            state.getPresignedPostOperation.isRunning = false;
-            state.getPresignedPostOperation.errorMessage = null;
-            state.fileCheckSlotInfo = action.payload
+            state.getFileCheckSlotPresignedPostInfoOperation.justFinishedSuccessfully = true;
+            state.getFileCheckSlotPresignedPostInfoOperation.isRunning = false;
+            state.getFileCheckSlotPresignedPostInfoOperation.errorMessage = null;
+            state.fileCheckSlotPresignedPostInfo = action.payload
         });
     })
 });

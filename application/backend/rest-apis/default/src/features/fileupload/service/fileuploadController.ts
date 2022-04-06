@@ -1,12 +1,10 @@
 import { APIGatewayEventDefaultAuthorizerContext, APIGatewayProxyEventBase, APIGatewayProxyResult } from 'aws-lambda';
-import { createFileCheckSlot } from './fileuploadService';
+import { createFileCheckSlot, getFileCheckSlotStatusInfo } from './fileuploadService';
 import { createJsonResponse, jsonResponseWithExtractedErrorMessage } from '../../../app/util/controllerUtils';
 import { getBody } from '../../../app/util/apiGatewayProxyEventUtils';
 import { recaptchaResponseKeyIsValid } from '../../../app/util/recaptchaUtils';
 import {
     ERestApiDefaultRouteNames,
-    getRestApiDefaultRouteName,
-    IRestApiDefaultRoute,
     restApiDefaultRoutes
 } from 'hygieia-webapp-shared';
 
@@ -43,8 +41,9 @@ export const getFileCheckSlotForAnonymousUploadStatusAction = async (event: APIG
 
     const fileCheckSlotId = restApiDefaultRoutes[ERestApiDefaultRouteNames.getFileCheckSlotForAnonymousUploadStatus]
         .pathPattern.match(event.pathParameters?.proxy as string)['id'];
+
     return createJsonResponse({
         statusCode: 'Ok',
-        body: `id is ${fileCheckSlotId}.`
+        body: await getFileCheckSlotStatusInfo(fileCheckSlotId)
     });
 };
