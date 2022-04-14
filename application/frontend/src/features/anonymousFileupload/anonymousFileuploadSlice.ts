@@ -1,7 +1,13 @@
 import { IOperation, RootState } from '../../app/store';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { AnyAction, createAsyncThunk, createSlice, ThunkDispatch } from '@reduxjs/toolkit';
 import { defaultRestApiFetch } from '../../app/util';
-import { ERestApiDefaultRouteNames, IFileCheckSlotPresignedPostInfo, restApiDefaultRoutes, IFileCheckSlotStatusInfo } from 'hygieia-webapp-shared';
+import {
+    ERestApiDefaultRouteNames,
+    IFileCheckSlotPresignedPostInfo,
+    restApiDefaultRoutes,
+    IFileCheckSlotStatusInfo,
+    EFileCheckAvStatus
+} from 'hygieia-webapp-shared';
 
 export interface IAnonymousFileuploadState {
     readonly fileCheckSlotPresignedPostInfo: IFileCheckSlotPresignedPostInfo|null
@@ -56,11 +62,11 @@ export const getFileCheckSlotPresignedPostInfo = createAsyncThunk<IFileCheckSlot
     }
 );
 
-export const getFileCheckSlotStatusInfo = createAsyncThunk<IFileCheckSlotStatusInfo, void, { state: RootState, rejectValue: string }>(
+export const getFileCheckSlotStatusInfo = createAsyncThunk<IFileCheckSlotStatusInfo, IFileCheckSlotPresignedPostInfo['id'], { state: RootState, rejectValue: string }>(
     'anonymousFileupload/getFileCheckSlotStatusInfo',
     async (arg, thunkAPI) => {
         return await defaultRestApiFetch(
-            restApiDefaultRoutes[ERestApiDefaultRouteNames.getFileCheckSlotForAnonymousUploadStatus].pathPattern.stringify(),
+            restApiDefaultRoutes[ERestApiDefaultRouteNames.getFileCheckSlotForAnonymousUploadStatus].pathPattern.stringify({ id: arg }),
             restApiDefaultRoutes[ERestApiDefaultRouteNames.getFileCheckSlotForAnonymousUploadStatus].verb
         )
             .then(response => {
@@ -80,6 +86,39 @@ export const getFileCheckSlotStatusInfo = createAsyncThunk<IFileCheckSlotStatusI
                 console.error(error);
                 return thunkAPI.rejectWithValue(error.message);
             });
+    }
+);
+
+
+let repeatedlyGetFileCheckSlotStatusInfoTimer: NodeJS.Timer | null = null;
+export const startRepeatedlyGetFileCheckSlotStatusInfo = createAsyncThunk<void, IFileCheckSlotPresignedPostInfo['id'], { state: RootState }>(
+    'anonymousFileupload/startRepeatedlyGetFileCheckSlotStatusInfo',
+    (arg, thunkAPI) => {
+
+        if (repeatedlyGetFileCheckSlotStatusInfoTimer !== null) {
+            clearInterval(repeatedlyGetFileCheckSlotStatusInfoTimer);
+            repeatedlyGetFileCheckSlotStatusInfoTimer = null;
+        }
+
+        repeatedlyGetFileCheckSlotStatusInfoTimer = setInterval(
+            () => dispatchGetFileCheckSlotStatusInfo(
+                thunkAPI.getState,
+                thunkAPI.dispatch
+            ),
+            1000
+        );
+
+        const dispatchGetFileCheckSlotStatusInfo = (getState: () => RootState, dispatch: ThunkDispatch<RootState, unknown, AnyAction>): void => {
+
+            const anonymousFileuploadState = getState().anonymousFileupload;
+
+            if (   anonymousFileuploadState.fileCheckSlotStatusInfo === null
+                || anonymousFileuploadState.fileCheckSlotStatusInfo.avStatus === EFileCheckAvStatus.unkown
+                && !anonymousFileuploadState.getFileCheckSlotStatusInfoOperation.isRunning
+            ) {
+                void dispatch(getFileCheckSlotStatusInfo(arg));
+            }
+        };
     }
 );
 

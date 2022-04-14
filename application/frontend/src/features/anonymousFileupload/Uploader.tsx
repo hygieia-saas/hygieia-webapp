@@ -6,6 +6,7 @@ import Header from '../../elements/Header';
 import FileCheckSlotCreator from './FileCheckSlotCreator';
 import UploadWidget from './UploadWidget';
 import MainHeadline from '../../elements/MainHeadline';
+import FileCheckSlotStatusInfoUpdater from './FileCheckSlotStatusInfoUpdater';
 
 const Uploader = (): JSX.Element => {
 
@@ -19,11 +20,14 @@ const Uploader = (): JSX.Element => {
                     { reduxState.translations.translations['anonymousFileupload.headline'] }
                 </MainHeadline>
                 <FileCheckSlotCreator/>
+                <FileCheckSlotStatusInfoUpdater/>
                 {
                     reduxState.anonymousFileupload.fileCheckSlotPresignedPostInfo !== null
                     &&
                     <UploadWidget />
                 }
+
+                <pre>{ JSON.stringify(reduxState.anonymousFileupload.fileCheckSlotStatusInfo, null, 2) }</pre>
             </MainContentStart>
         </MainContent>
     </>;
