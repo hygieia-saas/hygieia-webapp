@@ -4,7 +4,7 @@ import { getFileCheckSlotPresignedPostInfo } from './anonymousFileuploadSlice';
 import { Recaptcha } from '../session/Recaptcha';
 import ContentParagraph from '../../elements/ContentParagraph';
 
-const FileCheckSlotCreator = (): JSX.Element => {
+const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
 
     const reduxState = useAppSelector((state) => state);
     const reduxDispatch = useAppDispatch();
@@ -38,4 +38,4 @@ const FileCheckSlotCreator = (): JSX.Element => {
     return <></>;
 };
 
-export default FileCheckSlotCreator;
+export default FileCheckSlotStatusInfoUpdater;
