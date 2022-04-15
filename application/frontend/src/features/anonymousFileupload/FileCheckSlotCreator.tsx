@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getFileCheckSlotPresignedPostInfo } from './anonymousFileuploadSlice';
 import { Recaptcha } from '../session/Recaptcha';
 import ContentParagraph from '../../elements/ContentParagraph';
+import Spinner from '../../elements/Spinner';
 
 const FileCheckSlotCreator = (): JSX.Element => {
 
@@ -31,7 +32,7 @@ const FileCheckSlotCreator = (): JSX.Element => {
 
     if (reduxState.anonymousFileupload.getFileCheckSlotPresignedPostInfoOperation.isRunning) {
         return <ContentParagraph>
-            { reduxState.translations.translations['anonymousFileupload.preparingUploadSlot'] }
+            <Spinner text={ reduxState.translations.translations['anonymousFileupload.preparingUploadSlot'] }/>
         </ContentParagraph>
     }
 

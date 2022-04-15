@@ -41,6 +41,7 @@ export interface ITranslations {
     readonly 'anonymousFileupload.headline': string
     readonly 'anonymousFileupload.proveYouAreNotARobot': string
     readonly 'anonymousFileupload.preparingUploadSlot': string
+    readonly 'anonymousFileupload.waitingForResult': string
 
     readonly 'apiError.unexpectedResponse': string
 }
@@ -86,6 +87,7 @@ const de: ITranslationsState = {
         'anonymousFileupload.headline': 'Eine Datei auf Viren prüfen',
         'anonymousFileupload.proveYouAreNotARobot': 'An dieser Stelle können Sie eine Datei hochladen und auf Viren prüfen lassen. Zunächst müssen wir sicherstellen, dass Sie kein Roboter sind.',
         'anonymousFileupload.preparingUploadSlot': 'Wir bereiten einen Upload-Slot vor...',
+        'anonymousFileupload.waitingForResult': 'Warte auf Ergebnis des Virencheck...',
 
         'apiError.unexpectedResponse': 'Unerwarteter Schnittstellenfehler (Code %code%).',
     }
@@ -127,6 +129,7 @@ const en: ITranslationsState = {
         'anonymousFileupload.headline': 'Check a file for viruses',
         'anonymousFileupload.proveYouAreNotARobot': 'At this point you can upload a file and have it checked for viruses. We need to begin by making sure that you are not a robot.',
         'anonymousFileupload.preparingUploadSlot': 'We are preparing an upload slot...',
+        'anonymousFileupload.waitingForResult': 'Waiting for result of virus check...',
 
         'apiError.unexpectedResponse': 'Unexpected interface failure (code %code%).',
     }
