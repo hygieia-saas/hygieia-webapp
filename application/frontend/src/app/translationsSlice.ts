@@ -42,6 +42,10 @@ export interface ITranslations {
     readonly 'anonymousFileupload.proveYouAreNotARobot': string
     readonly 'anonymousFileupload.preparingUploadSlot': string
     readonly 'anonymousFileupload.waitingForResult': string
+    readonly 'anonymousFileupload.resultClean': string
+    readonly 'anonymousFileupload.resultCleanInfo': string
+    readonly 'anonymousFileupload.resultInfected': string
+    readonly 'anonymousFileupload.resultInfectedInfo': string
 
     readonly 'apiError.unexpectedResponse': string
 }
@@ -88,6 +92,10 @@ const de: ITranslationsState = {
         'anonymousFileupload.proveYouAreNotARobot': 'An dieser Stelle können Sie eine Datei hochladen und auf Viren prüfen lassen. Zunächst müssen wir sicherstellen, dass Sie kein Roboter sind.',
         'anonymousFileupload.preparingUploadSlot': 'Wir bereiten einen Upload-Slot vor...',
         'anonymousFileupload.waitingForResult': 'Warte auf Ergebnis des Virencheck...',
+        'anonymousFileupload.resultClean': 'Kein Virus gefunden!',
+        'anonymousFileupload.resultCleanInfo': 'Von dieser Datei geht mit hoher Wahrscheinlichkeit keine Gefahr aus.',
+        'anonymousFileupload.resultInfected': 'Virus gefunden!',
+        'anonymousFileupload.resultInfectedInfo': 'Die hochgeladene Datei enthält die Signatur des folgenden Schädlings:',
 
         'apiError.unexpectedResponse': 'Unerwarteter Schnittstellenfehler (Code %code%).',
     }
@@ -130,6 +138,10 @@ const en: ITranslationsState = {
         'anonymousFileupload.proveYouAreNotARobot': 'At this point you can upload a file and have it checked for viruses. We need to begin by making sure that you are not a robot.',
         'anonymousFileupload.preparingUploadSlot': 'We are preparing an upload slot...',
         'anonymousFileupload.waitingForResult': 'Waiting for result of virus check...',
+        'anonymousFileupload.resultClean': 'No virus found!',
+        'anonymousFileupload.resultCleanInfo': 'This file is very likely not dangerous.',
+        'anonymousFileupload.resultInfected': 'Virus found!',
+        'anonymousFileupload.resultInfectedInfo': 'The uploaded file contains the signature of the following virus:',
 
         'apiError.unexpectedResponse': 'Unexpected interface failure (code %code%).',
     }

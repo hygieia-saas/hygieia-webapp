@@ -60,6 +60,7 @@ const UploadWidget = (): JSX.Element => {
                 showProgressDetails={true}
                 hidePauseResumeButton={true}
                 hideCancelButton={true}
+                disableStatusBar={false}
             />
         </>;
     } else {
