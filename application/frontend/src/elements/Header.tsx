@@ -1,8 +1,6 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
 import { Disclosure, Menu } from '@headlessui/react';
-import { MenuIcon, XIcon, UserIcon, TranslateIcon, MoonIcon, SunIcon } from '@heroicons/react/outline';
-import ERoutes from '../app/routes';
+import { MenuIcon, XIcon, TranslateIcon, MoonIcon, SunIcon } from '@heroicons/react/outline';
 import { EIso639_1LanguageCodes, switchToLanguageCommand } from '../app/translationsSlice';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { toggleDarkModeCommand } from '../app/uiSettingsSlice';
@@ -11,19 +9,6 @@ const Header = (): JSX.Element => {
 
     const reduxState = useAppSelector(state => state);
     const reduxDispatch = useAppDispatch();
-    const location = useLocation();
-
-    const navigation: { href: string, name: string }[] = [];
-
-    if (!reduxState.session.isLoggedIn) {
-        navigation.push({ href: ERoutes.login, name: reduxState.translations.translations['nav.link.login'] });
-        navigation.push({ href: ERoutes.register, name: reduxState.translations.translations['nav.link.registration'] });
-    }
-
-    const userNavigation = [
-        { name: 'Settings', href: '#' },
-        { name: 'Sign out', href: '#' },
-    ];
 
     const languages = [
         { name: 'English', code: EIso639_1LanguageCodes.en },
@@ -42,25 +27,6 @@ const Header = (): JSX.Element => {
                                 <div className='flex items-center'>
                                     <div className='flex-shrink-0 text-lime-500 font-black'>
                                         viruSaas
-                                    </div>
-                                    <div className='hidden md:block'>
-                                        <div className='ml-10 flex items-baseline space-x-4'>
-                                            {navigation.map((item) => (
-                                                <Link
-                                                    key={item.name}
-                                                    to={item.href}
-                                                    className={classNames(
-                                                        location.pathname === item.href
-                                                            ? 'bg-gray-900 text-white'
-                                                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                        'px-3 py-2 rounded-md text-sm font-medium'
-                                                    )}
-                                                    aria-current={location.pathname === item.href ? 'page' : undefined}
-                                                >
-                                                    {item.name}
-                                                </Link>
-                                            ))}
-                                        </div>
                                     </div>
                                 </div>
                                 <div className='hidden md:block'>
@@ -120,34 +86,6 @@ const Header = (): JSX.Element => {
                         </div>
 
                         <Disclosure.Panel className='md:hidden'>
-                            <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
-                                {navigation.map((item) => (
-                                    <Disclosure.Button
-                                        key={item.name}
-                                        as={Link}
-                                        to={item.href}
-                                        className={classNames(
-                                            location.pathname === item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                            'block px-3 py-2 rounded-md text-base font-medium'
-                                        )}
-                                        aria-current={location.pathname === item.href ? 'page' : undefined}
-                                    >
-                                        {item.name}
-                                    </Disclosure.Button>
-                                ))}
-                            </div>
-                            <div className='pt-3 pb-3 border-t border-gray-700 px-2 space-y-1 sm:px-3'>
-                                {userNavigation.map((item) => (
-                                    <Disclosure.Button
-                                        key={item.name}
-                                        as={Link}
-                                        to={item.href}
-                                        className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700'
-                                    >
-                                        {item.name}
-                                    </Disclosure.Button>
-                                ))}
-                            </div>
                             <div className='pt-3 pb-3 border-t border-gray-700 px-2 space-y-1 sm:px-3'>
                                 {languages.map((item) => (
                                     <button
