@@ -9,11 +9,13 @@ import German from '@uppy/locales/lib/de_DE';
 import English from '@uppy/locales/lib/en_US';
 import '@uppy/core/dist/style.css';
 import '@uppy/dashboard/dist/style.css';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { anonymousFileuploadSlice } from './anonymousFileuploadSlice';
 
 const UploadWidget = (): JSX.Element => {
 
     const reduxState = useAppSelector((state) => state);
+    const reduxDispatch = useAppDispatch();
 
     const uppy = new Uppy({
         meta: { type: 'avatar' },
@@ -45,6 +47,10 @@ const UploadWidget = (): JSX.Element => {
             }
         );
 
+        uppy.on('upload-success', (file, data) => {
+            reduxDispatch(anonymousFileuploadSlice.actions.uploadFinishedSuccessfully());
+        })
+
         return <>
             <Dashboard
                 uppy={uppy}
@@ -53,6 +59,7 @@ const UploadWidget = (): JSX.Element => {
                 hideRetryButton={true}
                 showProgressDetails={true}
                 hidePauseResumeButton={true}
+                hideCancelButton={true}
             />
         </>;
     } else {

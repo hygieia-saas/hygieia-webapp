@@ -22,12 +22,13 @@ const Uploader = (): JSX.Element => {
                 <FileCheckSlotCreator/>
                 <FileCheckSlotStatusInfoUpdater/>
                 {
-                    reduxState.anonymousFileupload.fileCheckSlotPresignedPostInfo !== null
+                    (
+                        reduxState.anonymousFileupload.fileCheckSlotPresignedPostInfo !== null
+                        && !reduxState.anonymousFileupload.uploadFinishedSuccessfully
+                    )
                     &&
                     <UploadWidget />
                 }
-
-                <pre>{ JSON.stringify(reduxState.anonymousFileupload.fileCheckSlotStatusInfo, null, 2) }</pre>
             </MainContentStart>
         </MainContent>
     </>;

@@ -15,6 +15,8 @@ export interface IAnonymousFileuploadState {
 
     readonly fileCheckSlotStatusInfo: IFileCheckSlotStatusInfo|null
     readonly getFileCheckSlotStatusInfoOperation: IOperation
+
+    readonly uploadFinishedSuccessfully: boolean
 }
 
 export const initialState: IAnonymousFileuploadState = {
@@ -30,7 +32,9 @@ export const initialState: IAnonymousFileuploadState = {
         isRunning: false,
         justFinishedSuccessfully: false,
         errorMessage: null
-    }
+    },
+
+    uploadFinishedSuccessfully: false
 };
 
 export const getFileCheckSlotPresignedPostInfo = createAsyncThunk<IFileCheckSlotPresignedPostInfo, void, { state: RootState, rejectValue: string }>(
@@ -127,6 +131,9 @@ export const anonymousFileuploadSlice = createSlice({
     name: 'anonymousFileupload',
     initialState,
     reducers: {
+        uploadFinishedSuccessfully: state => {
+            state.uploadFinishedSuccessfully = true;
+        }
     },
     extraReducers: (builder => {
         builder.addCase(getFileCheckSlotPresignedPostInfo.pending, state => {

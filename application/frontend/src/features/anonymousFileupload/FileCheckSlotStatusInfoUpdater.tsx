@@ -15,10 +15,11 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
                 reduxState.anonymousFileupload.fileCheckSlotPresignedPostInfo.id
             )
         );
-        return <></>
     }
 
-    return <></>;
+    return <>
+        <pre>{ JSON.stringify(reduxState.anonymousFileupload.fileCheckSlotStatusInfo, null, 2) }</pre>
+    </>;
 };
 
 export default FileCheckSlotStatusInfoUpdater;
