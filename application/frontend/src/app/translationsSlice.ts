@@ -41,6 +41,7 @@ export interface ITranslations {
     readonly 'anonymousFileupload.headline': string
     readonly 'anonymousFileupload.proveYouAreNotARobot': string
     readonly 'anonymousFileupload.preparingUploadSlot': string
+    readonly 'anonymousFileupload.uploading': string
     readonly 'anonymousFileupload.waitingForResult': string
     readonly 'anonymousFileupload.resultClean': string
     readonly 'anonymousFileupload.resultCleanInfo': string
@@ -91,6 +92,7 @@ const de: ITranslationsState = {
         'anonymousFileupload.headline': 'Eine Datei auf Viren prüfen',
         'anonymousFileupload.proveYouAreNotARobot': 'An dieser Stelle können Sie eine Datei hochladen und auf Viren prüfen lassen. Zunächst müssen wir sicherstellen, dass Sie kein Roboter sind.',
         'anonymousFileupload.preparingUploadSlot': 'Wir bereiten einen Upload-Slot vor...',
+        'anonymousFileupload.uploading': 'Datei wird hochgeladen...',
         'anonymousFileupload.waitingForResult': 'Warte auf Ergebnis des Virencheck...',
         'anonymousFileupload.resultClean': 'Kein Virus gefunden!',
         'anonymousFileupload.resultCleanInfo': 'Von dieser Datei geht mit hoher Wahrscheinlichkeit keine Gefahr aus.',
@@ -137,6 +139,7 @@ const en: ITranslationsState = {
         'anonymousFileupload.headline': 'Check a file for viruses',
         'anonymousFileupload.proveYouAreNotARobot': 'At this point you can upload a file and have it checked for viruses. We need to begin by making sure that you are not a robot.',
         'anonymousFileupload.preparingUploadSlot': 'We are preparing an upload slot...',
+        'anonymousFileupload.uploading': 'File is being uploaded...',
         'anonymousFileupload.waitingForResult': 'Waiting for result of virus check...',
         'anonymousFileupload.resultClean': 'No virus found!',
         'anonymousFileupload.resultCleanInfo': 'This file is very likely not dangerous.',

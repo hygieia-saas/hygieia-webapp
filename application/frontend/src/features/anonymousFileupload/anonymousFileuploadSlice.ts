@@ -1,5 +1,5 @@
 import { IOperation, RootState } from '../../app/store';
-import { AnyAction, createAsyncThunk, createSlice, ThunkDispatch } from '@reduxjs/toolkit';
+import { AnyAction, createAsyncThunk, createSlice, PayloadAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { defaultRestApiFetch } from '../../app/util';
 import {
     ERestApiDefaultRouteNames,
@@ -16,6 +16,8 @@ export interface IAnonymousFileuploadState {
     readonly fileCheckSlotStatusInfo: IFileCheckSlotStatusInfo|null
     readonly getFileCheckSlotStatusInfoOperation: IOperation
 
+    readonly uploadStarted: boolean
+    readonly uploadProgress: number
     readonly uploadFinishedSuccessfully: boolean
 }
 
@@ -34,6 +36,8 @@ export const initialState: IAnonymousFileuploadState = {
         errorMessage: null
     },
 
+    uploadStarted: false,
+    uploadProgress: 0,
     uploadFinishedSuccessfully: false
 };
 
@@ -131,6 +135,14 @@ export const anonymousFileuploadSlice = createSlice({
     name: 'anonymousFileupload',
     initialState,
     reducers: {
+        uploadStarted: state => {
+            state.uploadStarted = true;
+        },
+
+        uploadProgressedTo: (state, action: PayloadAction<number>) => {
+            state.uploadProgress = action.payload;
+        },
+
         uploadFinishedSuccessfully: state => {
             state.uploadFinishedSuccessfully = true;
         }

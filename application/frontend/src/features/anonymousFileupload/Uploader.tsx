@@ -7,6 +7,8 @@ import FileCheckSlotCreator from './FileCheckSlotCreator';
 import UploadWidget from './UploadWidget';
 import MainHeadline from '../../elements/MainHeadline';
 import FileCheckSlotStatusInfoUpdater from './FileCheckSlotStatusInfoUpdater';
+import ContentParagraph from '../../elements/ContentParagraph';
+import Spinner from '../../elements/Spinner';
 
 const Uploader = (): JSX.Element => {
 
@@ -24,10 +26,24 @@ const Uploader = (): JSX.Element => {
                 {
                     (
                         reduxState.anonymousFileupload.fileCheckSlotPresignedPostInfo !== null
-                        && !reduxState.anonymousFileupload.uploadFinishedSuccessfully
+                        && !reduxState.anonymousFileupload.uploadStarted
                     )
                     &&
                     <UploadWidget />
+                }
+
+                {
+                    (
+                        reduxState.anonymousFileupload.uploadStarted
+                        && !reduxState.anonymousFileupload.uploadFinishedSuccessfully
+                    )
+                    &&
+                    <ContentParagraph>
+                        <Spinner text={reduxState.translations.translations['anonymousFileupload.uploading']}/>
+                        <div className='text-xl mt-5 font-black'>
+                            {reduxState.anonymousFileupload.uploadProgress}%
+                        </div>
+                    </ContentParagraph>
                 }
             </MainContentStart>
         </MainContent>

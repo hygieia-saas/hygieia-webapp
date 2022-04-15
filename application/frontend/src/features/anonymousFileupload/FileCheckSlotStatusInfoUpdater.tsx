@@ -12,7 +12,7 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
     const reduxState = useAppSelector((state) => state);
     const reduxDispatch = useAppDispatch();
 
-    if (   reduxState.anonymousFileupload.uploadFinishedSuccessfully !== null
+    if (   reduxState.anonymousFileupload.uploadFinishedSuccessfully
         && reduxState.anonymousFileupload.fileCheckSlotPresignedPostInfo !== null
     ) {
         void reduxDispatch(
@@ -25,8 +25,8 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
     return <>
         {
             (      reduxState.anonymousFileupload.uploadFinishedSuccessfully
-                && reduxState.anonymousFileupload.fileCheckSlotStatusInfo !== null
-                && reduxState.anonymousFileupload.fileCheckSlotStatusInfo.avStatus === "unknown"
+                && (reduxState.anonymousFileupload.fileCheckSlotStatusInfo === null
+                || reduxState.anonymousFileupload.fileCheckSlotStatusInfo.avStatus === "unknown")
             )
             &&
             <ContentParagraph>

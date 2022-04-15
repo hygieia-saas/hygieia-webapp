@@ -47,6 +47,14 @@ const UploadWidget = (): JSX.Element => {
             }
         );
 
+        uppy.on('upload', () => {
+            reduxDispatch(anonymousFileuploadSlice.actions.uploadStarted());
+        })
+
+        uppy.on('progress', (progress: number) => {
+            reduxDispatch(anonymousFileuploadSlice.actions.uploadProgressedTo(progress));
+        })
+
         uppy.on('upload-success', () => {
             reduxDispatch(anonymousFileuploadSlice.actions.uploadFinishedSuccessfully());
         })
