@@ -142,7 +142,7 @@ const en: ITranslationsState = {
         'anonymousFileupload.uploading': 'File is being uploaded...',
         'anonymousFileupload.waitingForResult': 'Waiting for result of virus check...',
         'anonymousFileupload.resultClean': 'No virus found!',
-        'anonymousFileupload.resultCleanInfo': 'This file is very likely not dangerous.',
+        'anonymousFileupload.resultCleanInfo': 'With a high probability, this file is not dangerous.',
         'anonymousFileupload.resultInfected': 'Virus found!',
         'anonymousFileupload.resultInfectedInfo': 'The uploaded file contains the signature of the following virus:',
 

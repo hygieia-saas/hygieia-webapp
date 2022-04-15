@@ -100,33 +100,6 @@ const Header = (): JSX.Element => {
                                                 ))}
                                             </Menu.Items>
                                         </Menu>
-
-                                        {/* Profile dropdown */}
-                                        <Menu as='div' className='relative'>
-                                            <div>
-                                                <Menu.Button className='max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none'>
-                                                    <span className='sr-only'>Open user menu</span>
-                                                    <UserIcon className='h-6 w-6 text-gray-400'/>
-                                                </Menu.Button>
-                                            </div>
-                                            <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                                                {userNavigation.map((item) => (
-                                                    <Menu.Item key={item.name}>
-                                                        {({ active }) => (
-                                                            <a
-                                                                href={item.href}
-                                                                className={classNames(
-                                                                    active ? 'bg-gray-700' : '',
-                                                                    'block px-4 py-2 text-sm text-gray-300 hover:text-white'
-                                                                )}
-                                                            >
-                                                                {item.name}
-                                                            </a>
-                                                        )}
-                                                    </Menu.Item>
-                                                ))}
-                                            </Menu.Items>
-                                        </Menu>
                                     </div>
                                 </div>
                                 <div className='-mr-2 flex md:hidden'>
