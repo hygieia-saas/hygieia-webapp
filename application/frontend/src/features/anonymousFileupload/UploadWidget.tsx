@@ -47,7 +47,7 @@ const UploadWidget = (): JSX.Element => {
             }
         );
 
-        uppy.on('upload-success', (file, data) => {
+        uppy.on('upload-success', () => {
             reduxDispatch(anonymousFileuploadSlice.actions.uploadFinishedSuccessfully());
         })
 
