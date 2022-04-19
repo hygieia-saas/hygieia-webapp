@@ -42,7 +42,7 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
             &&
             <ContentParagraph>
                 <div className='mt-10 bg-green-100 dark:bg-green-900 rounded-lg p-8'>
-                    <BadgeCheckIcon className='h-24 w-24 text-green-700 dark:text-green-300 inline'/>
+                    <BadgeCheckIcon className='h-12 w-12 text-green-700 dark:text-green-300 inline'/>
                     <span className='pl-2 text-green-700 dark:text-green-300 font-bold text-xl'>
                         {reduxState.translations.translations['anonymousFileupload.resultClean']}
                     </span>
@@ -61,7 +61,7 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
             &&
             <ContentParagraph>
                 <div className='mt-10 bg-red-100 dark:bg-red-900 rounded-lg p-8'>
-                    <XCircleIcon className='h-24 w-24 text-red-700 dark:text-red-300 inline'/>
+                    <XCircleIcon className='h-12 w-12 text-red-700 dark:text-red-300 inline'/>
                     <span className='pl-2 text-red-700 dark:text-red-300 font-bold text-xl'>
                         {reduxState.translations.translations['anonymousFileupload.resultInfected']}
                     </span>

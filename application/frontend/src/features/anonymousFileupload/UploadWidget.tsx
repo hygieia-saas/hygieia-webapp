@@ -64,6 +64,7 @@ const UploadWidget = (): JSX.Element => {
                 uppy={uppy}
                 theme={reduxState.uiSettings.darkMode ? 'dark' : 'light'}
                 width={'100%'}
+                height={'50vh'}
                 hideRetryButton={true}
                 showProgressDetails={true}
                 hidePauseResumeButton={true}
