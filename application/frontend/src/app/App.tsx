@@ -2,14 +2,10 @@ import React from 'react';
 import './app.css'
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import ERoutes from './routes';
-import Header from '../elements/Header';
-import MainContent from '../elements/MainContent';
-import MainContentStart from '../elements/MainContentStart';
 import ScrollToTopWrapper from '../elements/ScrollToTopWrapper';
 import { useAppSelector } from './hooks';
 import Uploader from '../features/anonymousFileupload/Uploader';
 import Imprint from '../features/content/Imprint';
-import MainHeadline from '../elements/MainHeadline';
 
 const App = (): JSX.Element => {
 
