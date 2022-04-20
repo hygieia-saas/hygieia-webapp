@@ -41,7 +41,10 @@ export const initialState: IAnonymousFileuploadState = {
 
     uploadStarted: false,
     uploadProgress: 0,
-    uploadFinishedSuccessfully: false
+    uploadFinishedSuccessfully: false,
+
+    uploadErrored: false,
+    uploadErroredWith: ''
 };
 
 export const getFileCheckSlotPresignedPostInfo = createAsyncThunk<IFileCheckSlotPresignedPostInfo, void, { state: RootState, rejectValue: string }>(

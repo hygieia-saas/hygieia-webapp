@@ -7,8 +7,9 @@ import FileCheckSlotCreator from './FileCheckSlotCreator';
 import UploadWidget from './UploadWidget';
 import MainHeadline from '../../elements/MainHeadline';
 import FileCheckSlotStatusInfoUpdater from './FileCheckSlotStatusInfoUpdater';
-import ContentParagraph from '../../elements/ContentParagraph';
+import ContentBlock from '../../elements/ContentBlock';
 import Spinner from '../../elements/Spinner';
+import ErrorMessage from '../../elements/ErrorMessage';
 
 const Uploader = (): JSX.Element => {
 
@@ -36,14 +37,26 @@ const Uploader = (): JSX.Element => {
                     (
                         reduxState.anonymousFileupload.uploadStarted
                         && !reduxState.anonymousFileupload.uploadFinishedSuccessfully
+                        && !reduxState.anonymousFileupload.uploadErrored
                     )
                     &&
-                    <ContentParagraph>
+                    <ContentBlock>
                         <Spinner text={reduxState.translations.translations['anonymousFileupload.uploading']}/>
-                        <div className='text-xl mt-5 font-black'>
+                        <p className='text-xl mt-5 font-black'>
                             {reduxState.anonymousFileupload.uploadProgress}%
-                        </div>
-                    </ContentParagraph>
+                        </p>
+                    </ContentBlock>
+                }
+
+                {
+                    (
+                        reduxState.anonymousFileupload.uploadStarted
+                        && reduxState.anonymousFileupload.uploadErrored
+                    )
+                    &&
+                    <ContentBlock>
+                        <ErrorMessage message={reduxState.translations.translations['anonymousFileupload.uploading']}/>
+                    </ContentBlock>
                 }
             </MainContentStart>
         </MainContent>

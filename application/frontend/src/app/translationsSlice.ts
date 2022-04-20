@@ -45,6 +45,7 @@ export interface ITranslations {
     readonly 'anonymousFileupload.proveYouAreNotARobot': string
     readonly 'anonymousFileupload.preparingUploadSlot': string
     readonly 'anonymousFileupload.uploading': string
+    readonly 'anonymousFileupload.uploadingErrored': string
     readonly 'anonymousFileupload.waitingForResult': string
     readonly 'anonymousFileupload.resultClean': string
     readonly 'anonymousFileupload.resultCleanInfo': string
@@ -99,6 +100,7 @@ const de: ITranslationsState = {
         'anonymousFileupload.proveYouAreNotARobot': 'An dieser Stelle können Sie eine Datei hochladen und auf Viren prüfen lassen. Zunächst müssen wir sicherstellen, dass Sie kein Roboter sind.',
         'anonymousFileupload.preparingUploadSlot': 'Wir bereiten einen Upload-Slot vor...',
         'anonymousFileupload.uploading': 'Datei wird hochgeladen...',
+        'anonymousFileupload.uploadingErrored': 'Ein Fehler ist aufgetreten. Bitte beachten Sie, dass die maximale Dateigröße bei 500 Megabyte liegt.',
         'anonymousFileupload.waitingForResult': 'Warte auf Ergebnis des Virencheck...',
         'anonymousFileupload.resultClean': 'Kein Virus gefunden!',
         'anonymousFileupload.resultCleanInfo': 'Von dieser Datei geht mit hoher Wahrscheinlichkeit keine Gefahr aus.',
@@ -149,6 +151,7 @@ const en: ITranslationsState = {
         'anonymousFileupload.proveYouAreNotARobot': 'At this point you can upload a file and have it checked for viruses. We need to begin by making sure that you are not a robot.',
         'anonymousFileupload.preparingUploadSlot': 'We are preparing an upload slot...',
         'anonymousFileupload.uploading': 'File is being uploaded...',
+        'anonymousFileupload.uploadingErrored': 'An error occured. Please note that the maximum file size is 500 megabyte.',
         'anonymousFileupload.waitingForResult': 'Waiting for result of virus check...',
         'anonymousFileupload.resultClean': 'No virus found!',
         'anonymousFileupload.resultCleanInfo': 'With a high probability, this file is not dangerous.',

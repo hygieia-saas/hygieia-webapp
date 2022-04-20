@@ -59,8 +59,12 @@ const UploadWidget = (): JSX.Element => {
             reduxDispatch(anonymousFileuploadSlice.actions.uploadFinishedSuccessfully());
         })
 
-        uppy.on('error', () => {
-            reduxDispatch(anonymousFileuploadSlice.actions.uploadFinishedSuccessfully());
+        uppy.on('error', (err) => {
+            reduxDispatch(anonymousFileuploadSlice.actions.uploadErrored(err.message));
+        })
+
+        uppy.on('upload-error', (file, err) => {
+            reduxDispatch(anonymousFileuploadSlice.actions.uploadErrored(err.message));
         })
 
         return <>

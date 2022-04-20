@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getFileCheckSlotPresignedPostInfo } from './anonymousFileuploadSlice';
 import { Recaptcha } from '../session/Recaptcha';
-import ContentParagraph from '../../elements/ContentParagraph';
+import ContentBlock from '../../elements/ContentBlock';
 import Spinner from '../../elements/Spinner';
 
 const FileCheckSlotCreator = (): JSX.Element => {
@@ -12,9 +12,9 @@ const FileCheckSlotCreator = (): JSX.Element => {
 
     if (reduxState.session.recaptchaResponseKey === null) {
         return <>
-            <ContentParagraph>
+            <ContentBlock>
                 { reduxState.translations.translations['anonymousFileupload.proveYouAreNotARobot'] }
-            </ContentParagraph>
+            </ContentBlock>
             <div className='mt-6'>
                 <Recaptcha />
             </div>
@@ -31,9 +31,9 @@ const FileCheckSlotCreator = (): JSX.Element => {
     }
 
     if (reduxState.anonymousFileupload.getFileCheckSlotPresignedPostInfoOperation.isRunning) {
-        return <ContentParagraph>
+        return <ContentBlock>
             <Spinner text={ reduxState.translations.translations['anonymousFileupload.preparingUploadSlot'] }/>
-        </ContentParagraph>
+        </ContentBlock>
     }
 
     return <></>;

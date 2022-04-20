@@ -5,7 +5,7 @@ import {
     startRepeatedlyGetFileCheckSlotStatusInfo
 } from './anonymousFileuploadSlice';
 import Spinner from '../../elements/Spinner';
-import ContentParagraph from '../../elements/ContentParagraph';
+import ContentBlock from '../../elements/ContentBlock';
 
 const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
 
@@ -29,9 +29,9 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
                 || reduxState.anonymousFileupload.fileCheckSlotStatusInfo.avStatus === "unknown")
             )
             &&
-            <ContentParagraph>
+            <ContentBlock>
                 <Spinner text={reduxState.translations.translations['anonymousFileupload.waitingForResult']}/>
-            </ContentParagraph>
+            </ContentBlock>
         }
 
         {
@@ -40,7 +40,7 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
                 && reduxState.anonymousFileupload.fileCheckSlotStatusInfo.avStatus === "clean"
             )
             &&
-            <ContentParagraph>
+            <ContentBlock>
                 <div className='mt-10 bg-green-100 dark:bg-green-900 rounded-lg p-8'>
                     <BadgeCheckIcon className='h-12 w-12 text-green-700 dark:text-green-300 inline'/>
                     <span className='pl-2 text-green-700 dark:text-green-300 font-bold text-xl'>
@@ -50,7 +50,7 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
                         {reduxState.translations.translations['anonymousFileupload.resultCleanInfo']}
                     </div>
                 </div>
-            </ContentParagraph>
+            </ContentBlock>
         }
 
         {
@@ -59,7 +59,7 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
                 && reduxState.anonymousFileupload.fileCheckSlotStatusInfo.avStatus === "infected"
             )
             &&
-            <ContentParagraph>
+            <ContentBlock>
                 <div className='mt-10 bg-red-100 dark:bg-red-900 rounded-lg p-8'>
                     <XCircleIcon className='h-12 w-12 text-red-700 dark:text-red-300 inline'/>
                     <span className='pl-2 text-red-700 dark:text-red-300 font-bold text-xl'>
@@ -73,7 +73,7 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
                         </span>
                     </div>
                 </div>
-            </ContentParagraph>
+            </ContentBlock>
         }
     </>;
 };
