@@ -19,6 +19,9 @@ export interface IAnonymousFileuploadState {
     readonly uploadStarted: boolean
     readonly uploadProgress: number
     readonly uploadFinishedSuccessfully: boolean
+
+    readonly uploadErrored: boolean
+    readonly uploadErroredWith: string
 }
 
 export const initialState: IAnonymousFileuploadState = {
@@ -145,6 +148,11 @@ export const anonymousFileuploadSlice = createSlice({
 
         uploadFinishedSuccessfully: state => {
             state.uploadFinishedSuccessfully = true;
+        },
+
+        uploadErrored: (state, action: PayloadAction<string>) => {
+            state.uploadErrored = true;
+            state.uploadErroredWith = action.payload;
         }
     },
     extraReducers: (builder => {

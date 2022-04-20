@@ -59,6 +59,10 @@ const UploadWidget = (): JSX.Element => {
             reduxDispatch(anonymousFileuploadSlice.actions.uploadFinishedSuccessfully());
         })
 
+        uppy.on('error', () => {
+            reduxDispatch(anonymousFileuploadSlice.actions.uploadFinishedSuccessfully());
+        })
+
         return <>
             <Dashboard
                 uppy={uppy}
