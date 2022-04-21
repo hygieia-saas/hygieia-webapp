@@ -20,6 +20,9 @@ export interface ITranslations {
     readonly 'nav.link.registration': string
     readonly 'nav.link.imprint': string
 
+    readonly 'claim.maintext': string
+    readonly 'claim.cta': string
+
     readonly 'content.imprint.headline': string
 
     readonly 'session.registration.headline': string
@@ -75,6 +78,9 @@ const de: ITranslationsState = {
         'nav.link.registration': 'Registrieren',
         'nav.link.imprint': 'Impressum',
 
+        'claim.maintext': 'Verteilen Sie über die Uploads Ihrer Benutzer keine Schadsoftware auf Ihrer Seite - prüfen Sie jede neue Datei automatisch auf Viren und Malware!',
+        'claim.cta': 'Preisliste einsehen',
+
         'content.imprint.headline': 'Impressum',
 
         'session.registration.headline': 'Registrierung',
@@ -125,6 +131,9 @@ const en: ITranslationsState = {
         'nav.link.login': 'Login',
         'nav.link.registration': 'Registration',
         'nav.link.imprint': 'Legal notice',
+
+        'claim.maintext': 'Don\'t spread dangerous files when taking uploads from your users. Have each new file checked for viruses and malware instantly.',
+        'claim.cta': 'See pricing',
 
         'content.imprint.headline': 'Legal notice',
 

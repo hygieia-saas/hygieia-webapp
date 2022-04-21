@@ -116,34 +116,6 @@ const Header = (): JSX.Element => {
                 )}
             </Disclosure>
         </div>
-
-
-        <div className='m-0 p-0'>
-            <div className='m-0'>
-                <div className='
-                    bg-lime-800
-                    p-8
-                    ml-40
-                    text-gray-300
-                    text-md
-                    text-right
-                    rounded-tl-2xl
-                    items-end
-                '>
-                    <p>
-                        {"Don't spread dangerous files when taking uploads from your users."}
-                        {" Have each new file checked for viruses and malware instantly."}
-                    </p>
-
-                    <p className='mt-4'>
-                        <button className='block rounded-md bg-lime-400 p-2 text-xs text-black'>
-                            See pricing
-                        </button>
-                    </p>
-                </div>
-            </div>
-        </div>
-
     </>
 };
 
