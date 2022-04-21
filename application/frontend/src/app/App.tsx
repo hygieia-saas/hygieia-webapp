@@ -36,9 +36,9 @@ const App = (): JSX.Element => {
                             '>
                                 <div className='
                                         max-w-lg
-                                        bg-lime-800
+                                        bg-lime-700
                                         p-6
-                                        text-gray-300
+                                        text-white
                                         text-md
                                         text-left
                                         rounded-tr-2xl
