@@ -8,6 +8,7 @@ import {
     IFileCheckSlotStatusInfo,
     EFileCheckAvStatus
 } from 'hygieia-webapp-shared';
+import { IFoo } from '../../../src-shared/IFoo';
 
 export interface IAnonymousFileuploadState {
     readonly fileCheckSlotPresignedPostInfo: IFileCheckSlotPresignedPostInfo|null
@@ -66,6 +67,8 @@ export const getFileCheckSlotPresignedPostInfo = createAsyncThunk<IFileCheckSlot
             })
 
             .then(parsedResponseContent => {
+                const footoorama: IFoo = { bar: "iuhj" };
+                console.log(footoorama);
                 return parsedResponseContent;
             })
 

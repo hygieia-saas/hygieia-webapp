@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "outDir": "./build-backend",
+    "rootDir": "./"
+  },
+  "include": ["src-backend/**/*.ts"],
+  "exclude": ["node_modules"]
+}
