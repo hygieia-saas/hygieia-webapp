@@ -5,7 +5,7 @@ resource "aws_lambda_function" "handlers_file_check_result" {
   s3_key    = "file-check-result/${var.deployment_number}/handlers_file_check_result.zip"
 
   handler = "index.handler"
-  runtime = "nodejs14.x"
+  runtime = "nodejs16.x"
 
   role = aws_iam_role.lambda_handlers_file_check_result.arn
 }

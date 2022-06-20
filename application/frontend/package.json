@@ -51,7 +51,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@tsconfig/node14": "^1.0.3",
+    "@tsconfig/node16": "^1.0.3",
     "@types/aws-lambda": "^8.10.100",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",

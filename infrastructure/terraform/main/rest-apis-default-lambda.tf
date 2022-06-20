@@ -5,7 +5,7 @@ resource "aws_lambda_function" "rest_apis_default" {
   s3_key    = "default/${var.deployment_number}/rest_api_default.zip"
 
   handler = "index.handler"
-  runtime = "nodejs14.x"
+  runtime = "nodejs16.x"
 
   role = aws_iam_role.lambda_rest_apis_default.arn
 
