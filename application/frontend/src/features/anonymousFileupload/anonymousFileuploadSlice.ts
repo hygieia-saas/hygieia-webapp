@@ -8,7 +8,7 @@ import {
     IFileCheckSlotStatusInfo,
     EFileCheckAvStatus
 } from 'hygieia-webapp-shared';
-import { IFoo } from '../../../src-shared/IFoo';
+import { IFoo } from '../../shared/IFoo';
 
 export interface IAnonymousFileuploadState {
     readonly fileCheckSlotPresignedPostInfo: IFileCheckSlotPresignedPostInfo|null

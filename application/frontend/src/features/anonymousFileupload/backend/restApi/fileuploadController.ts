@@ -1,8 +1,8 @@
 import { APIGatewayEventDefaultAuthorizerContext, APIGatewayProxyEventBase, APIGatewayProxyResult } from 'aws-lambda';
 import { createFileCheckSlot, getFileCheckSlotStatusInfo } from './fileuploadService';
-import { createJsonResponse, jsonResponseWithExtractedErrorMessage } from '../../../app/util/controllerUtils';
-import { getBody } from '../../../app/util/apiGatewayProxyEventUtils';
-import { recaptchaResponseKeyIsValid } from '../../../app/util/recaptchaUtils';
+import { createJsonResponse, jsonResponseWithExtractedErrorMessage } from '../../../../app/util/controllerUtils';
+import { getBody } from '../../../../app/util/apiGatewayProxyEventUtils';
+import { recaptchaResponseKeyIsValid } from '../../../../app/util/recaptchaUtils';
 import {
     ERestApiDefaultRouteNames,
     restApiDefaultRoutes

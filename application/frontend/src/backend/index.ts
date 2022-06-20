@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
-import { IFoo } from '../src-shared/IFoo';
+import { IFoo } from '../shared/IFoo';
 
 export const handler: APIGatewayProxyHandler = async (event) => {
 
@@ -15,4 +15,5 @@ export const handler: APIGatewayProxyHandler = async (event) => {
         statusCode: 200,
         body: 'foo'
     }
+
 };

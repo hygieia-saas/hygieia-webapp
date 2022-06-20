@@ -6,6 +6,9 @@
     "outDir": "./build-backend",
     "rootDir": "./"
   },
-  "include": ["src-backend/**/*.ts"],
+  "include": [
+    "src/defaultRestApiHandler.ts",
+    "src/features/anonymousFileupload/backend/handlers/fileCheckResult.ts"
+  ],
   "exclude": ["node_modules"]
 }

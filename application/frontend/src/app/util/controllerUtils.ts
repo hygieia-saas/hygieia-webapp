@@ -1,6 +1,6 @@
 import { APIGatewayEventDefaultAuthorizerContext, APIGatewayProxyEventBase, APIGatewayProxyResult } from 'aws-lambda';
-import { returnWithExtractedErrorMessage } from 'hygieia-webapp-shared';
-import { getUserByApiKeyId, IStoredUser } from '../../features/session/service/userService';
+import { returnWithExtractedErrorMessage } from 'hygieia-webapp-shared'
+import { getUserByApiKeyId, IStoredUser } from '../../features/session/backend/restApi/service/userService';
 
 export enum EStatusCodes {
     Ok = 200,
