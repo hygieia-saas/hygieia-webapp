@@ -1,7 +1,7 @@
 import { APIGatewayEventDefaultAuthorizerContext, APIGatewayProxyEventBase, APIGatewayProxyResult } from 'aws-lambda';
-import { getBody } from '../../../../../app/util/apiGatewayProxyEventUtils';
+import { getBody } from '../../../../../app/restApiUtils/apiGatewayProxyEventUtils';
 import { createUser } from '../service/userService';
-import { createJsonResponse, jsonResponseWithExtractedErrorMessage } from '../../../../../app/util/controllerUtils';
+import { createJsonResponse, jsonResponseWithExtractedErrorMessage } from '../../../../../app/restApiUtils/controllerUtils';
 import {
     credentialsSyntacticalValidationRules,
     getErrorsForSyntacticalValidation,

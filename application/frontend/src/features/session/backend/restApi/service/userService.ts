@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { v1 as uuidv1 } from 'uuid';
-import AWS from '../../../../../app/util/awsSdkUtils';
+import AWS from '../../../../../app/restApiUtils/awsSdkUtils';
 import { ETables, ICredentials } from 'hygieia-webapp-shared';
 import { getApiKeyById } from './apiKeyService';
 

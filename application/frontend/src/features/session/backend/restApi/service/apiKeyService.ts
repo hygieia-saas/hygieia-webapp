@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
-import AWS from '../../../../../app/util/awsSdkUtils';
+import AWS from '../../../../../app/restApiUtils/awsSdkUtils';
 import { ETables, ICredentials } from 'hygieia-webapp-shared';
 
 export enum ECreateApiKeyResultErrors {

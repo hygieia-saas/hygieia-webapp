@@ -1,7 +1,7 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import { registerUserAction } from './features/session/backend/restApi/controller/usersController';
 import { createApiKeyAction } from './features/session/backend/restApi/controller/apiKeysController';
-import { createJsonResponse } from './app/util/controllerUtils';
+import { createJsonResponse } from './app/restApiUtils/controllerUtils';
 import {
     createFileCheckSlotForAnonymousUploadAction,
     getFileCheckSlotForAnonymousUploadStatusAction

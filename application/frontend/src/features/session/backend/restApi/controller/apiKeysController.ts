@@ -1,12 +1,12 @@
 import { APIGatewayEventDefaultAuthorizerContext, APIGatewayProxyEventBase, APIGatewayProxyResult } from 'aws-lambda';
-import { getBody } from '../../../../../app/util/apiGatewayProxyEventUtils';
+import { getBody } from '../../../../../app/restApiUtils/apiGatewayProxyEventUtils';
 import {
     credentialsSyntacticalValidationRules,
     getErrorsForSyntacticalValidation,
     ICredentials,
     validateCredentialsStructurally
 } from 'hygieia-webapp-shared';
-import { createJsonResponse, jsonResponseWithExtractedErrorMessage } from '../../../../../app/util/controllerUtils';
+import { createJsonResponse, jsonResponseWithExtractedErrorMessage } from '../../../../../app/restApiUtils/controllerUtils';
 import { createApiKey } from '../service/apiKeyService';
 
 export const createApiKeyAction = async (event: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>): Promise<APIGatewayProxyResult> => {

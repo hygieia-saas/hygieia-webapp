@@ -9,7 +9,7 @@ import {
     IFileCheckSlotStatusInfo,
     IPresignedPost
 } from 'hygieia-webapp-shared';
-import AWS from '../../../../app/util/awsSdkUtils';
+import AWS from '../../../../app/restApiUtils/awsSdkUtils';
 
 export const getPresignedPostForAnonymousUpload = async (): Promise<IPresignedPost> => {
 
