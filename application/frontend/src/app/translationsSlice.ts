@@ -162,7 +162,7 @@ const en: ITranslationsState = {
         'anonymousFileupload.proveYouAreNotARobot': 'Start here to upload a file and have it checked for viruses. We need to begin by making sure that you are not a robot.',
         'anonymousFileupload.preparingUploadSlot': 'We are preparing an upload slot...',
         'anonymousFileupload.uploading': 'File is being uploaded...',
-        'anonymousFileupload.uploadingErrored': 'An error occured. Please note that the maximum file size is 500 megabyte.',
+        'anonymousFileupload.uploadingErrored': 'An error occured. Please note that the maximum file size is 500 megabytes.',
         'anonymousFileupload.waitingForResult': 'Waiting for result of virus check — this takes about a minute...',
         'anonymousFileupload.resultClean': 'No virus found!',
         'anonymousFileupload.resultCleanInfo': 'With a high probability, this file is not dangerous. Note however that no warranty of any kind is expressed or implied.',
