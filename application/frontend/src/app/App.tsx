@@ -25,9 +25,9 @@ const App = (): JSX.Element => {
                 </Routes>
 
 
-                <footer className='pt-64 bg-gray-100 dark:bg-gray-900'>
-                    <div className='bg-gray-800 p-5 text-gray-600 text-right pr-8'>
-                        <div>
+                <footer className='pt-64 bg-gray-100 dark:bg-gray-900 w-full'>
+                    <div className='bg-gray-800 p-5 text-gray-600 text-right pr-8 w-full'>
+                        <div className='mx-auto max-w-7xl pr-1 lg:pr-11'>
                             <div className='mb-3'>
                                 <span className='font-bold'>viruSaas</span>
                                 &nbsp;·
