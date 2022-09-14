@@ -49,6 +49,11 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
                     <div className='mt-10 text-black dark:text-white'>
                         {reduxState.translations.translations['anonymousFileupload.resultCleanInfo']}
                     </div>
+                    <div className='mt-10 text-black dark:text-white'>
+                        <a className='underline' href='/upload'>
+                            {reduxState.translations.translations['anonymousFileupload.checkAnotherFileCta']}
+                        </a>
+                    </div>
                 </div>
             </ContentBlock>
         }
@@ -69,8 +74,17 @@ const FileCheckSlotStatusInfoUpdater = (): JSX.Element => {
                         {reduxState.translations.translations['anonymousFileupload.resultInfectedInfo']}
                         <br/>
                         <span className='font-bold'>
-                            {reduxState.anonymousFileupload.fileCheckSlotStatusInfo.avSignature.replace(' FOUND', '')}
+                            <a rel='noreferrer'
+                                href={'https://www.trendmicro.com/vinfo/us/threat-encyclopedia/search/' + encodeURI(reduxState.anonymousFileupload.fileCheckSlotStatusInfo.avSignature.replace(' FOUND', ''))} target='_blank'
+                            >
+                                {reduxState.anonymousFileupload.fileCheckSlotStatusInfo.avSignature.replace(' FOUND', '')}
+                            </a>
                         </span>
+                    </div>
+                    <div className='mt-10 text-black dark:text-white'>
+                        <a className='underline' href='/upload' rel='noreferrer'>
+                            {reduxState.translations.translations['anonymousFileupload.checkAnotherFileCta']}
+                        </a>
                     </div>
                 </div>
             </ContentBlock>

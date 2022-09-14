@@ -54,6 +54,7 @@ export interface ITranslations {
     readonly 'anonymousFileupload.resultCleanInfo': string
     readonly 'anonymousFileupload.resultInfected': string
     readonly 'anonymousFileupload.resultInfectedInfo': string
+    readonly 'anonymousFileupload.checkAnotherFileCta': string
 
     readonly 'apiError.unexpectedResponse': string
 }
@@ -107,11 +108,12 @@ const de: ITranslationsState = {
         'anonymousFileupload.preparingUploadSlot': 'Wir bereiten einen Upload-Slot vor...',
         'anonymousFileupload.uploading': 'Datei wird hochgeladen...',
         'anonymousFileupload.uploadingErrored': 'Ein Fehler ist aufgetreten. Bitte beachten Sie, dass die maximale Dateigröße bei 500 Megabyte liegt.',
-        'anonymousFileupload.waitingForResult': 'Warte auf Ergebnis des Virencheck...',
+        'anonymousFileupload.waitingForResult': 'Warte auf Ergebnis des Virencheck — dies dauert ca. eine Minute...',
         'anonymousFileupload.resultClean': 'Kein Virus gefunden!',
         'anonymousFileupload.resultCleanInfo': 'Von dieser Datei geht mit hoher Wahrscheinlichkeit keine Gefahr aus. Jede Haftung und Gewährleistung ist jedoch ausgeschlossen.',
         'anonymousFileupload.resultInfected': 'Virus gefunden!',
         'anonymousFileupload.resultInfectedInfo': 'Die hochgeladene Datei enthält die Signatur des folgenden Schädlings:',
+        'anonymousFileupload.checkAnotherFileCta': 'Eine weitere Datei überprüfen',
 
         'apiError.unexpectedResponse': 'Unerwarteter Schnittstellenfehler (Code %code%).',
     }
@@ -161,11 +163,12 @@ const en: ITranslationsState = {
         'anonymousFileupload.preparingUploadSlot': 'We are preparing an upload slot...',
         'anonymousFileupload.uploading': 'File is being uploaded...',
         'anonymousFileupload.uploadingErrored': 'An error occured. Please note that the maximum file size is 500 megabyte.',
-        'anonymousFileupload.waitingForResult': 'Waiting for result of virus check...',
+        'anonymousFileupload.waitingForResult': 'Waiting for result of virus check — this takes about a minute...',
         'anonymousFileupload.resultClean': 'No virus found!',
         'anonymousFileupload.resultCleanInfo': 'With a high probability, this file is not dangerous. Note however that no warranty of any kind is expressed or implied.',
         'anonymousFileupload.resultInfected': 'Virus found!',
         'anonymousFileupload.resultInfectedInfo': 'The uploaded file contains the signature of the following virus:',
+        'anonymousFileupload.checkAnotherFileCta': 'Check another file',
 
         'apiError.unexpectedResponse': 'Unexpected interface failure (code %code%).',
     }
