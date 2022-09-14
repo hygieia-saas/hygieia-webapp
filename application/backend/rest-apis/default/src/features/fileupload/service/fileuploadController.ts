@@ -47,3 +47,4 @@ export const getFileCheckSlotForAnonymousUploadStatusAction = async (event: APIG
         body: await getFileCheckSlotStatusInfo(fileCheckSlotId)
     });
 };
+

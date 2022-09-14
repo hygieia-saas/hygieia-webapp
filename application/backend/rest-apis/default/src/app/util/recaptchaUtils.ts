@@ -1,8 +1,10 @@
 import fetch from 'cross-fetch';
+import AWS from './awsSdkUtils';
+import { ETables } from 'hygieia-webapp-shared';
 
 export const recaptchaResponseKeyIsValid = async (responseKey: string): Promise<boolean> => {
 
-    const secretKey = '6LfP3qAeAAAAANSXVQ6Sycv3zgvhcv2OHGIgL0dt';
+    const secretKey = await getRecaptchaSecretKeyAppSetting();
     const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${responseKey}`;
 
     return new Promise<boolean>((resolve => {
@@ -18,4 +20,31 @@ export const recaptchaResponseKeyIsValid = async (responseKey: string): Promise<
                 resolve(false);
             });
     }));
+};
+
+const getRecaptchaSecretKeyAppSetting = async (): Promise<string|null> => {
+
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    return await new Promise((resolve) => {
+        docClient.get(
+            {
+                TableName: ETables.appSettings,
+                Key: {
+                    id: 'recaptchaSecretKey',
+                }
+            },
+            (err, data) => {
+                if (err) {
+                    console.error(err);
+                    resolve(null);
+                } else {
+                    if (Object.prototype.hasOwnProperty.call(data, 'Item') && data.Item !== undefined) {
+                        resolve(data.Item.value as string);
+                    } else {
+                        resolve(null);
+                    }
+                }
+            });
+    });
 };

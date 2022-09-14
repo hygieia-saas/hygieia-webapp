@@ -14,7 +14,7 @@ export const Recaptcha = (): JSX.Element => {
             &&
             <>
                 <ReCAPTCHA
-                    sitekey='6LfP3qAeAAAAAGHgjeDI1lF3Wby9HfFrMLKcF4Xe'
+                    sitekey='6LcVyfkhAAAAABVlo1HM7XY6_Qx64r3O6JCUMplo'
                     theme={reduxState.uiSettings.darkMode ? 'dark' : 'light'}
                     hl={reduxState.translations.iso639_1LanguageCode}
                     badge='bottomright'

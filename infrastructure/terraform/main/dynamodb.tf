@@ -22,7 +22,8 @@ resource "aws_iam_policy" "dynamodb_default" {
                 "${aws_dynamodb_table.credentials.arn}",
                 "${aws_dynamodb_table.users.arn}",
                 "${aws_dynamodb_table.api_keys.arn}",
-                "${aws_dynamodb_table.file_check_slots.arn}"
+                "${aws_dynamodb_table.file_check_slots.arn}",
+                "${aws_dynamodb_table.app_settings.arn}"
             ]
         }
     ]
@@ -65,6 +66,17 @@ resource "aws_dynamodb_table" "api_keys" {
 
 resource "aws_dynamodb_table" "file_check_slots" {
   name           = "file_check_slots"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "id"
+
+  attribute {
+    name = "id"
+    type = "S"
+  }
+}
+
+resource "aws_dynamodb_table" "app_settings" {
+  name           = "app_settings"
   billing_mode   = "PAY_PER_REQUEST"
   hash_key       = "id"
 
