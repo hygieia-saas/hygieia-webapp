@@ -157,7 +157,7 @@ const en: ITranslationsState = {
         'syntacticalValidationRule.credentials.password.custom': 'The password needs to be at least 6 characters long.',
 
         'anonymousFileupload.headline': 'Check a file for viruses',
-        'anonymousFileupload.proveYouAreNotARobot': 'At this point you can upload a file and have it checked for viruses. We need to begin by making sure that you are not a robot.',
+        'anonymousFileupload.proveYouAreNotARobot': 'On this site you can upload a file and have it checked for viruses. We need to begin by making sure that you are not a robot.',
         'anonymousFileupload.preparingUploadSlot': 'We are preparing an upload slot...',
         'anonymousFileupload.uploading': 'File is being uploaded...',
         'anonymousFileupload.uploadingErrored': 'An error occured. Please note that the maximum file size is 500 megabyte.',
