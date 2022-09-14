@@ -47,6 +47,7 @@ export interface ITranslations {
     readonly 'anonymousFileupload.headline': string
     readonly 'anonymousFileupload.proveYouAreNotARobot': string
     readonly 'anonymousFileupload.preparingUploadSlot': string
+    readonly 'anonymousFileupload.uploadDisclaimer': string
     readonly 'anonymousFileupload.uploading': string
     readonly 'anonymousFileupload.uploadingErrored': string
     readonly 'anonymousFileupload.waitingForResult': string
@@ -106,6 +107,7 @@ const de: ITranslationsState = {
         'anonymousFileupload.headline': 'Eine Datei auf Viren prüfen',
         'anonymousFileupload.proveYouAreNotARobot': 'An dieser Stelle können Sie eine Datei hochladen und auf Viren prüfen lassen. Zunächst müssen wir sicherstellen, dass Sie kein Roboter sind.',
         'anonymousFileupload.preparingUploadSlot': 'Wir bereiten einen Upload-Slot vor...',
+        'anonymousFileupload.uploadDisclaimer': 'Bitte laden Sie keine Datei mit sensitiven oder persönlichen Informationen hoch. Wir übernehmen keinerlei Verantwortung für die Inhalte hochgeladener Dateien.',
         'anonymousFileupload.uploading': 'Datei wird hochgeladen...',
         'anonymousFileupload.uploadingErrored': 'Ein Fehler ist aufgetreten. Bitte beachten Sie, dass die maximale Dateigröße bei 500 Megabyte liegt.',
         'anonymousFileupload.waitingForResult': 'Warte auf Ergebnis des Virencheck — dies dauert ca. eine Minute...',
@@ -161,6 +163,7 @@ const en: ITranslationsState = {
         'anonymousFileupload.headline': 'Check a file for viruses',
         'anonymousFileupload.proveYouAreNotARobot': 'Start here to upload a file and have it checked for viruses. We need to begin by making sure that you are not a robot.',
         'anonymousFileupload.preparingUploadSlot': 'We are preparing an upload slot...',
+        'anonymousFileupload.uploadDisclaimer': 'Please do not submit any personal or sensitive information; we are not responsible for the contents of your submission.',
         'anonymousFileupload.uploading': 'File is being uploaded...',
         'anonymousFileupload.uploadingErrored': 'An error occured. Please note that the maximum file size is 500 megabytes.',
         'anonymousFileupload.waitingForResult': 'Waiting for result of virus check — this takes about a minute...',

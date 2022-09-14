@@ -11,6 +11,7 @@ import '@uppy/core/dist/style.css';
 import '@uppy/dashboard/dist/style.css';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { anonymousFileuploadSlice } from './anonymousFileuploadSlice';
+import ContentBlock from '../../elements/ContentBlock';
 
 const UploadWidget = (): JSX.Element => {
 
@@ -68,7 +69,11 @@ const UploadWidget = (): JSX.Element => {
         })
 
         return <>
+            <ContentBlock>
+                { reduxState.translations.translations['anonymousFileupload.uploadDisclaimer'] }
+            </ContentBlock>
             <Dashboard
+                className={'mt-5'}
                 uppy={uppy}
                 theme={reduxState.uiSettings.darkMode ? 'dark' : 'light'}
                 width={'100%'}
