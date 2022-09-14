@@ -26,41 +26,21 @@ const App = (): JSX.Element => {
 
 
                 <footer className='pt-64 bg-gray-100 dark:bg-gray-900'>
-                    <div className='m-0 p-0'>
-                        <div className='
-                                bottom-0
-                                left-0
-                                m-0
-                                flex
-                                justify-start
-                            '>
-                                <div className='
-                                        max-w-lg
-                                        bg-lime-700
-                                        p-6
-                                        text-white
-                                        text-md
-                                        text-left
-                                        rounded-tr-2xl
-                                '>
-                                    <p className='max-w-lg'>
-                                        { reduxState.translations.translations['claim.maintext'] }
-                                    </p>
-
-                                    <p className='mt-4 w-1/2'>
-                                        <button className='block rounded-md bg-lime-400 p-2 text-xs text-black'>
-                                            { reduxState.translations.translations['claim.cta'] }
-                                        </button>
-                                    </p>
-                                </div>
-                        </div>
-                    </div>
-
                     <div className='bg-gray-800 p-5 text-gray-600 text-right pr-8'>
                         <div>
-                            <span className='font-bold'>viruSaas</span>
-                            &nbsp;·
-                            virus checks as a service
+                            <div className='mb-3'>
+                                <span className='font-bold'>viruSaas</span>
+                                &nbsp;·
+                                virus checks as a service
+                            </div>
+
+                            <a href='https://www.patreon.com/manuelkiessling' target='_blank' rel='noreferrer' className='text-gray-400 ml-8'>
+                                Patreon
+                            </a>
+
+                            <a href='https://github.com/hygieia-saas/hygieia-webapp' target='_blank' rel='noreferrer' className='text-gray-400 ml-8'>
+                                Source Code
+                            </a>
 
                             <Link to={ERoutes['imprint']} className='text-gray-400 ml-8'>
                                 { reduxState.translations.translations['nav.link.imprint'] }
